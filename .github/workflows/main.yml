@@ -29,5 +29,7 @@ jobs:
           script: |
                   cd reiher-bot
                   git pull git@github.com:soerenetler/reiher-bot.git
+                  python_process=$(pgrep -u s.etler "python3")
+                  kill $python_process
                   python3 conversationbot.py ${{ secrets.TELEGRAM_TOKEN }} &
                    
