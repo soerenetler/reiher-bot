@@ -30,6 +30,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           source: "."
           target: "reiher-bot/"
+          rm: true
         
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
@@ -43,4 +44,5 @@ jobs:
                   python_process=$(pgrep -u s.etler "python3")
                   kill $python_process
                   python3 conversationbot.py ${{ secrets.TELEGRAM_TOKEN }} &
+                  exit
                    
