@@ -1,13 +1,23 @@
-from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup, Sticker)
+import logging
+
+from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, Sticker, InlineKeyboardButton, InlineKeyboardMarkup)
+from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
+                          ConversationHandler)
 
 from states import INTRO_STATES
-
-import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
+
+def cancel(update, context):
+    user = update.message.from_user
+    logger.info("User %s canceled the conversation.", user.first_name)
+    update.message.reply_text('Bye! I hope we can talk again some day.',
+                              reply_markup=ReplyKeyboardRemove())
+
+    return ConversationHandler.END
 
 def start_name(update, context):
     yes_no_keyboard = [['Ja, gerne! 😎',
@@ -97,7 +107,7 @@ def welche_route(update, context):
 
 def start_test_route(update,context):
     yes_no_keyboard = [['Ja, ich bin bereit 🏁',
-                        #'Ich würde doch lieber eine andere Route gehen 🤔'
+                        'Ich würde doch lieber eine andere Route gehen 🤔'
                         ]]
     update.message.reply_text('Klasse Wahl 👍 Auf der Testroute zeige ich dir mein Zuhause, den Reiherberg. '
                               'Für diesen Weg brauchen wir etwa 30 Minuten.',

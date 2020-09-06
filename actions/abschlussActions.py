@@ -17,6 +17,6 @@ def get_feedback(update, context):
     photo_file = update.message.from_user.get_profile_photos().photos[0][-1]
     photo_file.get_file().download('user.jpg')
 
-    update.message.reply_photo("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Die_Kirche_in_Golm.JPG/1200px-Die_Kirche_in_Golm.JPG")
+    update.message.reply_photo(open("assets/golm_medaillie.png", 'rb'))
     update.message.reply_text("Sag uns gern deine Meinung zum Rundgang. Schreib dein Feedback in den Chat oder sende uns eine Sprachnachricht.")
     return ABSCHLUSS_STATES["ENDE"]
