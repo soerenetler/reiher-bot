@@ -16,6 +16,10 @@ bot.
 
 import logging
 
+import os
+import sys
+from threading import Thread
+
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton)
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
                           ConversationHandler)
@@ -27,12 +31,24 @@ import generalActions
 from configparser import ConfigParser
 import argparse
 
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Read Telegram Token')
     parser.add_argument('telegram_token', type=str,
                         help='the telegram token for your bot')
 
     args = parser.parse_args()
+
+    def stop_and_restart():
+        """Gracefully stop the Updater and replace the current process with a new one"""
+        updater.stop()
+        os.execl(sys.executable, sys.executable, *sys.argv)
+
+    def restart(update, context):
+        update.message.reply_text('Bot is restarting...')
+        Thread(target=stop_and_restart).start()
+
 
     # Create the Updater and pass it your bot's token.
     # Make sure to set use_context=True to use the new context based callbacks
@@ -52,7 +68,8 @@ if __name__ == '__main__':
             GENERAL_STATES["INFO_END"]: []
         },
 
-        fallbacks=[CommandHandler('cancel', generalActions.cancel)]
+        fallbacks=[CommandHandler('cancel', generalActions.cancel),
+                   CommandHandler('restart', restart, filters=Filters.user(username='@soeren101'))]
     )
 
     dp.add_handler(conv_handler)
