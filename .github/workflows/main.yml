@@ -41,8 +41,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
                   cd reiher-bot
-                  python_process=$(pgrep -u s.etler "python3")
-                  kill $python_process
+                  killall python3
                   python3 conversationbot.py ${{ secrets.TELEGRAM_TOKEN }} &
                   exit
                    
