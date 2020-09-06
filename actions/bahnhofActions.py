@@ -1,7 +1,7 @@
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup)
 
 from states import BAHNHOF_STATES
-from modules.infoActions import info_bahn
+from actions.infoActions import info_bahn
 
 import logging
 
