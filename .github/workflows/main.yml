@@ -28,7 +28,7 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
           password: ${{ secrets.PASSWORD }}
-          source: "reiher-bot/"
+          source: "."
           target: "reiher-bot/"
         
       - name: executing remote ssh commands using password
