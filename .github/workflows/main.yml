@@ -19,6 +19,18 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: actions/checkout@v1
+
+      - name: Copy file via scp
+        uses: appleboy/scp-action@master
+        with:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          password: ${{ secrets.PASSWORD }}
+          source: "reiher-bot/"
+          target: "reiher-bot/"
+        
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
@@ -28,7 +40,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
                   cd reiher-bot
-                  git pull git@github.com:soerenetler/reiher-bot.git
                   python_process=$(pgrep -u s.etler "python3")
                   kill $python_process
                   python3 conversationbot.py ${{ secrets.TELEGRAM_TOKEN }} &
