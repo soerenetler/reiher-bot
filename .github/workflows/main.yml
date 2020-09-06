@@ -29,5 +29,5 @@ jobs:
           script: |
                   cd reiher-bot
                   git pull git@github.com:soerenetler/reiher-bot.git
-                  python3 conversationbot.py ${{ secrets.TELEGRAM_TOKEN }}
+                  python3 conversationbot.py ${{ secrets.TELEGRAM_TOKEN }} &
                    
