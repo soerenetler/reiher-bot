@@ -115,3 +115,8 @@ def start_test_route(update,context):
 
     update.message.reply_text('Kann’s losgehen?', reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
     return INTRO_STATES["TESTROUTE_BESTAETIGEN"]
+
+def nicht_verstanden(update,context):
+    update.message.reply_text('Leider habe ich dich nicht verstanden. Versuche deine Eingabe anders zu formulieren oder nutze die hinterlegten Antwortbuttons.',
+                              reply_markup=ReplyKeyboardRemove())
+    return None
