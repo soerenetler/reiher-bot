@@ -122,7 +122,8 @@ if __name__ == '__main__':
         },
 
         fallbacks=[CommandHandler('cancel', generalActions.cancel),
-                   CommandHandler('restart', restart, filters=Filters.user(username='@soeren101'))]
+                   CommandHandler('restart', restart, filters=Filters.user(username='@soeren101'),
+                   CommandHandler('restart', restart, filters=Filters.user(username='@aehryk'))]
     )
 
     dp.add_handler(conv_handler)
