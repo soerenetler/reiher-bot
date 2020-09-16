@@ -62,68 +62,52 @@ if __name__ == '__main__':
 
         states={
             INTRO_STATES["NAME"]: [MessageHandler(Filters.regex('^(Nein, nenn mich lieber anders! 👻|Nein|Ups, verschrieben 🙈)$'), generalActions.name_frage),
-                                   MessageHandler(Filters.regex('^(Ja, gerne! 😎|Das klingt besser 😊|Ja)$'), generalActions.name_startpunkt),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                   MessageHandler(Filters.regex('^(Ja, gerne! 😎|Das klingt besser 😊|Ja)$'), generalActions.name_startpunkt)],
 
-            INTRO_STATES["NAME_AENDERN"]: [MessageHandler(Filters.text & ~Filters.command, generalActions.name_aendern),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+            INTRO_STATES["NAME_AENDERN"]: [MessageHandler(Filters.text & ~Filters.command, generalActions.name_aendern)],
 
             INTRO_STATES["STARTPUNKT"]: [MessageHandler(Filters.regex('^(schon da ⚓|Ja)$'), generalActions.welche_route),
                                         CommandHandler('weiter', generalActions.welche_route),
                                         CallbackQueryHandler(generalActions.welche_route_callback_query),
-                                        MessageHandler(Filters.regex('^(noch auf dem Weg 😱|Nein)$'), generalActions.weg_zum_bahnhof),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                        MessageHandler(Filters.regex('^(noch auf dem Weg 😱|Nein)$'), generalActions.weg_zum_bahnhof)],
 
-            INTRO_STATES["ROUTE_AUSWAEHLEN"]: [MessageHandler(Filters.regex('^(Testroute 🧪|Testroute)$'), generalActions.start_test_route),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+            INTRO_STATES["ROUTE_AUSWAEHLEN"]: [MessageHandler(Filters.regex('^(Testroute 🧪|Testroute)$'), generalActions.start_test_route)],
 
             INTRO_STATES["TESTROUTE_BESTAETIGEN"]: [CommandHandler('weiter', bahnhofActions.frage_bahnhof),
                                                     MessageHandler(Filters.regex('^(Ja, ich bin bereit 🏁|Ja)$'), bahnhofActions.frage_bahnhof),
-                                                    MessageHandler(Filters.regex('^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions.welche_route),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                                    MessageHandler(Filters.regex('^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions.welche_route)],
 
             #######DEMO-ROUTE#######
             BAHNHOF_STATES["BAHNHOF_FRAGE"]: [CommandHandler('weiter', bahnhofActions.frage_bahnhof_aufloesung),
-                                              MessageHandler(Filters.regex(r'^(\d)+'),bahnhofActions.frage_bahnhof_aufloesung),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                              MessageHandler(Filters.regex(r'^(\d)+'),bahnhofActions.frage_bahnhof_aufloesung)],
             BAHNHOF_STATES["BAHNHOF_FRAGE_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.weg01),
-                                                        CallbackQueryHandler(bahnhofActions.weg01_callback_query),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                                        CallbackQueryHandler(bahnhofActions.weg01_callback_query)],
             BAHNHOF_STATES["WEG01"]: [CommandHandler('weiter', bahnhofActions.frage_ubahn),
-                                      CallbackQueryHandler(bahnhofActions.frage_ubahn_callback_query),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
-            BAHNHOF_STATES["FRAGE_UBAHN"]: [MessageHandler(Filters.regex('^(Kurfürstendamm|Unter den Linden|Zoologischer Garten)$'), bahnhofActions.frage_ubahn_aufloesung),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                      CallbackQueryHandler(bahnhofActions.frage_ubahn_callback_query)],
+            BAHNHOF_STATES["FRAGE_UBAHN"]: [MessageHandler(Filters.regex('^(Kurfürstendamm|Unter den Linden|Zoologischer Garten)$'), bahnhofActions.frage_ubahn_aufloesung)],
             BAHNHOF_STATES["FRAGE_UBAHN_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.weg02),
-                                                       CallbackQueryHandler(bahnhofActions.weg02_callback_query),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                                       CallbackQueryHandler(bahnhofActions.weg02_callback_query)],
             BAHNHOF_STATES["FEHLERBILD_REIHERBERG"]: [CommandHandler('weiter', bahnhofActions.fehlerbild_reiherberg_aufloesung),
-                                                      MessageHandler(Filters.regex('^(Supermarktschild|Ahorn|Bushaltestelle|Kotbeutelspender)$'), bahnhofActions.fehlerbild_reiherberg_aufloesung),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                                      MessageHandler(Filters.regex('^(Supermarktschild|Ahorn|Bushaltestelle|Kotbeutelspender)$'), bahnhofActions.fehlerbild_reiherberg_aufloesung)],
             BAHNHOF_STATES["FEHLERBILD_REIHERBERG_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.aufstieg_reiherberg),
-                                                                 CallbackQueryHandler(bahnhofActions.aufstieg_reiherberg_callback_query),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                                                 CallbackQueryHandler(bahnhofActions.aufstieg_reiherberg_callback_query)],
             BAHNHOF_STATES["AUFSTIEG_REIHERBERG"]: [CommandHandler('weiter', bahnhofActions.schaetzfrage_reiherberg),
-                                                    CallbackQueryHandler(bahnhofActions.schaetzfrage_reiherberg_callback_query),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                                    CallbackQueryHandler(bahnhofActions.schaetzfrage_reiherberg_callback_query)],
             BAHNHOF_STATES["SCHAETZFRAGE_REIHERBERG"]: [CommandHandler('weiter', bahnhofActions.schaetzfrage_reiherberg_aufloesung),
-                                                        MessageHandler(Filters.regex(r'^(\d)+'),bahnhofActions.schaetzfrage_reiherberg_aufloesung),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                                        MessageHandler(Filters.regex(r'^(\d)+'),bahnhofActions.schaetzfrage_reiherberg_aufloesung)],
             BAHNHOF_STATES["SCHAETZFRAGE_REIHERBERG_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.foto_reiherberg),
-                                                                   CallbackQueryHandler(bahnhofActions.foto_reiherberg_callback_query),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                                                   CallbackQueryHandler(bahnhofActions.foto_reiherberg_callback_query)],
             BAHNHOF_STATES["FOTO_REIHERBERG"]: [CommandHandler('weiter', bahnhofActions.foto_reiherberg_aufloesung),
                                                 MessageHandler(Filters.photo, bahnhofActions.foto_reiherberg_aufloesung),
-                                                CallbackQueryHandler(bahnhofActions.foto_reiherberg_aufloesung_callback_query),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)],
+                                                CallbackQueryHandler(bahnhofActions.foto_reiherberg_aufloesung_callback_query)],
 
-            BAHNHOF_STATES["FOTO_REIHERBERG_AUFLOESUNG"]: [CommandHandler('weiter', abschlussActions.get_feedback),
-                                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)]
+            BAHNHOF_STATES["FOTO_REIHERBERG_AUFLOESUNG"]: [CommandHandler('weiter', abschlussActions.get_feedback)]
         },
 
         fallbacks=[CommandHandler('cancel', generalActions.cancel),
                    CommandHandler('restart', restart, filters=Filters.user(username='@soeren101')),
-                   CommandHandler('restart', restart, filters=Filters.user(username='@aehryk'))]
+                   CommandHandler('restart', restart, filters=Filters.user(username='@aehryk'))
+                   MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)]
     )
 
     dp.add_handler(conv_handler)
