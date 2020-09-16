@@ -106,7 +106,7 @@ if __name__ == '__main__':
 
         fallbacks=[CommandHandler('cancel', generalActions.cancel),
                    CommandHandler('restart', restart, filters=Filters.user(username='@soeren101')),
-                   CommandHandler('restart', restart, filters=Filters.user(username='@aehryk'))
+                   CommandHandler('restart', restart, filters=Filters.user(username='@aehryk')),
                    MessageHandler(Filters.regex('^(.)*$'), generalActions.nicht_verstanden)]
     )
 
