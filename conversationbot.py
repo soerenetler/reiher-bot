@@ -73,20 +73,43 @@ if __name__ == '__main__':
 
             INTRO_STATES["ROUTE_AUSWAEHLEN"]: [MessageHandler(Filters.regex('^(Testroute 🧪|Testroute)$'), generalActions.start_test_route)],
 
-            INTRO_STATES["TESTROUTE_BESTAETIGEN"]: [CommandHandler('weiter', bahnhofActions.frage_bahnhof),
-                                                    MessageHandler(Filters.regex('^(Ja, ich bin bereit 🏁|Ja)$'), bahnhofActions.frage_bahnhof),
+            INTRO_STATES["TESTROUTE_BESTAETIGEN"]: [CommandHandler('weiter', bahnhofActions.frage_bahnhof_gif),
+                                                    MessageHandler(Filters.regex('^(Ja, ich bin bereit 🏁|Ja)$'), bahnhofActions.frage_bahnhof_gif),
                                                     MessageHandler(Filters.regex('^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions.welche_route)],
 
             #######DEMO-ROUTE#######
+            BAHNHOF_STATES["BAHNHOF_FRAGE_GIF"]: [MessageHandler(Filters.photo, bahnhofActions.frage_bahnhof_gif_aufloesung)],
+
+            BAHNHOF_STATES["BAHNHOF_FRAGE_GIF_AUFLOESUNG"]: [CallbackQueryHandler(bahnhofActions.bahnhof_frage_callback_query)],
+
             BAHNHOF_STATES["BAHNHOF_FRAGE"]: [CommandHandler('weiter', bahnhofActions.frage_bahnhof_aufloesung),
                                               MessageHandler(Filters.regex(r'^(\d)+'),bahnhofActions.frage_bahnhof_aufloesung)],
             BAHNHOF_STATES["BAHNHOF_FRAGE_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.weg01),
                                                         CallbackQueryHandler(bahnhofActions.weg01_callback_query)],
-            BAHNHOF_STATES["WEG01"]: [CommandHandler('weiter', bahnhofActions.frage_ubahn),
-                                      CallbackQueryHandler(bahnhofActions.frage_ubahn_callback_query)],
+            BAHNHOF_STATES["WEG01"]: [CommandHandler('weiter', bahnhofActions.frage_quiz),
+                                      CallbackQueryHandler(bahnhofActions.frage_quiz_callback_query)],
+            BAHNHOF_STATES["FRAGE_QUIZ"]: [MessageHandler(Filters.regex('^(Reiher waren das Leibgericht Kaiser Friedrichs IV.|'
+                                                                       'In den Mooren rund um Golm lebten viele Reiher.|'
+                                                                       'Reiher stehen mythologisch für gute Ernten.)$'), bahnhofActions.frage_quiz_aufloesung)],
+            
+            BAHNHOF_STATES["FRAGE_QUIZ_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.weg01),
+                                                      CallbackQueryHandler(bahnhofActions.weg_01a_callback_query)],
+
+            BAHNHOF_STATES["WEG01A"]: [CommandHandler('weiter', bahnhofActions.frage_ubahn),
+                                       CallbackQueryHandler(bahnhofActions.frage_ubahn_callback_query)],
+            
             BAHNHOF_STATES["FRAGE_UBAHN"]: [MessageHandler(Filters.regex('^(Kurfürstendamm|Unter den Linden|Zoologischer Garten)$'), bahnhofActions.frage_ubahn_aufloesung)],
             BAHNHOF_STATES["FRAGE_UBAHN_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.weg02),
                                                        CallbackQueryHandler(bahnhofActions.weg02_callback_query)],
+
+            BAHNHOF_STATES["WEG02"]: [CommandHandler('weiter', bahnhofActions.frage_weinmeisterstrasse),
+                                       CallbackQueryHandler(bahnhofActions.frage_weinmeisterstrasse_callback_query)],
+
+            BAHNHOF_STATES["FRAGE_WEINMEISTERATRASSE"]: [MessageHandler(Filters.regex('^(Biersteuer|Die Böden waren ausgetrocknet.|Das Klima änderte sich.)$'), bahnhofActions.frage_weinmeisterstrasse_aufloesung)],
+            
+            BAHNHOF_STATES["FRAGE_WEINMEISTERATRASSE_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.fehlerbild_reiherberg_bank),
+                                                                    CallbackQueryHandler(bahnhofActions.fehlerbild_reiherberg_bank_callback_query)],
+
             BAHNHOF_STATES["FEHLERBILD_REIHERBERG"]: [CommandHandler('weiter', bahnhofActions.fehlerbild_reiherberg_aufloesung),
                                                       MessageHandler(Filters.regex('^(Supermarktschild|Ahorn|Bushaltestelle|Kotbeutelspender)$'), bahnhofActions.fehlerbild_reiherberg_aufloesung)],
             BAHNHOF_STATES["FEHLERBILD_REIHERBERG_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.aufstieg_reiherberg),
@@ -101,7 +124,8 @@ if __name__ == '__main__':
                                                 MessageHandler(Filters.photo, bahnhofActions.foto_reiherberg_aufloesung),
                                                 CallbackQueryHandler(bahnhofActions.foto_reiherberg_aufloesung_callback_query)],
 
-            BAHNHOF_STATES["FOTO_REIHERBERG_AUFLOESUNG"]: [CommandHandler('weiter', abschlussActions.get_feedback)]
+            BAHNHOF_STATES["FOTO_REIHERBERG_AUFLOESUNG"]: [CallbackQueryHandler(abschlussActions.get_feedback_callback_query),
+                                                           CommandHandler('weiter', abschlussActions.get_feedback)]
         },
 
         fallbacks=[CommandHandler('cancel', generalActions.cancel),

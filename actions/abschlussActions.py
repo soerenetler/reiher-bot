@@ -1,4 +1,4 @@
-from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton)
+from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton,InlineKeyboardMarkup)
 
 from states import ABSCHLUSS_STATES
 
@@ -8,6 +8,16 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
+
+def get_feedback_callback_query(update, context):
+    query = update.callback_query
+
+    query.answer()
+    query.edit_message_reply_markup(InlineKeyboardMarkup([]))
+    if query.data == "ueberspringen":
+        query.message.reply_text('🐾')
+        return get_feedback(query, context)
+
 
 def get_feedback(update, context):
     update.message.reply_text(
