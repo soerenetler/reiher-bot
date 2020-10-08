@@ -23,3 +23,17 @@ def generate_gif(im1, im2):
     images[0].save(bio, 'GIF', save_all=True, append_images=images[1:], duration=150, loop=0, optimize=True)
     bio.seek(0)
     return bio
+
+from functools import wraps
+
+def log(logger):
+    """Sends `action` while processing func command."""
+
+    def decorator(func):
+        @wraps(func)
+        def command_func(update, context, *args, **kwargs):
+            logger.info(update)
+            return func(update, context,  *args, **kwargs)
+        return command_func
+    
+    return decorator

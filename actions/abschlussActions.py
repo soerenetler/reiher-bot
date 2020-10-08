@@ -14,7 +14,7 @@ def get_feedback_callback_query(update, context):
 
     query.answer()
     query.edit_message_reply_markup(InlineKeyboardMarkup([]))
-    if query.data == "ueberspringen":
+    if query.data == "weiter":
         query.message.reply_text('🐾')
         return get_feedback(query, context)
 

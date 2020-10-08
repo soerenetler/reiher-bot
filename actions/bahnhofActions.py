@@ -1,4 +1,4 @@
-from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup)
+from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup, Poll)
 from PIL import Image
 
 import base64
@@ -61,7 +61,7 @@ def bahnhof_frage_callback_query(update, context):
 
 def frage_bahnhof(update, context):
     update.message.reply_text(
-        'Da wir am Bahnhof starten: Was schätzt du, wie viele Regionalbahnen fahren täglich vom Bahnhof Golm ab?',
+        'Da wir am Bahnhof starten: Was schätzt du, wie viele Regionalbahnen fahren täglich vom Bahnhof Golm ab? 🚂',
         reply_markup=ReplyKeyboardRemove())
 
     return BAHNHOF_STATES["BAHNHOF_FRAGE"]
@@ -71,7 +71,7 @@ def frage_bahnhof_aufloesung(update, context):
     schaetzung = int(update.message.text)
     echter_wert = 139
     if schaetzung == echter_wert:
-        update.message.reply_text('Nicht schlecht! (Das ist brandenburgisch für "gut gemacht!")',
+        update.message.reply_text('Nicht schlecht! (Das ist brandenburgisch für "gut gemacht!") 😉',
             reply_markup=ReplyKeyboardRemove())
     elif schaetzung >= echter_wert-echter_wert*0.2 and schaetzung <= echter_wert+echter_wert*0.2:
         update.message.reply_text('Du bist schon nah dran!',
@@ -80,8 +80,12 @@ def frage_bahnhof_aufloesung(update, context):
         update.message.reply_text('Nicht ganz!',
             reply_markup=ReplyKeyboardRemove())
 
+    trains = ('🚆'*10 + "\n") * 13 + '🚆'*9
+
+    update.message.reply_text(trains,reply_markup=ReplyKeyboardRemove())
+
     update.message.reply_text('Unter der Woche fahren 139 Regionalbahnen von Golm ab. '
-                              'Richtung Potsdam Hbf fahren die Züge zur vollen Stunde von Gleis 2 und '
+                              'Richtung Potsdam Hbf. fahren die Züge zur vollen Stunde von Gleis 2 und '
                               'zur halben Stunde von Gleis 1.',
         reply_markup=ReplyKeyboardRemove())
 
@@ -138,33 +142,51 @@ def frage_quiz_callback_query(update, context):
         return frage_quiz(query, context)
 
 def frage_quiz(update, context):
-    keyboard = [["Reiher waren das Leibgericht Kaiser Friedrichs IV."],
-                ["In den Mooren rund um Golm lebten viele Reiher."],
-                ["Reiher stehen mythologisch für gute Ernten."]]
-    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
-    update.message.reply_text('Wusstest du, dass wir Reiher die Wappentiere von Golm sind? Was meinst du, woran das liegt?',
-                              reply_markup=reply_markup)
+    update.message.reply_poll(question='Wusstest du, dass wir Reiher die Wappentiere von Golm sind? Was meinst du, woran das liegt?',
+                              options=["Reiher waren das Leibgericht Kaiser Friedrichs IV.",
+                                       "In den Mooren rund um Golm lebten viele Reiher.",
+                                       "Reiher stehen mythologisch für gute Ernten."],
+                              type=Poll.QUIZ,
+                              correct_option_id=1,
+                              is_anonymous=False
+                              )
+    # Save some info about the poll the bot_data for later use in receive_quiz_answer
+    #payload = {message.poll.id: {"chat_id": update.message.id,
+    #                             "message_id": message.message_id}}
+    #context.bot_data.update(payload)
+
+    #keyboard = [["Reiher waren das Leibgericht Kaiser Friedrichs IV."],
+    #            ["In den Mooren rund um Golm lebten viele Reiher."],
+    #            ["Reiher stehen mythologisch für gute Ernten."]]
+    #reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
+    #update.message.reply_text('Wusstest du, dass wir Reiher die Wappentiere von Golm sind? Was meinst du, woran das liegt?',
+    #                         reply_markup=reply_markup)
     return BAHNHOF_STATES["FRAGE_QUIZ"]
 
 def frage_quiz_aufloesung(update, context):
     user = context.user_data["name"] 
-    if update.message.text == 'In den Mooren rund um Golm lebten viele Reiher.':
-        update.message.reply_text('Richtig, {} 🎉 '.format(user),
+    if update.option_ids == [1]:
+        update.user.send_message('Richtig, {} 🎉 '.format(user),
                                 reply_markup=ReplyKeyboardRemove())
     
     else:
-        update.message.reply_text('Nicht ganz!',
+        update.user.send_message('Nicht ganz!',
                                 reply_markup=ReplyKeyboardRemove())
 
     keyboard = [[InlineKeyboardButton("🐾 weiter", callback_data='weiter')]]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
                         
-    update.message.reply_text('Um Golm herum lebten schon seit jeher viele Reiher. '
+    update.user.send_message('Um Golm herum lebten schon seit jeher viele Reiher. '
                             'Besonders in den Mooren und auf dem Reiherberg fühlten sie sich wohl. ',
                                 reply_markup=reply_markup)
 
     return BAHNHOF_STATES["FRAGE_QUIZ_AUFLOESUNG"]
+
+def quiz_callback(update,context):
+    logger.info("=====")
+    logger.info(str(update))
+    return frage_quiz_aufloesung(update["poll_answer"], context)
 
 def weg_01a_callback_query(update, context):
     query = update.callback_query

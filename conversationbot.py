@@ -16,9 +16,9 @@ bot.
 
 import logging
 
-from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton)
-from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
-                          ConversationHandler, CallbackQueryHandler)
+from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, Update)
+from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, CallbackContext,
+                          ConversationHandler, CallbackQueryHandler, PollAnswerHandler, PollHandler)
 
 from states import GENERAL_STATES
 from actions import generalActions, bahnhofActions, infoActions, abschlussActions
@@ -29,7 +29,14 @@ import argparse
 
 import os
 import sys
+import traceback
 from threading import Thread
+
+import logging
+logging.basicConfig(level=logging.DEBUG, filename='bot.log',
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Read Telegram Token')
@@ -43,9 +50,14 @@ if __name__ == '__main__':
         updater.stop()
         os.execl(sys.executable, sys.executable, *sys.argv)
 
-    def restart(update, context):
+    def restart(update: Update, context: CallbackContext):
         update.message.reply_text('Bot is restarting...')
         Thread(target=stop_and_restart).start()
+
+    def error_handler(update: Update, context: CallbackContext):
+        """Log the error and send a telegram message to notify the developer."""
+        # Log the error before we do anything else, so we can see it even if something breaks.
+        logger.error(msg="Exception while handling an update:", exc_info=context.error)
 
 
     # Create the Updater and pass it your bot's token.
@@ -58,6 +70,7 @@ if __name__ == '__main__':
 
     # Add conversation handler with the states GENDER, PHOTO, LOCATION and BIO
     conv_handler = ConversationHandler(
+        per_chat=False,
         entry_points=[CommandHandler('start', generalActions.start_name)],
 
         states={
@@ -88,7 +101,9 @@ if __name__ == '__main__':
                                                         CallbackQueryHandler(bahnhofActions.weg01_callback_query)],
             BAHNHOF_STATES["WEG01"]: [CommandHandler('weiter', bahnhofActions.frage_quiz),
                                       CallbackQueryHandler(bahnhofActions.frage_quiz_callback_query)],
-            BAHNHOF_STATES["FRAGE_QUIZ"]: [MessageHandler(Filters.regex('^(Reiher waren das Leibgericht Kaiser Friedrichs IV.|'
+            BAHNHOF_STATES["FRAGE_QUIZ"]: [PollHandler(bahnhofActions.quiz_callback),
+                                           PollAnswerHandler(bahnhofActions.quiz_callback),
+                                           MessageHandler(Filters.regex('^(Reiher waren das Leibgericht Kaiser Friedrichs IV.|'
                                                                        'In den Mooren rund um Golm lebten viele Reiher.|'
                                                                        'Reiher stehen mythologisch für gute Ernten.)$'), bahnhofActions.frage_quiz_aufloesung)],
             
@@ -135,6 +150,9 @@ if __name__ == '__main__':
     )
 
     dp.add_handler(conv_handler)
+    #dp.add_handler(TypeHandler(telegram.Update, log_updates),group=-100)
+    dp.add_error_handler(error_handler)
+
 
     # Start the Bot
     updater.start_polling()
