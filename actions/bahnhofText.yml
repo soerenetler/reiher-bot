@@ -1,0 +1,917 @@
+frage_bahnhof_gif:
+    - type: message
+      text: 
+        de: "Du stehst hier vor dem Golmer Bahnhofsgebäude. Das sah früher mal so aus:"
+    - type: photo
+      file: "assets/20200907_170905.jpg"
+    - type: message
+      text:
+        de: "Versuche das Bahnhofsgebäude aus der gleichen Perspektive zu fotografieren und schick mir das Bild. 📸"
+    - type: return
+      state: BAHNHOF_FRAGE_GIF
+
+frage_bahnhof:
+    - type: message
+      text:
+        de: '🐾'
+    - type: message
+      text:
+        de: 'Da wir am Bahnhof starten: Was schätzt du, wie viele Regionalbahnen fahren täglich vom Bahnhof Golm ab? 🚂'
+    - type: return
+      state: BAHNHOF_FRAGE
+
+bahnhof_frage_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: frage_bahnhof
+
+frage_bahnhof_aufloesung:
+    - type: function
+      func: eval_schaetzfrage_bahnhof
+    - type: message
+      text: 
+        de: |
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆🚆🚆🚆
+    - type: message
+      text:
+        de: >
+            Unter der Woche fahren 139 Regionalbahnen von Golm ab. 
+            Richtung Potsdam Hbf. fahren die Züge zur vollen Stunde von Gleis 2 und 
+            zur halben Stunde von Gleis 1.
+    - type: message
+      text:
+        de: Wenn du mehr Infos zum Bahnhof Golm haben möchtest, tippe auf "mehr Infos".
+      InlineKeyboard:
+        - text:
+            de: "💡 mehr Infos"
+          data:  'info'
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: BAHNHOF_FRAGE_AUFLOESUNG
+
+frage_bahnhof_gif_aufloesung:
+    - type: function
+      func: send_bahnhof_gif
+    - type: message
+      text:
+        de: 'So viel hat sich gar nicht geändert, oder?'
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: BAHNHOF_FRAGE_GIF_AUFLOESUNG
+
+weg01_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: weg01
+        - condition: info
+          action: info_bahnhof
+
+info_bahnhof:
+    - type: audio
+      file: 'assets/2020_09_17_Bahnhof.mp3'
+      title: "Bahnhof Golm"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+
+weg01:
+    - type: message
+      text:
+        de: '🐾'
+    - type: message
+      text:
+        de: 'Dann lass uns losgehen, immerhin haben wir einen Berg zu erkunden!'
+    - type: message
+      text:
+        de: >
+            Der erste Weg verläuft parallel zur Bahnstrecke. 🛤️ 
+            Die Bahnschienen sollten rechts von dir verlaufen. 
+            Folge der Straße, bis du an einen kleinen Fußweg gelangst.
+    - type: message
+      text:
+        de: 'Gib mir dann Bescheid!'
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: WEG01
+    
+frage_quiz_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: frage_quiz
+
+frage_quiz:
+    - type: message
+      text:
+        de: '🐾'
+    - type: poll
+      question: Wusstest du, dass wir Reiher die Wappentiere von Golm sind? Was meinst du, woran das liegt?
+      options:
+        - "Kaiser Friedrichs IV. züchtete in Golm Reiher für den Schlosspark Sanssouci."
+        - "In den Mooren rund um Golm lebten viele Reiher."
+        - "Reiher stehen mythologisch für gute Ernten."
+      correct_option_id: 1
+    - type: return
+      state: FRAGE_QUIZ
+
+frage_quiz_aufloesung:
+    - type: function
+      func: eval_frage_quiz
+    - type: message
+      text:
+        de: Um Golm herum lebten schon seit jeher viele Reiher. Besonders in den Mooren und auf dem Reiherberg fühlten sie sich wohl.
+      InlineKeyboard:
+        - text:
+            de: "💡 mehr Infos"
+          data: 'info'
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: FRAGE_QUIZ_AUFLOESUNG
+
+weg_01a_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: weg_01a
+        - condition: info
+          action: info_wappen
+
+info_wappen:
+    - type: message
+      text:
+        de: Info
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'    
+
+weg_01a:
+    - type: message
+      text:
+        de: '🐾'
+    - type: message
+      text:
+        de: 'Folge dem Fußweg, bis du an eine kleine Treppe gelangst!'
+    - type: message
+      text:
+        de: Wenn du auf dem nächsten Wegabschnitt genau hinschaust, kannst du einen Berliner U-Bahnhof entdecken! 🔍 Beachte besonders die Grundstücke auf der linken Seite.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: WEG01A
+
+frage_ubahn_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: frage_ubahn
+
+frage_ubahn:
+    - type: message
+      text:
+        de: '🐾'
+    - type: poll
+      question: Hast du die Berliner U-Bahn-Station entdecken können? 🚇 Wenn ja, weißt du noch, welche U-Bahn-Station es war?
+      options:
+        - "Kurfürstendamm"
+        - "Unter den Linden"
+        - "Zoologischer Garten"
+      correct_option_id: 0
+    - type: return
+      state: FRAGE_UBAHN
+
+frage_ubahn_aufloesung:
+    - type: function
+      func: eval_frage_quiz
+    - type: message
+      text:
+        de: Das Schild hing über einer Gartenlaube auf der linken Seite deines Weges.
+      InlineKeyboard:
+        - text:
+            de: "💡 mehr Infos"
+          data:  'info'
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: FRAGE_UBAHN_AUFLOESUNG
+
+info_ubahn:
+    - type: message
+      text:
+        de: Info
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'   
+
+weg02_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: weg02
+        - condition: info
+          action: info_ubahn
+
+weg02:
+    - type: message
+      text:
+        de: 🐾
+    - type: message
+      text: 
+          de: Unser Weg führt uns unter der Unterführung hindurch. Kurz dahinter findest du auf der linken Seite die Weinmeisterstraße.
+    - type: message
+      text:
+        de: Gib mir Bescheid, wenn du das Straßenschild gefunden hast.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    
+    - type: return
+      state: WEG02
+
+frage_weinmeisterstrasse:
+    - type: message
+      text:
+        de: Weil das Trinkwasser in Golm früher nicht so gut war, wurde sehr viel Wein angebaut. Im 17. Jahrhundert änderte sich das.
+    - type: poll
+      question: Was meinst, woran lag das?
+      options:
+        - "Es wurde eine Steuer eingeführt, die den Weinanbau teurer werden ließ."
+        - "1745 erfroren die Reben aufgrund der kalten Witterung."
+        - "Durch Weinimporte merkte man, dass der eigene Wein nicht schmeckt."
+        - "Alle Gründe führten dazu."
+      correct_option_id: 3
+    - type: return
+      state: FRAGE_WEINMEISTERATRASSE
+
+frage_weinmeisterstrasse_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: frage_weinmeisterstrasse_aufloesung
+
+frage_weinmeisterstrasse_aufloesung:
+    - type: message
+      text:
+        de: 🐾
+    - type: message
+      text:
+        de: Tatsächlich war Kaiser Friedrich Wilhelm gelernter Bierbrauer und wollte Bier steuerlich bevorzugen. Die Menschen in Golm begannen daraufhin Hopfen statt Wein anzubauen.
+    - type: message
+      text:
+        de: Die Weinmeisterstraße ist aus dieser Zeit jedoch geblieben.
+      InlineKeyboard:
+        - text:
+            de: "💡 mehr Infos"
+          data:  'info'
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: FRAGE_WEINMEISTERATRASSE_AUFLOESUNG
+
+
+fehlerbild_reiherberg_bank_callback_query:
+    - type: callback
+      conditions:
+      - condition: weiter
+        action: fehlerbild_reiherberg_bank
+      - condition: info
+        action: info_weinmeister
+
+info_weinmeister:
+    - type: audio
+      file: assets/2020_09_17_Weinmeister.mp3
+      title: "Weinmeister"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+
+fehlerbild_reiherberg_bank:
+    - type: message
+      text:
+        de: Weiter geht’s entlang der Reiherbergstraße! Ein Stück die Straße hinauf findest du folgende Ansicht
+    - type: photo
+      file: assets/fehlerbild_reiherberg_bank.jpg
+    - type: poll
+      question: Na gut, ich geb’s zu, ich habe einen Fehler in das Bild eingebaut. Kannst du ihn entdecken?
+      options:
+        - "Der Ahorn?"
+        - "Die Bushaltestelle?"
+        - "Der Kotbeutelspender?"
+        - "Das Supermarktschild?"
+      correct_option_id: 3
+    - type: return
+      state: FEHLERBILD_REIHERBERG
+    
+fehlerbild_reiherberg_aufloesung:
+    - type: message
+      text:
+        de: 🐾
+    - type: function
+      func: eval_fehlerbild_reiherberg
+    - type: message
+      text:
+        de: Früher gab es hier einen kleinen Laden. Heute befindet sich dort der art supermarket - eine kleine Gallerie.
+      InlineKeyboard:
+        - text:
+            de: "💡 mehr Infos"
+          data:  'info'
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+
+    - type: return
+      state: FEHLERBILD_REIHERBERG_AUFLOESUNG
+
+info_supermarkt:
+    - type: audio
+      file: assets/2020_09_17_supermarkt.mp3
+      title: "Supermarkt Golm"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+
+aufstieg_reiherberg_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: aufstieg_reiherberg
+        - condition: info
+          action: info_supermarkt
+
+aufstieg_reiherberg:
+    - type: message
+      text:
+        de: 🐾
+    - type: message
+      text:
+        de: >
+           Jetzt stehst du bereits am Fuße des Reiherbergs! Folge dem kleinen Pfad nach oben, bis du zur Aussichtsplattform kommst!
+           Wir treffen uns oben wieder, dann kannst du in Ruhe die Natur genießen. 
+    - type: message
+      text:
+        de: >
+            Wenn dir das zu ruhig ist, kannst du dir auf dem Weg auch die Sage um die Entstehung des Reiherbergs anhören.
+            Sag mir Bescheid, wenn du die Aussichtsplattform erreicht hast.
+      InlineKeyboard:
+        - text:
+            de: "💡 Sage"
+          data:  'info'
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+
+    - type: return
+      state: AUFSTIEG_REIHERBERG
+
+schaetzfrage_reiherberg_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: schaetzfrage_reiherberg
+        - condition: info
+          action: info_sage_reiherberg
+
+info_sage_reiherberg:
+    - type: audio
+      file: assets/2020_09_17_Reiherberg-Sage_Favorit.mp3
+      title: "Reiherberg Sage"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+
+schaetzfrage_reiherberg:
+    - type: message
+      text:
+        de: 🐾
+    - type: message
+      text:
+        de: Du hast es geschafft! Du stehst jetzt auf dem zweithöchsten Berg in Golm. ⛰️
+    - type: message
+      text:
+        de: Was glaubst du, wie hoch ist der Reiherberg?
+    - type: return
+      state: SCHAETZFRAGE_REIHERBERG
+
+schaetzfrage_reiherberg_aufloesung:
+    - type: function
+      func: eval_schaetzfrage_reiherberg
+    - type: message
+      text:
+        de: >
+            Mit 68 Metern ist der Reiherberg der zweithöchste Berg in Golm. 
+            Höher ist nur der 71 Meter hohe Ehrenpfortenberg. 
+            Doch dafür ist die Aussicht vom Reiherberg unvergleichlich und lädt zum Fotografieren ein. 🌄
+      InlineKeyboard:
+        - text:
+            de: "💡 mehr Infos"
+          data:  'info'
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: SCHAETZFRAGE_REIHERBERG_AUFLOESUNG
+
+foto_reiherberg_callback_query:
+    - type: callback
+      conditions:
+      - condition: weiter
+        action: foto_reiherberg
+      - condition: info
+        action: info_reiherberg
+
+info_reiherberg:
+    - type: audio
+      file: assets/2020_09_17_Reiherberg-Info.mp3
+      title: "Reiherberg"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+
+foto_reiherberg:
+    - type: message
+      text:
+        de: >
+            Knipse ein Foto und schicke es mir zu. 📸 Unter allen gesendeten Fotos verlosen wir einmal im Monat einen Einkaufsgutschein.
+            Die Fotos findest du im Anschluss auf der unserer Website.
+      InlineKeyboard:
+        - text:
+            de: "↪️ überspringen"
+          data: 'ueberspringen'
+    - type: return
+      state: FOTO_REIHERBERG
+
+foto_reiherberg_aufloesung_callback_query:
+    - type: callback
+      conditions:
+      - condition: ueberspringen
+        action: foto_reiherberg_aufloesung
+
+foto_reiherberg_aufloesung:
+    - type: function
+      func: foto_contest
+    - type: message
+      text:
+        de: >
+           Hier sind zwei Bilder, die andere Bergsteigende gemacht haben. 
+           Der Reiherberg ist zu jeder Jahreszeit einen Ausflug wert.
+    - type: photo
+      file: "assets/20200907_170905.jpg"
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: FOTO_REIHERBERG_AUFLOESUNG
+
+weg_kirche_1_callback_query:
+    - type: callback
+      conditions:
+      - condition: weiter
+        action: weg_kirche_1
+
+
+weg_kirche_1:
+    - type: message
+      text:
+        de: > 
+            Unser Weg führt uns nun den Berg hinab.
+            Wenn du die Aussichtsplattform verlässt, folge dem Weg ganz links.
+            Gehe bergab, bis du an einen Abzweig nach rechts kommst.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: WEG_KIRCHE_1
+
+weg_kirche_2_callback_query:
+    - type: callback
+      conditions:
+      - condition: weiter
+        action: weg_kirche_2
+
+weg_kirche_2:
+    - type: message
+      text:
+        de: >
+            Biege nach rechts ab und folge dem Weg,
+            bis du auf der linken Seite an eine kleine Treppe gelangst.
+            Dort müsstest du die Kirche auch bereits sehen können.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: WEG_KIRCHE_2
+
+kirche_wortraetsel_callback_query:
+    - type: callback
+      conditions:
+      - condition: weiter
+        action: kirche_wortraetsel
+
+kirche_wortraetsel:
+    - type: message
+      text:
+        de: >
+            Du stehst hier vor Golmer Dorfkirche.
+            Ihren Namen erfährst du, wenn du dieses Worträtsel richtig löst.
+    - type: photo
+      file: "assets/20200907_170905.jpg"
+    - type: return
+      state: KIRCHE_WORTRAETSEL
+
+kirche_frage:
+    - type: function
+      func: eval_kirche_wortraetsel
+    - type: message
+      text:
+        de: >
+            Weil diese Kirche ein Geschenk des Kaisers Friedrich ans Dorf war,
+            trägt sie seinen Namen: Kaiser-Friedrich-Kirche.
+    - type: poll
+      question: FRAGE ZUR KIRCHE
+      options:
+        - "Richtig"
+        - "Falsch"
+        - "Falsch"
+        - "Falsch"
+      correct_option_id: 0
+    - type: return
+      state: FRAGE_KIRCHE
+
+kirche_aufloesung:
+    - type: function
+      func: eval_kirche_frage
+    - type: message
+      text:
+        de: >
+            Willst du mehr über die Kirche erfahren, oder weitergehen?
+      InlineKeyboard:
+        - text:
+            de: "💡 mehr Infos"
+          data:  'info'
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: KIRCHE_AUFLOESEUNG
+
+storchenbank_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: frage_storchenbank
+        - condition: info
+          action: info_kirche
+
+info_kirche:
+    - type: message
+      text:
+        de: Info
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+
+frage_storchenbank:
+    - type: message
+      text:
+        de: Jedes Jahr kommen Störche nach Golm und nisten auf dem gegenüberliegenden Schornstein. 
+    - type: message
+      text:
+        de: Kannst du herausfinden, in welchem Jahr einer der Störche am frühesten zurück in Golm war?
+    - type: return
+      state: FRAGE_STORCHENBANK
+
+frage_storchenbank_aufloesung:
+    - type: function
+      func: eval_storchenbank
+    - type: message
+      text:
+        de: >
+           Wenn du auf der Storchenbank sitzt, steht rechts von dir die Dorfkapelle.
+           Dort finden regelmäßig Veranstaltungen statt, von denen du über unseren Broadcast erfahren kannst.
+    - type: message
+      text:
+        de: >
+            Jetzt wird es aber Zeit für den Rückweg, oder?
+            Keine Sorge, ein paar Dinge gibt es noch zu entdecken. 😉
+      InlineKeyboard:
+        - text:
+            de: "💡 mehr Infos"
+          data:  'info'
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: KAPELLE
+
+weg_schule_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: weg_schule
+        - condition: info
+          action: info_kapelle
+
+info_kapelle:
+    - type: message
+      text:
+        de: Info
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+
+weg_schule:
+    - type: message
+      text:
+        de: >
+            Folge der Straße nach rechts, direkt am alten Friedhof vorbei,
+            bis du auf der rechten Seite das Gemeindehaus siehst.
+            Keine Sorge, es ist nicht schwer zu erkennen, denn du findest das Wappen mit mir, dem Reiher darauf wieder.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: WEG_SCHULE
+
+schule_callback_query:
+    - type: callback
+      conditions:
+      - condition: weiter
+        action: schule
+
+schule:
+    - type: message
+      text:
+        de: >
+            Dieses Gebäude war früher einmal die Schule in Golm.
+            Links neben dem Gebäude, dem ehemaligen Schulhof, befand sich die Golmer Rutschbahn. 
+    - type: photo
+      file: "assets/20200907_170905.jpg"
+    - type: message
+      text:
+        de: >
+            Heute tagt hier unter anderem der Ortsbeirat.
+            Gerutscht wird hier leider nicht mehr.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: SCHULE
+
+weg_landhotel_callback_query:
+    - type: callback
+      conditions:
+      - condition: weiter
+        action: weg_landhotel
+
+
+weg_landhotel:
+    - type: message
+      text:
+        de: >
+            Folge der Reiherbergstraße weiter bis zum Landhotel.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: WEG_LANDHOTEL
+    
+weg_feuerwehr_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: weg_feuerwehr
+
+weg_feuerwehr:
+    - type: message
+      text:
+        de: >
+            Überquere die Straße und folge der kleinen, schräg verlaufenden Seitenstraße.
+            Unser Ziel ist die Feuerwehr - eventuell kannst du bereits den Turm sehen.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: FEUERWEHR
+
+frage_feuerwehr_callback_query:
+    - type: callback
+      conditions:
+      - condition: weiter
+        action: frage_feuerwehr
+
+frage_feuerwehr:
+    - type: message
+      text:
+        de: >
+            Golm hat seit 110 Jahren eine eigene Freiwillige Feuerwehr.
+            Bis heut werden viele Kinder im Ort Teil der Jugendfeier.
+    - type: poll
+      question: Weißt du, wofür der Turm genutzt wird?
+      options:
+        - "Das ist ein Ausguck, von dem aus früher Brände gesichtet wurden."
+        - "Die Schläuche werden zum Trocknen darin aufgehangen."
+        - "Die Sirene sitzt weit oben im Turm, um besser gehört zu"
+      correct_option_id: 1
+    - type: return
+      state: FRAGE_FEUERWEHR
+
+frage_feuerwehr_aufloesung:
+    - type: function
+      func: eval_frage_feuwerwehr
+    - type: message
+      text:
+        de: >
+            In diesem Turm werden nach einem Einsatz die Schläuche getrocknet.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: FRAGE_FEUERWEHR_AUFLOESUNG
+
+weg_vierseitenhof_callback_query:
+    - type: callback
+      conditions:
+      - condition: weiter
+        action: weg_vierseitenhof
+      - condition: info
+        action: info_feuerwehr
+
+info_feuerwehr:
+    - type: message
+      text:
+        de: >
+            INFO
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+
+weg_vierseitenhof:
+    - type: message
+      text: 
+        de: >
+            Wenn du an der Feuerwehr vorbei gehst,
+            stehst du schon bald vor einer Zufahrt zu einem Innenhof.
+            Hast du den Hof gefunden?
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: WEG_VIERSEITENHOF
+        
+vierseitenhof_callback_query:
+  - type: callback
+    conditions:
+      - condition: weiter
+        action: vierseitenhof
+
+vierseitenhof:
+    - type: photo
+      file: assets/20200907_170905.jpg
+    - type: message
+      text: 
+        de: >
+            Diese Gebäude bilden zusammen einen alten Vier-Seiten-Hof. 
+            Doch wo früher Ställe und Scheunen waren, sind heute Wohnungen.
+            In der Mitte des Hofes ist heut Jochens Hostagarten angelegt, 
+            den man auf Anfrage besichtigen kann.
+      InlineKeyboard:
+        - text:
+            de: "💡 mehr Infos"
+          data:  'info'
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
+    - type: return
+      state: VIERSEITENHOF
+
+rueckweg_bahnhof_1_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: rueckweg_bahnhof_1
+        - condition: info
+          action: info_vierseitenhof
+
+info_vierseitenhof:
+    - type: message
+      text:
+        de: INFO
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+
+rueckweg_bahnhof_1:
+    - type: message
+      text:
+        de: >
+            Das war die letzte Etappe auf unserer Tour.
+            Folge der Thomas-Müntzer-Straße nach rechts, bis zum Ende der Straße.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: RUECKWEG_BAHNHOF_1
+
+rueckweg_bahnhof_2_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: rueckweg_bahnhof_2
+
+rueckweg_bahnhof_2:
+    - type: message
+      text:
+        de: >
+            Biege nach links ab und laufe parallel zu den Bahnschienen, bis du am Bahnhof Golm ankommst.
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: RUECKWEG_BAHNHOF_2
+
+ende_bahnhof_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: ende_bahnhof
+
+ende_bahnhof:
+    - type: message
+      text:
+        de: >
+            Unsere Tour ist hier zu Ende.
+            Ich hoffe, du hattest viel Spaß und konntest Golm von einer neuen Seite kennenlernen.
+            Auf jeden Fall hast du dir die Reiherberg-Medaille verdient!
+    - type: function
+      func: reiherberg_medaille
+    - type: message
+      text:
+        de: Hier sind die nächsten Züge, falls du die Bahn nehmen möchtest
+    - type: function
+      func: bahnhof_timetable
+    - type: message
+      text:
+        de: >
+            Sag uns gern auch deine Meinung zum Rundgang.
+            Schreib dein Feedback in den Chat oder sende uns eine Sprachnachricht.
+
+
+
+        

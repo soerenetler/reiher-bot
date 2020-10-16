@@ -24,6 +24,14 @@ def generate_gif(im1, im2):
     bio.seek(0)
     return bio
 
+def overlay_images(background, foreground):
+    background.paste(foreground, (0, 0), foreground)
+    bio = BytesIO()
+    bio.name = 'image.png'
+    background.save(bio, 'PNG')
+    bio.seek(0)
+    return bio
+
 from functools import wraps
 
 def log(logger):

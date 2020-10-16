@@ -1,19 +1,24 @@
 import logging
 
-from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, Sticker, InlineKeyboardButton, InlineKeyboardMarkup)
+from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, Sticker, InlineKeyboardButton, InlineKeyboardMarkup, Update)
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
-                          ConversationHandler)
+                          ConversationHandler, CallbackContext)
 
 from states import INTRO_STATES
 from actions.utils import log
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filename='bot.log',
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
 
+
 @log(logger)
-def cancel(update, context):
+def log_update(update: Update, context: CallbackContext):
+    pass
+
+@log(logger)
+def cancel(update: Update, context: CallbackContext):
     user = update.message.from_user
     update.message.reply_text('Bye! I hope we can talk again some day.',
                               reply_markup=ReplyKeyboardRemove())
@@ -21,7 +26,7 @@ def cancel(update, context):
     return ConversationHandler.END
 
 @log(logger)
-def start_name(update, context):
+def start_name(update: Update, context: CallbackContext):
     yes_no_keyboard = [['Ja, gerne! 😎',
                         'Nein, nenn mich lieber anders! 👻']]
 
@@ -38,7 +43,7 @@ def start_name(update, context):
     return INTRO_STATES["NAME"]
 
 @log(logger)
-def name_startpunkt(update, context):
+def name_startpunkt(update: Update, context: CallbackContext):
     yes_no_keyboard = [['schon da ⚓',
                         'noch auf dem Weg 😱']]
     user = update.message.from_user
@@ -54,13 +59,13 @@ def name_startpunkt(update, context):
     return INTRO_STATES["STARTPUNKT"]
 
 @log(logger)
-def name_frage(update, context):
+def name_frage(update: Update, context: CallbackContext):
     update.message.reply_text('Wie darf ich dich nennen?',
                             reply_markup=ReplyKeyboardRemove())
     return INTRO_STATES["NAME_AENDERN"]
 
 @log(logger)
-def name_aendern(update, context):
+def name_aendern(update: Update, context: CallbackContext):
     yes_no_keyboard = [['Das klingt besser 😊', 'Ups, verschrieben 🙈']]
     update.message.reply_text('Ich nenne dich {}, okay?'.format(update.message.text),
                             reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
@@ -70,7 +75,7 @@ def name_aendern(update, context):
     return INTRO_STATES["NAME"]
 
 @log(logger)
-def weg_zum_bahnhof(update, context):
+def weg_zum_bahnhof(update: Update, context: CallbackContext):
     update.message.reply_text('Kein Problem, ich schicke dir einfach den Standort, von dem aus wir losgehen.',
                               reply_markup=ReplyKeyboardRemove())
     update.message.reply_venue(latitude=52.4090401, longitude=12.9724552, address="Bahnhof Golm", title="Start der Rallye",
@@ -83,19 +88,9 @@ def weg_zum_bahnhof(update, context):
     update.message.reply_text('Tippe weiter, wenn du angekommen bist!',
                               reply_markup=reply_markup)
     return INTRO_STATES["STARTPUNKT"]
-
-@log(logger)
-def welche_route_callback_query(update, context):
-    query = update.callback_query
-
-    query.answer()
-    query.edit_message_reply_markup(InlineKeyboardMarkup([]))
-    if query.data == "weiter":
-        query.message.reply_text('🐾')
-        return welche_route(query, context)
     
 @log(logger)
-def welche_route(update, context):
+def welche_route(update: Update, context: CallbackContext):
     keyboard = [["Testroute 🧪"],
                 ["Reiherbergausfstieg ⛰️"],
                 ["Seeroute 🌊"]]
@@ -108,7 +103,7 @@ def welche_route(update, context):
     return INTRO_STATES["ROUTE_AUSWAEHLEN"]
 
 @log(logger)
-def start_test_route(update,context):
+def start_test_route(update: Update,context: CallbackContext):
     yes_no_keyboard = [['Ja, ich bin bereit 🏁',
                         'Ich würde doch lieber eine andere Route gehen 🤔'
                         ]]
@@ -120,7 +115,7 @@ def start_test_route(update,context):
     return INTRO_STATES["TESTROUTE_BESTAETIGEN"]
 
 @log(logger)
-def nicht_verstanden(update,context):
+def nicht_verstanden(update: Update,context: CallbackContext):
     update.message.reply_text('Leider habe ich dich nicht verstanden. Versuche deine Eingabe anders zu formulieren oder nutze die hinterlegten Antwortbuttons.',
                               reply_markup=ReplyKeyboardRemove())
     return None
