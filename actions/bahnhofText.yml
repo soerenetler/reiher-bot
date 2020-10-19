@@ -3,7 +3,7 @@ frage_bahnhof_gif:
       text: 
         de: "Du stehst hier vor dem Golmer Bahnhofsgebäude. Das sah früher mal so aus:"
     - type: photo
-      file: "assets/20200907_170905.jpg"
+      file: "assets/bahnhof_alt.jpg"
     - type: message
       text:
         de: "Versuche das Bahnhofsgebäude aus der gleichen Perspektive zu fotografieren und schick mir das Bild. 📸"
@@ -89,7 +89,7 @@ weg01_callback_query:
 
 info_bahnhof:
     - type: audio
-      file: 'assets/2020_09_17_Bahnhof.mp3'
+      file: 'assets/audio/2020_09_17_Bahnhof.mp3'
       title: "Bahnhof Golm"
       performer: "Reiherbot"
       InlineKeyboard:
@@ -212,7 +212,7 @@ frage_ubahn:
 
 frage_ubahn_aufloesung:
     - type: function
-      func: eval_frage_quiz
+      func: eval_ubahn_aufloesung
     - type: message
       text:
         de: Das Schild hing über einer Gartenlaube auf der linken Seite deines Weges.
@@ -280,7 +280,7 @@ frage_weinmeisterstrasse_callback_query:
     - type: callback
       conditions:
         - condition: weiter
-          action: frage_weinmeisterstrasse_aufloesung
+          action: frage_weinmeisterstrasse
 
 frage_weinmeisterstrasse_aufloesung:
     - type: message
@@ -312,8 +312,10 @@ fehlerbild_reiherberg_bank_callback_query:
         action: info_weinmeister
 
 info_weinmeister:
+    - type: photo
+      file: assets/Weinpresse_Zeichnung.jpg
     - type: audio
-      file: assets/2020_09_17_Weinmeister.mp3
+      file: assets/audio/2020_09_17_Weinmeister.mp3
       title: "Weinmeister"
       performer: "Reiherbot"
       InlineKeyboard:
@@ -360,9 +362,12 @@ fehlerbild_reiherberg_aufloesung:
 
 info_supermarkt:
     - type: audio
-      file: assets/2020_09_17_supermarkt.mp3
+      file: assets/audio/2020_09_17_supermarkt.mp3
       title: "Supermarkt Golm"
       performer: "Reiherbot"
+    - type: message
+      text:
+        de: "Mehr über die Ausstellungen findest du hier: https://artsupermarkt.de/"
       InlineKeyboard:
         - text:
             de: "🐾 weiter"
@@ -411,7 +416,7 @@ schaetzfrage_reiherberg_callback_query:
 
 info_sage_reiherberg:
     - type: audio
-      file: assets/2020_09_17_Reiherberg-Sage_Favorit.mp3
+      file: assets/audio/2020_09_17_Reiherberg-Sage_Favorit.mp3
       title: "Reiherberg Sage"
       performer: "Reiherbot"
       InlineKeyboard:
@@ -426,6 +431,8 @@ schaetzfrage_reiherberg:
     - type: message
       text:
         de: Du hast es geschafft! Du stehst jetzt auf dem zweithöchsten Berg in Golm. ⛰️
+    - type: photo
+      file: assets/reiherberg/Aussicht_Reiherberg.png
     - type: message
       text:
         de: Was glaubst du, wie hoch ist der Reiherberg?
@@ -461,7 +468,7 @@ foto_reiherberg_callback_query:
 
 info_reiherberg:
     - type: audio
-      file: assets/2020_09_17_Reiherberg-Info.mp3
+      file: assets/audio/2020_09_17_Reiherberg-Info.mp3
       title: "Reiherberg"
       performer: "Reiherbot"
       InlineKeyboard:
@@ -491,13 +498,17 @@ foto_reiherberg_aufloesung_callback_query:
 foto_reiherberg_aufloesung:
     - type: function
       func: foto_contest
+    - type: media_group
+      files:
+        - "assets/reiherberg/reiherberg14.jpg"
+        - "assets/reiherberg/reiherberg18.jpg"
+        - "assets/reiherberg/reiherberg17.jpg"
+        - "assets/reiherberg/reiherberg02.jpg"
     - type: message
       text:
         de: >
-           Hier sind zwei Bilder, die andere Bergsteigende gemacht haben. 
+           Hier sind Bilder, die andere Bergsteigende gemacht haben. 
            Der Reiherberg ist zu jeder Jahreszeit einen Ausflug wert.
-    - type: photo
-      file: "assets/20200907_170905.jpg"
       InlineKeyboard:
         - text:
             de: "🐾 weiter"
@@ -559,7 +570,7 @@ kirche_wortraetsel:
             Du stehst hier vor Golmer Dorfkirche.
             Ihren Namen erfährst du, wenn du dieses Worträtsel richtig löst.
     - type: photo
-      file: "assets/20200907_170905.jpg"
+      file: "assets/Bilderrätsel.png"
     - type: return
       state: KIRCHE_WORTRAETSEL
 
@@ -567,17 +578,17 @@ kirche_frage:
     - type: function
       func: eval_kirche_wortraetsel
     - type: message
+      parse_mode: MarkdownV2
       text:
         de: >
-            Weil diese Kirche ein Geschenk des Kaisers Friedrich ans Dorf war,
-            trägt sie seinen Namen: Kaiser-Friedrich-Kirche.
+            Weil diese Kirche ein Geschenk des Kaisers Friedrich ans Dorf war\,
+            trägt sie seinen Namen\: *Kaiser\-Friedrich\-Kirche*\.
     - type: poll
-      question: FRAGE ZUR KIRCHE
+      question: Die Kirche wurde vom Naturschutzbund (NABU) ausgezeichnet. Kannst du dir vorstellen warum? 
       options:
-        - "Richtig"
-        - "Falsch"
-        - "Falsch"
-        - "Falsch"
+        - "Im Kirchturm nisten dauerhaft Dohlen."
+        - "Im Mauerwerk der Kirche sind Insektenhotels eingelassen."
+        - "Auf der Wiese hinter der Kirche leben besonders viele Gottesanbeterinnen."
       correct_option_id: 0
     - type: return
       state: FRAGE_KIRCHE
@@ -693,13 +704,16 @@ schule:
             Dieses Gebäude war früher einmal die Schule in Golm.
             Links neben dem Gebäude, dem ehemaligen Schulhof, befand sich die Golmer Rutschbahn. 
     - type: photo
-      file: "assets/20200907_170905.jpg"
+      file: "assets/Rutschberg 1903.PNG"
     - type: message
       text:
         de: >
             Heute tagt hier unter anderem der Ortsbeirat.
             Gerutscht wird hier leider nicht mehr.
       InlineKeyboard:
+        - text:
+            de: "💡 mehr Infos"
+          data: 'info'
         - text:
             de: "🐾 weiter"
           data: 'weiter'
@@ -711,7 +725,12 @@ weg_landhotel_callback_query:
       conditions:
       - condition: weiter
         action: weg_landhotel
+      - condition: info
+        action: info_schule
 
+info_schule:
+    - type: photo
+      file: "assets/Schule 1925.PNG"
 
 weg_landhotel:
     - type: message
@@ -792,7 +811,7 @@ info_feuerwehr:
     - type: message
       text:
         de: >
-            INFO
+            https://feuerwehr-golm.jimdofree.com/
       InlineKeyboard:
         - text:
             de: "🐾 weiter"

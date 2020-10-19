@@ -91,28 +91,33 @@ def weg_zum_bahnhof(update: Update, context: CallbackContext):
     
 @log(logger)
 def welche_route(update: Update, context: CallbackContext):
-    keyboard = [["Testroute 🧪"],
-                ["Reiherbergausfstieg ⛰️"],
+    keyboard = [["Reiherbergaufstieg ⛰️"],
                 ["Seeroute 🌊"]]
 
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
-
+    update.message.reply_photo(open("assets/Infografik02.jpg", 'rb'))
     update.message.reply_text('Sehr gut 😊 Welche Route gehen wir heute? ',
                               #'Wenn du mehr über die Routen erfahren möchtest, schreibe /info routen und ich erzähle dir mehr.'
                               reply_markup=reply_markup)
     return INTRO_STATES["ROUTE_AUSWAEHLEN"]
 
 @log(logger)
-def start_test_route(update: Update,context: CallbackContext):
+def start_reiherberg_route(update: Update,context: CallbackContext):
     yes_no_keyboard = [['Ja, ich bin bereit 🏁',
                         'Ich würde doch lieber eine andere Route gehen 🤔'
                         ]]
     update.message.reply_text('Klasse Wahl 👍 Auf der Testroute zeige ich dir mein Zuhause, den Reiherberg. '
-                              'Für diesen Weg brauchen wir etwa 30 Minuten.',
+                              'Für diesen Weg brauchen wir etwa eine Stunde.',
                               reply_markup=ReplyKeyboardRemove())
 
     update.message.reply_text('Kann’s losgehen?', reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
     return INTRO_STATES["TESTROUTE_BESTAETIGEN"]
+
+
+@log(logger)
+def start_see_route(update: Update,context: CallbackContext):
+    update.message.reply_text('Leider ist die Seeroute noch nicht verfügbar.')
+    return welche_route(update, context)
 
 @log(logger)
 def nicht_verstanden(update: Update,context: CallbackContext):

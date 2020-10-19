@@ -1,4 +1,4 @@
-from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup, Poll, Update, CallbackQuery)
+from telegram import (ParseMode, InputFile, InputMediaPhoto, ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup, Poll, Update, CallbackQuery)
 from telegram.ext import CallbackContext
 from PIL import Image
 
@@ -38,10 +38,14 @@ def generate_action(action_set):
                 reply_markup = ReplyKeyboardRemove()
 
             if item["type"] == "message":
+                parse_mode = None
+                if "parse_mode" in item:
+                    parse_mode = item["parse_mode"]
+
                 if type(update) != CallbackQuery and update.poll_answer:
-                    update.poll_answer.user.send_message(item["text"]["de"], reply_markup=reply_markup)
+                    update.poll_answer.user.send_message(item["text"]["de"], reply_markup=reply_markup, parse_mode =parse_mode)
                 else:   
-                    update.message.reply_text(item["text"]["de"], reply_markup=reply_markup)
+                    update.message.reply_text(item["text"]["de"], reply_markup=reply_markup, parse_mode = parse_mode)
             elif item["type"] == "photo":
                 update.message.reply_photo(open(item["file"], 'rb'), reply_markup=reply_markup)
             elif item["type"] == "audio":
@@ -53,6 +57,10 @@ def generate_action(action_set):
                               correct_option_id=item["correct_option_id"],
                               is_anonymous=False
                               )
+
+            elif item["type"] == "media_group":
+                photoGroup = [InputMediaPhoto(media=open(photo, 'rb')) for photo in item["files"]]
+                update.message.reply_media_group(media=photoGroup)
             elif item["type"] == "return":
                 return BAHNHOF_STATES[item["state"]]
             elif item["type"] == "callback":
@@ -73,7 +81,7 @@ def send_bahnhof_gif(update, context):
 
     im_file = BytesIO(im_bytes)  # convert image to file-like object
     im1 = Image.open(im_file)   # img is now PIL Image object
-    im2 = Image.open('assets/20200907_170905.jpg')
+    im2 = Image.open('assets/bahnhof_alt.jpg')
 
     gif = utils.generate_gif(im1, im2)
 

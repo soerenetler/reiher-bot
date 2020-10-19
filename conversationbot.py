@@ -82,7 +82,8 @@ if __name__ == '__main__':
                                         CommandHandler('weiter', generalActions.welche_route),
                                         MessageHandler(Filters.regex('^(noch auf dem Weg 😱|Nein)$'), generalActions.weg_zum_bahnhof)],
 
-            INTRO_STATES["ROUTE_AUSWAEHLEN"]: [MessageHandler(Filters.regex('^(Testroute 🧪|Testroute)$'), generalActions.start_test_route)],
+            INTRO_STATES["ROUTE_AUSWAEHLEN"]: [MessageHandler(Filters.regex('^(Reiherbergaufstieg ⛰️)$'), generalActions.start_reiherberg_route),
+                                               MessageHandler(Filters.regex('^(Seeroute 🌊)$'), generalActions.start_see_route)],
 
             INTRO_STATES["TESTROUTE_BESTAETIGEN"]: [CommandHandler('weiter', bahnhofActions.generate_action("frage_bahnhof_gif")),
                                                     MessageHandler(Filters.regex('^(Ja, ich bin bereit 🏁|Ja)$'), bahnhofActions.generate_action("frage_bahnhof_gif")),
