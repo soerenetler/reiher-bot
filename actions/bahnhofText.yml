@@ -89,7 +89,7 @@ weg01_callback_query:
 
 info_bahnhof:
     - type: audio
-      file: 'assets/audio/2020_09_17_Bahnhof.mp3'
+      file: 'assets/audio/Bahnhof.mp3'
       title: "Bahnhof Golm"
       performer: "Reiherbot"
       InlineKeyboard:
@@ -148,9 +148,6 @@ frage_quiz_aufloesung:
         de: Um Golm herum lebten schon seit jeher viele Reiher. Besonders in den Mooren und auf dem Reiherberg fühlten sie sich wohl.
       InlineKeyboard:
         - text:
-            de: "💡 mehr Infos"
-          data: 'info'
-        - text:
             de: "🐾 weiter"
           data: 'weiter'
     - type: return
@@ -161,17 +158,6 @@ weg_01a_callback_query:
       conditions:
         - condition: weiter
           action: weg_01a
-        - condition: info
-          action: info_wappen
-
-info_wappen:
-    - type: message
-      text:
-        de: Info
-      InlineKeyboard:
-        - text:
-            de: "🐾 weiter"
-          data:  'weiter'    
 
 weg_01a:
     - type: message
@@ -218,30 +204,16 @@ frage_ubahn_aufloesung:
         de: Das Schild hing über einer Gartenlaube auf der linken Seite deines Weges.
       InlineKeyboard:
         - text:
-            de: "💡 mehr Infos"
-          data:  'info'
-        - text:
             de: "🐾 weiter"
           data:  'weiter'
     - type: return
       state: FRAGE_UBAHN_AUFLOESUNG
-
-info_ubahn:
-    - type: message
-      text:
-        de: Info
-      InlineKeyboard:
-        - text:
-            de: "🐾 weiter"
-          data:  'weiter'   
 
 weg02_callback_query:
     - type: callback
       conditions:
         - condition: weiter
           action: weg02
-        - condition: info
-          action: info_ubahn
 
 weg02:
     - type: message
@@ -315,7 +287,7 @@ info_weinmeister:
     - type: photo
       file: assets/Weinpresse_Zeichnung.jpg
     - type: audio
-      file: assets/audio/2020_09_17_Weinmeister.mp3
+      file: assets/audio/Weinmeisterstrae.mp3
       title: "Weinmeister"
       performer: "Reiherbot"
       InlineKeyboard:
@@ -332,10 +304,10 @@ fehlerbild_reiherberg_bank:
     - type: poll
       question: Na gut, ich geb’s zu, ich habe einen Fehler in das Bild eingebaut. Kannst du ihn entdecken?
       options:
-        - "Der Ahorn?"
-        - "Die Bushaltestelle?"
-        - "Der Kotbeutelspender?"
-        - "Das Supermarktschild?"
+        - "Der Ahorn"
+        - "Die Bushaltestelle"
+        - "Der Kotbeutelspender"
+        - "Das Supermarktschild"
       correct_option_id: 3
     - type: return
       state: FEHLERBILD_REIHERBERG
@@ -362,7 +334,7 @@ fehlerbild_reiherberg_aufloesung:
 
 info_supermarkt:
     - type: audio
-      file: assets/audio/2020_09_17_supermarkt.mp3
+      file: assets/audio/Supermarkt.mp3
       title: "Supermarkt Golm"
       performer: "Reiherbot"
     - type: message
@@ -416,7 +388,7 @@ schaetzfrage_reiherberg_callback_query:
 
 info_sage_reiherberg:
     - type: audio
-      file: assets/audio/2020_09_17_Reiherberg-Sage_Favorit.mp3
+      file: assets/audio/Sage Entstehung des Reiherbergs.mp3
       title: "Reiherberg Sage"
       performer: "Reiherbot"
       InlineKeyboard:
@@ -468,7 +440,7 @@ foto_reiherberg_callback_query:
 
 info_reiherberg:
     - type: audio
-      file: assets/audio/2020_09_17_Reiherberg-Info.mp3
+      file: assets/audio/Reiherberg.mp3
       title: "Reiherberg"
       performer: "Reiherbot"
       InlineKeyboard:
@@ -610,24 +582,43 @@ kirche_aufloesung:
     - type: return
       state: KIRCHE_AUFLOESEUNG
 
-storchenbank_callback_query:
+weg_storchenbank_callback_query:
     - type: callback
       conditions:
         - condition: weiter
-          action: frage_storchenbank
+          action: weg_storchenbank
         - condition: info
           action: info_kirche
 
 info_kirche:
-    - type: message
-      text:
-        de: Info
+    - type: audio
+      file: assets/audio/Kaiser Friedrich-Kirche.mp3
       InlineKeyboard:
         - text:
             de: "🐾 weiter"
           data:  'weiter'
 
+weg_storchenbank:
+    - type: message
+      text:
+        de: Wenn du um die Kirche herum läufst, kommst du an die Storchenbank. 
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data:  'weiter'
+    - type: return
+      state: WEG_STORCHENBANK
+
+frage_storchenbank_callback_query:
+  - type: callback
+    conditions:
+    - condition: weiter
+      action: frage_storchenbank
+
 frage_storchenbank:
+    - type: message
+      text:
+        de: 🐾
     - type: message
       text:
         de: Jedes Jahr kommen Störche nach Golm und nisten auf dem gegenüberliegenden Schornstein. 
@@ -669,9 +660,8 @@ weg_schule_callback_query:
           action: info_kapelle
 
 info_kapelle:
-    - type: message
-      text:
-        de: Info
+    - type: audio
+      file: assets/audio/Kapelle.mp3
       InlineKeyboard:
         - text:
             de: "🐾 weiter"
@@ -731,6 +721,12 @@ weg_landhotel_callback_query:
 info_schule:
     - type: photo
       file: "assets/Schule 1925.PNG"
+    - type: audio
+      file: assets/audio/Schule und Rodelbahn.mp3
+      InlineKeyboard:
+        - text:
+            de: "🐾 weiter"
+          data: 'weiter'
 
 weg_landhotel:
     - type: message
@@ -794,6 +790,9 @@ frage_feuerwehr_aufloesung:
             In diesem Turm werden nach einem Einsatz die Schläuche getrocknet.
       InlineKeyboard:
         - text:
+            de: "💡 mehr Infos"
+          data: 'info'
+        - text:
             de: "🐾 weiter"
           data: 'weiter'
     - type: return
@@ -808,6 +807,8 @@ weg_vierseitenhof_callback_query:
         action: info_feuerwehr
 
 info_feuerwehr:
+    - type: audio
+      file: assets/audio/Freiwillige Feuerwehr.mp3
     - type: message
       text:
         de: >
@@ -838,8 +839,6 @@ vierseitenhof_callback_query:
         action: vierseitenhof
 
 vierseitenhof:
-    - type: photo
-      file: assets/20200907_170905.jpg
     - type: message
       text: 
         de: >
@@ -847,10 +846,10 @@ vierseitenhof:
             Doch wo früher Ställe und Scheunen waren, sind heute Wohnungen.
             In der Mitte des Hofes ist heut Jochens Hostagarten angelegt, 
             den man auf Anfrage besichtigen kann.
+    - type: message
+      text:
+        de: http://www.jochens-hostagarten.de/
       InlineKeyboard:
-        - text:
-            de: "💡 mehr Infos"
-          data:  'info'
         - text:
             de: "🐾 weiter"
           data: 'weiter'
@@ -862,17 +861,6 @@ rueckweg_bahnhof_1_callback_query:
       conditions:
         - condition: weiter
           action: rueckweg_bahnhof_1
-        - condition: info
-          action: info_vierseitenhof
-
-info_vierseitenhof:
-    - type: message
-      text:
-        de: INFO
-      InlineKeyboard:
-        - text:
-            de: "🐾 weiter"
-          data:  'weiter'
 
 rueckweg_bahnhof_1:
     - type: message

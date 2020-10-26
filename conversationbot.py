@@ -80,6 +80,7 @@ if __name__ == '__main__':
 
             INTRO_STATES["STARTPUNKT"]: [MessageHandler(Filters.regex('^(schon da ⚓|Ja)$'), generalActions.welche_route),
                                         CommandHandler('weiter', generalActions.welche_route),
+                                        CallbackQueryHandler(generalActions.welche_route_callback_query),
                                         MessageHandler(Filters.regex('^(noch auf dem Weg 😱|Nein)$'), generalActions.weg_zum_bahnhof)],
 
             INTRO_STATES["ROUTE_AUSWAEHLEN"]: [MessageHandler(Filters.regex('^(Reiherbergaufstieg ⛰️)$'), generalActions.start_reiherberg_route),
@@ -146,8 +147,11 @@ if __name__ == '__main__':
 
             BAHNHOF_STATES["FRAGE_KIRCHE"]: [PollAnswerHandler(bahnhofActions.generate_action("kirche_aufloesung"))],
 
-            BAHNHOF_STATES["KIRCHE_AUFLOESEUNG"]: [CallbackQueryHandler(bahnhofActions.generate_action("storchenbank_callback_query")),
-                                                    CommandHandler('weiter', bahnhofActions.generate_action("frage_storchenbank"))],
+            BAHNHOF_STATES["KIRCHE_AUFLOESEUNG"]: [CallbackQueryHandler(bahnhofActions.generate_action("weg_storchenbank_callback_query")),
+                                                    CommandHandler('weiter', bahnhofActions.generate_action("weg_storchenbank"))],
+
+            BAHNHOF_STATES["WEG_STORCHENBANK"]: [CallbackQueryHandler(bahnhofActions.generate_action("frage_storchenbank_callback_query")),
+                                                 CommandHandler('weiter', bahnhofActions.generate_action("frage_storchenbank"))],
 
             BAHNHOF_STATES["FRAGE_STORCHENBANK"]: [MessageHandler(Filters.regex(r'^(\d)+'),bahnhofActions.generate_action("frage_storchenbank_aufloesung"))],
 

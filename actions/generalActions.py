@@ -88,7 +88,15 @@ def weg_zum_bahnhof(update: Update, context: CallbackContext):
     update.message.reply_text('Tippe weiter, wenn du angekommen bist!',
                               reply_markup=reply_markup)
     return INTRO_STATES["STARTPUNKT"]
-    
+
+@log(logger)
+def welche_route_callback_query(update: Update, context: CallbackContext):
+    query = update.callback_query
+    query.answer()
+    query.edit_message_reply_markup(InlineKeyboardMarkup([]))
+    if query.data == "weiter":
+        return welche_route(query, context)
+
 @log(logger)
 def welche_route(update: Update, context: CallbackContext):
     keyboard = [["Reiherbergaufstieg ⛰️"],
@@ -106,7 +114,7 @@ def start_reiherberg_route(update: Update,context: CallbackContext):
     yes_no_keyboard = [['Ja, ich bin bereit 🏁',
                         'Ich würde doch lieber eine andere Route gehen 🤔'
                         ]]
-    update.message.reply_text('Klasse Wahl 👍 Auf der Testroute zeige ich dir mein Zuhause, den Reiherberg. '
+    update.message.reply_text('Klasse Wahl 👍 Auf der Reiherbergroute zeige ich dir mein Zuhause, den Reiherberg. '
                               'Für diesen Weg brauchen wir etwa eine Stunde.',
                               reply_markup=ReplyKeyboardRemove())
 
