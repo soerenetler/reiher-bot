@@ -61,6 +61,11 @@ def generate_action(action_set):
             elif item["type"] == "media_group":
                 photoGroup = [InputMediaPhoto(media=open(photo, 'rb')) for photo in item["files"]]
                 update.message.reply_media_group(media=photoGroup)
+            elif item["type"] == "sticker":
+                if type(update) != CallbackQuery and update.poll_answer:
+                    update.poll_answer.user.send_sticker(item["id"])
+                else:
+                    update.message.reply_sticker(item["id"])
             elif item["type"] == "return":
                 return BAHNHOF_STATES[item["state"]]
             elif item["type"] == "callback":

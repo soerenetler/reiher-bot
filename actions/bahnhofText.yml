@@ -143,6 +143,8 @@ frage_quiz:
 frage_quiz_aufloesung:
     - type: function
       func: eval_frage_quiz
+    - type: sticker
+      id: CAACAgIAAxkBAAIltF-WnMTLW4yEo7mHp-wc3TimCuCVAAIDAANwgCcYRPP-4x304-sbBA
     - type: message
       text:
         de: Um Golm herum lebten schon seit jeher viele Reiher. Besonders in den Mooren und auf dem Reiherberg fühlten sie sich wohl.
@@ -298,7 +300,10 @@ info_weinmeister:
 fehlerbild_reiherberg_bank:
     - type: message
       text:
-        de: Weiter geht’s entlang der Reiherbergstraße! Ein Stück die Straße hinauf findest du folgende Ansicht
+        de: '🐾'
+    - type: message
+      text:
+        de: Schau dort! Hier siehst du schon den Wegweiser zum Reiherberg.
     - type: photo
       file: assets/fehlerbild_reiherberg_bank.jpg
     - type: poll
@@ -313,9 +318,6 @@ fehlerbild_reiherberg_bank:
       state: FEHLERBILD_REIHERBERG
     
 fehlerbild_reiherberg_aufloesung:
-    - type: message
-      text:
-        de: 🐾
     - type: function
       func: eval_fehlerbild_reiherberg
     - type: message
@@ -451,6 +453,9 @@ info_reiherberg:
 foto_reiherberg:
     - type: message
       text:
+        de: '🐾'
+    - type: message
+      text:
         de: >
             Knipse ein Foto und schicke es mir zu. 📸 Unter allen gesendeten Fotos verlosen wir einmal im Monat einen Einkaufsgutschein.
             Die Fotos findest du im Anschluss auf der unserer Website.
@@ -498,6 +503,9 @@ weg_kirche_1_callback_query:
 weg_kirche_1:
     - type: message
       text:
+        de: '🐾'
+    - type: message
+      text:
         de: > 
             Unser Weg führt uns nun den Berg hinab.
             Wenn du die Aussichtsplattform verlässt, folge dem Weg ganz links.
@@ -518,6 +526,9 @@ weg_kirche_2_callback_query:
 weg_kirche_2:
     - type: message
       text:
+        de: '🐾'
+    - type: message
+      text:
         de: >
             Biege nach rechts ab und folge dem Weg,
             bis du auf der linken Seite an eine kleine Treppe gelangst.
@@ -536,6 +547,9 @@ kirche_wortraetsel_callback_query:
         action: kirche_wortraetsel
 
 kirche_wortraetsel:
+    - type: message
+      text:
+        de: '🐾'
     - type: message
       text:
         de: >
@@ -593,12 +607,17 @@ weg_storchenbank_callback_query:
 info_kirche:
     - type: audio
       file: assets/audio/Kaiser Friedrich-Kirche.mp3
+      title: "Kaiser-Friedrich-Kirche"
+      performer: "Reiherbot"
       InlineKeyboard:
         - text:
             de: "🐾 weiter"
           data:  'weiter'
 
 weg_storchenbank:
+    - type: message
+      text:
+        de: '🐾'
     - type: message
       text:
         de: Wenn du um die Kirche herum läufst, kommst du an die Storchenbank. 
@@ -662,12 +681,17 @@ weg_schule_callback_query:
 info_kapelle:
     - type: audio
       file: assets/audio/Kapelle.mp3
+      title: "Kapelle"
+      performer: "Reiherbot"
       InlineKeyboard:
         - text:
             de: "🐾 weiter"
           data:  'weiter'
 
 weg_schule:
+    - type: message
+      text:
+        de: '🐾'
     - type: message
       text:
         de: >
@@ -688,6 +712,9 @@ schule_callback_query:
         action: schule
 
 schule:
+    - type: message
+      text:
+        de: '🐾'
     - type: message
       text:
         de: >
@@ -723,12 +750,17 @@ info_schule:
       file: "assets/Schule 1925.PNG"
     - type: audio
       file: assets/audio/Schule und Rodelbahn.mp3
+      title: "Schule und Rodelbahn"
+      performer: "Reiherbot"
       InlineKeyboard:
         - text:
             de: "🐾 weiter"
           data: 'weiter'
 
 weg_landhotel:
+    - type: message
+      text:
+        de: '🐾'
     - type: message
       text:
         de: >
@@ -747,6 +779,9 @@ weg_feuerwehr_callback_query:
           action: weg_feuerwehr
 
 weg_feuerwehr:
+    - type: message
+      text:
+        de: '🐾'
     - type: message
       text:
         de: >
@@ -768,9 +803,12 @@ frage_feuerwehr_callback_query:
 frage_feuerwehr:
     - type: message
       text:
+        de: '🐾'
+    - type: message
+      text:
         de: >
             Golm hat seit 110 Jahren eine eigene Freiwillige Feuerwehr.
-            Bis heut werden viele Kinder im Ort Teil der Jugendfeier.
+            Bis heut engagieren sich viel Golmerinnen und Golmer in der Feuerwehr oder ihrem Förderverein.
     - type: poll
       question: Weißt du, wofür der Turm genutzt wird?
       options:
@@ -809,6 +847,8 @@ weg_vierseitenhof_callback_query:
 info_feuerwehr:
     - type: audio
       file: assets/audio/Freiwillige Feuerwehr.mp3
+      title: "Freiwillige Feuerwehr"
+      performer: "Reiherbot"
     - type: message
       text:
         de: >
@@ -819,6 +859,9 @@ info_feuerwehr:
           data: 'weiter'
 
 weg_vierseitenhof:
+    - type: message
+      text:
+        de: '🐾'
     - type: message
       text: 
         de: >
@@ -839,6 +882,9 @@ vierseitenhof_callback_query:
         action: vierseitenhof
 
 vierseitenhof:
+    - type: message
+      text:
+        de: '🐾'
     - type: message
       text: 
         de: >
@@ -865,6 +911,9 @@ rueckweg_bahnhof_1_callback_query:
 rueckweg_bahnhof_1:
     - type: message
       text:
+        de: '🐾'
+    - type: message
+      text:
         de: >
             Das war die letzte Etappe auf unserer Tour.
             Folge der Thomas-Müntzer-Straße nach rechts, bis zum Ende der Straße.
@@ -882,6 +931,9 @@ rueckweg_bahnhof_2_callback_query:
           action: rueckweg_bahnhof_2
 
 rueckweg_bahnhof_2:
+    - type: message
+      text:
+        de: '🐾'
     - type: message
       text:
         de: >
@@ -902,12 +954,17 @@ ende_bahnhof_callback_query:
 ende_bahnhof:
     - type: message
       text:
+        de: '🐾'
+    - type: message
+      text:
         de: >
             Unsere Tour ist hier zu Ende.
             Ich hoffe, du hattest viel Spaß und konntest Golm von einer neuen Seite kennenlernen.
             Auf jeden Fall hast du dir die Reiherberg-Medaille verdient!
     - type: function
       func: reiherberg_medaille
+    - type: sticker
+      id: CAACAgIAAxkBAAIltV-Wn3-dJmK4HqhloT5ahNmlbJYHAAIBAANwgCcYrK_-hlK8LIQbBA
     - type: message
       text:
         de: Hier sind die nächsten Züge, falls du die Bahn nehmen möchtest
