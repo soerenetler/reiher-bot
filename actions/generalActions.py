@@ -7,7 +7,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
 from states import INTRO_STATES
 from actions.utils import log
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filename='bot.log',
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filename='../log/bot.log',
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
