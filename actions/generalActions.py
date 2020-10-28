@@ -25,12 +25,11 @@ def cancel(update: Update, context: CallbackContext):
 
     return ConversationHandler.END
 
-@log(logger)
 def start_name(update: Update, context: CallbackContext):
+    context.user_data["daten"] = False
     yes_no_keyboard = [['Ja, gerne! 😎',
                         'Nein, nenn mich lieber anders! 👻']]
 
-    user = update.message.from_user.first_name
     sticker = Sticker("CAACAgIAAxkBAAIGbl8_fWbeUAx5dTF6v9o0gc1bgs9SAAJUAANBtVYMarf4xwiNAfobBA",
                       'AgADVAADQbVWDA',
                       512,512,True)
@@ -38,19 +37,21 @@ def start_name(update: Update, context: CallbackContext):
     update.message.reply_text(
         'Hi, ich bin Ronni der Reiher! Ich führe dich heute durch Golm.',
         reply_markup=ReplyKeyboardRemove())
-    update.message.reply_text('Darf ich dich {} nennen? '.format(user),
+    context.user_data["name"] = update.message.from_user.first_name
+    update.message.reply_text('Darf ich dich {} nennen? '.format(context.user_data["name"]),
         reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
     return INTRO_STATES["NAME"]
 
 @log(logger)
 def name_startpunkt(update: Update, context: CallbackContext):
+    if update.message.text == "Ja":
+        context.user_data["daten"] = True
+    if update.message.text == "Nein":
+        context.user_data["daten"] = False
+
     yes_no_keyboard = [['schon da ⚓',
                         'noch auf dem Weg 😱']]
-    user = update.message.from_user
 
-    if not "name" in context.user_data:
-        context.user_data["name"] = update.message.from_user.first_name
-    
     update.message.reply_text('Super!')
     update.message.reply_text('Unsere Reise startet am Bahnhof Golm. Ich warte direkt vor dem orangen Bahnhofsgebäude auf dich. 🚉 ',
                               reply_markup=ReplyKeyboardRemove())
@@ -73,6 +74,14 @@ def name_aendern(update: Update, context: CallbackContext):
     context.user_data["name"] = update.message.text
 
     return INTRO_STATES["NAME"]
+
+@log(logger)
+def datenschutz(update: Update, context: CallbackContext):
+    yes_no_keyboard = [['Ja', 'Nein']]
+    update.message.reply_text('Hallo {}, um unsere Stadteilführung weiter zu verbessern würden wir gerne ein paar Daten von dir sammeln. '
+                              'Ist das ok für dich? Mehr Infos findest du unter www.reiherbot.de/datenschutz'.format(context.user_data["name"]),
+                            reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
+    return INTRO_STATES["DATENSCHUTZ"]
 
 @log(logger)
 def weg_zum_bahnhof(update: Update, context: CallbackContext):

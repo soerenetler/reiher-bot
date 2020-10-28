@@ -1,17 +1,14 @@
 
-GENERAL_STATES = {key: value for value, key in enumerate(["BAHNHOF_START",
-                                                          "ABSCHLUSS",
-                                                          "INFO_END",
+GENERAL_STATES = {key: value for value, key in enumerate(["ABSCHLUSS",
                                                           "ENDE"])}
 
 INTRO_STATES = {key: value for value, key in enumerate(["NAME",
                                                         "NAME_AENDERN",
+                                                        "DATENSCHUTZ",
                                                         "STARTPUNKT",
                                                         "ROUTE_AUSWAEHLEN",
                                                         "TESTROUTE_BESTAETIGEN"
                                                         ],10)}
-
-INFO_STATES = {key: value for value, key in enumerate(["INFO"],20)}
 
 BAHNHOF_STATES = {key: value for value, key in enumerate(["BAHNHOF_FRAGE_GIF",
                                                           "BAHNHOF_FRAGE_GIF_AUFLOESUNG",
@@ -50,6 +47,7 @@ BAHNHOF_STATES = {key: value for value, key in enumerate(["BAHNHOF_FRAGE_GIF",
                                                           "WEG_VIERSEITENHOF",
                                                           "VIERSEITENHOF",
                                                           "RUECKWEG_BAHNHOF_1",
-                                                          "RUECKWEG_BAHNHOF_2"],50)}
-
-ABSCHLUSS_STATES = {key: value for value, key in enumerate(["ENDE"],50)}
+                                                          "RUECKWEG_BAHNHOF_2",
+                                                          "FEEDBACK",
+                                                          "RUECKFRAGEN",
+                                                          "END"],50)}

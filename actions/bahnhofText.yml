@@ -975,7 +975,33 @@ ende_bahnhof:
         de: >
             Sag uns gern auch deine Meinung zum Rundgang.
             Schreib dein Feedback in den Chat oder sende uns eine Sprachnachricht.
+      InlineKeyboard:
+        - text:
+            de: "↪️ überspringen"
+          data: 'ueberspringen'
+    - type: return
+      state: FEEDBACK
 
+ende_callback_query:
+  - type: callback
+    conditions:
+      - condition: ueberspringen
+        action: ende_feedback
 
+kontakt_rueckfragen:
+    - type: message
+      text:
+        de: Danke für dein Feedback! Dürfen wir dich bei Rückfragen kontaktieren?
+    - type: function
+      func: get_feedback
+    - type: return
+      state: RUECKFRAGEN
 
-        
+ende_feedback:
+  - type: function
+    func: ende_feedback
+  - type: message
+    text:
+      de: Ok, mit /start geht's zurück an den Anfang, um eine andere Route zu gehen.
+  - type: return
+    state: END

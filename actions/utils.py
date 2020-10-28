@@ -40,7 +40,8 @@ def log(logger):
     def decorator(func):
         @wraps(func)
         def command_func(update, context, *args, **kwargs):
-            logger.info(update)
+            if context.user_data["daten"]:
+                logger.info(update)
             return func(update, context,  *args, **kwargs)
         return command_func
     

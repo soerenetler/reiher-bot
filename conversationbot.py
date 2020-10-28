@@ -21,7 +21,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Call
                           ConversationHandler, CallbackQueryHandler, PollAnswerHandler, PollHandler, TypeHandler)
 
 from states import GENERAL_STATES
-from actions import generalActions, bahnhofActions, abschlussActions
+from actions import generalActions, bahnhofActions
 from states import INTRO_STATES, BAHNHOF_STATES
 
 from configparser import ConfigParser
@@ -74,9 +74,12 @@ if __name__ == '__main__':
 
         states={
             INTRO_STATES["NAME"]: [MessageHandler(Filters.regex('^(Nein, nenn mich lieber anders! 👻|Nein|Ups, verschrieben 🙈)$'), generalActions.name_frage),
-                                   MessageHandler(Filters.regex('^(Ja, gerne! 😎|Das klingt besser 😊|Ja)$'), generalActions.name_startpunkt)],
+                                   MessageHandler(Filters.regex('^(Ja, gerne! 😎|Das klingt besser 😊|Ja)$'), generalActions.datenschutz)],
 
             INTRO_STATES["NAME_AENDERN"]: [MessageHandler(Filters.text & ~Filters.command, generalActions.name_aendern)],
+
+            INTRO_STATES["DATENSCHUTZ"]: [MessageHandler(Filters.regex('^(Nein, nenn mich lieber anders! 👻|Nein|Ups, verschrieben 🙈)$'), generalActions.name_startpunkt),
+                                          MessageHandler(Filters.regex('^(Ja, gerne! 😎|Das klingt besser 😊|Ja)$'), generalActions.name_startpunkt)],
 
             INTRO_STATES["STARTPUNKT"]: [MessageHandler(Filters.regex('^(schon da ⚓|Ja)$'), generalActions.welche_route),
                                         CommandHandler('weiter', generalActions.welche_route),
@@ -186,7 +189,11 @@ if __name__ == '__main__':
 
             BAHNHOF_STATES["RUECKWEG_BAHNHOF_2"]: [CallbackQueryHandler(bahnhofActions.generate_action("ende_bahnhof_callback_query")),
                                                   CommandHandler('weiter', bahnhofActions.generate_action("ende_bahnhof"))],
-
+            BAHNHOF_STATES["FEEDBACK"]: [MessageHandler(Filters.voice, bahnhofActions.generate_action("kontakt_rueckfragen")),
+                                         MessageHandler(Filters.text, bahnhofActions.generate_action("kontakt_rueckfragen")),
+                                         CommandHandler('weiter', bahnhofActions.generate_action("ende_feedback")),
+                                         CallbackQueryHandler(bahnhofActions.generate_action("ende_feedback_callback_query"))],
+            BAHNHOF_STATES["RUECKFRAGEN"]: [MessageHandler(Filters.regex('^(Ja, gerne! 😎|Nein)$'), bahnhofActions.generate_action("ende_feedback"))]
         },
 
         fallbacks=[CommandHandler('cancel', generalActions.cancel),

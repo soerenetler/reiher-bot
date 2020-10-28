@@ -1,5 +1,5 @@
 from telegram import (ParseMode, InputFile, InputMediaPhoto, ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup, Poll, Update, CallbackQuery)
-from telegram.ext import CallbackContext
+from telegram.ext import CallbackContext, ConversationHandler
 from PIL import Image
 
 import base64
@@ -67,6 +67,8 @@ def generate_action(action_set):
                 else:
                     update.message.reply_sticker(item["id"])
             elif item["type"] == "return":
+                if item["state"] == "END":
+                    return ConversationHandler.END
                 return BAHNHOF_STATES[item["state"]]
             elif item["type"] == "callback":
                 query = update.callback_query
@@ -235,6 +237,27 @@ def reiherberg_medaille(update, context):
 def bahnhof_timetable(update, context):
     update.message.reply_text('Der nächste Zug fährt in 3 Minuten!', reply_markup=ReplyKeyboardRemove())
 
+def get_feedback(update, context):
+    user_id = update.effective_user.id
+    
+    if update.message.voice:
+        voice_file = update.message.voice.get_file()
+        voice_file.download('./feedback/' + str(user_id) + '.jpg')
+    if update.message.text:
+        with open('../feedback/'+ str(user_id) + '.txt','a+') as file_object:
+            file_object.write(update.message.text + "\n")
+
+def ende_feedback(update, context):
+    user_id = update.effective_user.id
+    name = update.effective_user.name
+    if update.message.text:
+        if update.message.text == "Ja, gerne! 😎":
+            with open('../feedback/feedback_mapping.txt','a+') as file_object:
+                file_object.write(str(user_id) + ", " + name + "\n")
+        if update.message.text == "Nein":
+            pass
+
+
 action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "eval_schaetzfrage_bahnhof": eval_schaetzfrage_bahnhof,
                     "eval_frage_quiz": eval_frage_quiz,
@@ -248,5 +271,7 @@ action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "eval_storchenbank": eval_storchenbank,
                     "eval_frage_feuwerwehr": eval_frage_feuwerwehr,
                     "reiherberg_medaille": reiherberg_medaille,
-                    "bahnhof_timetable": bahnhof_timetable
+                    "bahnhof_timetable": bahnhof_timetable,
+                    "get_feedback": get_feedback,
+                    "ende_feedback": ende_feedback
                     }
