@@ -42,15 +42,11 @@ frage_bahnhof_aufloesung:
            🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
            🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
            🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆
+           🚆🚆🚆🚆🚆🚆
     - type: message
       text:
         de: >
-            Unter der Woche fahren 139 Regionalbahnen von Golm ab. 
+            Unter der Woche fahren 106 Regionalbahnen von Golm ab. 
             Richtung Potsdam Hbf. fahren die Züge zur vollen Stunde von Gleis 2 und 
             zur halben Stunde von Gleis 1.
     - type: message

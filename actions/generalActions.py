@@ -77,9 +77,10 @@ def name_aendern(update: Update, context: CallbackContext):
 
 @log(logger)
 def datenschutz(update: Update, context: CallbackContext):
-    yes_no_keyboard = [['Ja', 'Nein']]
-    update.message.reply_text('Hallo {}, um unsere Stadteilführung weiter zu verbessern würden wir gerne ein paar Daten von dir sammeln. '
-                              'Ist das ok für dich? Mehr Infos findest du unter www.reiherbot.de/datenschutz'.format(context.user_data["name"]),
+    yes_no_keyboard = [['Ja, klar 🌻', 'Lieber nicht ⚔️']]
+    update.message.reply_text('Cool, dass du da bist, {}'.format(context.user_data["name"]))
+    update.message.reply_text('Um unsere Stadteilführung weiter zu verbessern würden wir gerne ein paar Daten von dir sammeln. '
+                              'Ist das ok für dich? Mehr unter www.reiherbot.de/datenschutz',
                             reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
     return INTRO_STATES["DATENSCHUTZ"]
 

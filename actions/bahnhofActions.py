@@ -172,8 +172,10 @@ def eval_schaetzfrage_reiherberg(update, context):
 
 def foto_contest(update, context):
     if update.message.photo:
+        user_id = update.effective_user.id
+        name = update.effective_user.name
         photo_file = update.message.photo[-1].get_file()
-        photo_file.download('user_photo.jpg')
+        photo_file.download("../photos/" + str(user_id) + "_" + name + '.jpg')
         update.message.reply_text('Tolle Aussicht, oder? ')
 
 def eval_kirche_wortraetsel(update, context):
@@ -238,11 +240,14 @@ def bahnhof_timetable(update, context):
     update.message.reply_text('Der nächste Zug fährt in 3 Minuten!', reply_markup=ReplyKeyboardRemove())
 
 def get_feedback(update, context):
-    user_id = update.effective_user.id
+    if type(update) == CallbackQuery:
+        user_id = update.from_user.id
+    else:
+        user_id = update.effective_user.id
     
     if update.message.voice:
         voice_file = update.message.voice.get_file()
-        voice_file.download('./feedback/' + str(user_id) + '.jpg')
+        voice_file.download('../feedback/' + str(user_id) + '.mp3')
     if update.message.text:
         with open('../feedback/'+ str(user_id) + '.txt','a+') as file_object:
             file_object.write(update.message.text + "\n")

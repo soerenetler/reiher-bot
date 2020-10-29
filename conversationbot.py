@@ -78,8 +78,7 @@ if __name__ == '__main__':
 
             INTRO_STATES["NAME_AENDERN"]: [MessageHandler(Filters.text & ~Filters.command, generalActions.name_aendern)],
 
-            INTRO_STATES["DATENSCHUTZ"]: [MessageHandler(Filters.regex('^(Nein, nenn mich lieber anders! 👻|Nein|Ups, verschrieben 🙈)$'), generalActions.name_startpunkt),
-                                          MessageHandler(Filters.regex('^(Ja, gerne! 😎|Das klingt besser 😊|Ja)$'), generalActions.name_startpunkt)],
+            INTRO_STATES["DATENSCHUTZ"]: [MessageHandler(Filters.regex('^(Nein|Ja|Ja, klar 🌻|Lieber nicht ⚔️)$'), generalActions.name_startpunkt)],
 
             INTRO_STATES["STARTPUNKT"]: [MessageHandler(Filters.regex('^(schon da ⚓|Ja)$'), generalActions.welche_route),
                                         CommandHandler('weiter', generalActions.welche_route),
@@ -193,7 +192,7 @@ if __name__ == '__main__':
                                          MessageHandler(Filters.text, bahnhofActions.generate_action("kontakt_rueckfragen")),
                                          CommandHandler('weiter', bahnhofActions.generate_action("ende_feedback")),
                                          CallbackQueryHandler(bahnhofActions.generate_action("ende_feedback_callback_query"))],
-            BAHNHOF_STATES["RUECKFRAGEN"]: [MessageHandler(Filters.regex('^(Ja, gerne! 😎|Nein)$'), bahnhofActions.generate_action("ende_feedback"))]
+            BAHNHOF_STATES["RUECKFRAGEN"]: [MessageHandler(Filters.regex('^(Ja|Ja, gerne! 😎|Nein)$'), bahnhofActions.generate_action("ende_feedback"))]
         },
 
         fallbacks=[CommandHandler('cancel', generalActions.cancel),
