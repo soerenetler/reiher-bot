@@ -13,7 +13,7 @@ from actions.utils import log
 
 import logging
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filename='../log/bot.log',
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filename='../logs/bot_log',
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
@@ -96,7 +96,7 @@ def send_bahnhof_gif(update, context):
 
 def eval_schaetzfrage_bahnhof(update, context):
     schaetzung = int(update.message.text)
-    echter_wert = 139
+    echter_wert = 106
     if schaetzung == echter_wert:
         update.message.reply_text('Nicht schlecht! (Das ist brandenburgisch für "gut gemacht!") 😉',
             reply_markup=ReplyKeyboardRemove())

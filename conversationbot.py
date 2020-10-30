@@ -33,7 +33,7 @@ import traceback
 from threading import Thread
 
 import logging
-logging.basicConfig(level=logging.DEBUG, filename='../log/bot.log',
+logging.basicConfig(level=logging.DEBUG, filename='../logs/bot_log',
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 logger = logging.getLogger(__name__)
