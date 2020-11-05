@@ -44,9 +44,9 @@ def start_name(update: Update, context: CallbackContext):
 
 @log(logger)
 def name_startpunkt(update: Update, context: CallbackContext):
-    if update.message.text == "Ja":
+    if update.message.text == "Ja" or update.message.text == "Ja, klar 🌻":
         context.user_data["daten"] = True
-    if update.message.text == "Nein":
+    else:
         context.user_data["daten"] = False
 
     yes_no_keyboard = [['schon da ⚓',

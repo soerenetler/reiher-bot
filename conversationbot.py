@@ -17,7 +17,7 @@ bot.
 import logging
 
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, Update)
-from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, CallbackContext,
+from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, CallbackContext,PicklePersistence, 
                           ConversationHandler, CallbackQueryHandler, PollAnswerHandler, PollHandler, TypeHandler)
 
 from states import GENERAL_STATES
@@ -63,14 +63,18 @@ if __name__ == '__main__':
     # Create the Updater and pass it your bot's token.
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
-    updater = Updater(args.telegram_token, use_context=True)
+    my_persistence = PicklePersistence(filename='../bot_persistence')
+    updater = Updater(args.telegram_token, persistence=my_persistence, use_context=True)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
     conv_handler = ConversationHandler(
+        allow_reentry=True,
         per_chat=False,
+        conversation_timeout = 6 * 60 * 60, 
         entry_points=[CommandHandler('start', generalActions.start_name)],
+        persistent=True, name='reiherbot',
 
         states={
             INTRO_STATES["NAME"]: [MessageHandler(Filters.regex('^(Nein, nenn mich lieber anders! 👻|Nein|Ups, verschrieben 🙈)$'), generalActions.name_frage),
@@ -174,14 +178,14 @@ if __name__ == '__main__':
 
             BAHNHOF_STATES["FRAGE_FEUERWEHR"]: [PollAnswerHandler(bahnhofActions.generate_action("frage_feuerwehr_aufloesung"))],
 
-            BAHNHOF_STATES["FRAGE_FEUERWEHR_AUFLOESUNG"]: [CallbackQueryHandler(bahnhofActions.generate_action("weg_vierseitenhof_callback_query")),
-                                                           CommandHandler('weiter', bahnhofActions.generate_action("weg_vierseitenhof"))],
+            BAHNHOF_STATES["FRAGE_FEUERWEHR_AUFLOESUNG"]: [CallbackQueryHandler(bahnhofActions.generate_action("rueckweg_bahnhof_2_callback_query")),
+                                                           CommandHandler('weiter', bahnhofActions.generate_action("rueckweg_bahnhof_2"))],
                                     
-            BAHNHOF_STATES["WEG_VIERSEITENHOF"]: [CallbackQueryHandler(bahnhofActions.generate_action("vierseitenhof_callback_query")),
-                                                  CommandHandler('weiter', bahnhofActions.generate_action("vierseitenhof"))],
+            #BAHNHOF_STATES["WEG_VIERSEITENHOF"]: [CallbackQueryHandler(bahnhofActions.generate_action("vierseitenhof_callback_query")),
+            #                                      CommandHandler('weiter', bahnhofActions.generate_action("vierseitenhof"))],
 
-            BAHNHOF_STATES["VIERSEITENHOF"]: [CallbackQueryHandler(bahnhofActions.generate_action("rueckweg_bahnhof_1_callback_query")),
-                                             CommandHandler('weiter', bahnhofActions.generate_action("rueckweg_bahnhof_1"))],
+            #BAHNHOF_STATES["VIERSEITENHOF"]: [CallbackQueryHandler(bahnhofActions.generate_action("rueckweg_bahnhof_1_callback_query")),
+            #                                 CommandHandler('weiter', bahnhofActions.generate_action("rueckweg_bahnhof_1"))],
 
             BAHNHOF_STATES["RUECKWEG_BAHNHOF_1"]: [CallbackQueryHandler(bahnhofActions.generate_action("rueckweg_bahnhof_2_callback_query")),
                                                   CommandHandler('weiter', bahnhofActions.generate_action("rueckweg_bahnhof_2"))],
@@ -191,8 +195,11 @@ if __name__ == '__main__':
             BAHNHOF_STATES["FEEDBACK"]: [MessageHandler(Filters.voice, bahnhofActions.generate_action("kontakt_rueckfragen")),
                                          MessageHandler(Filters.text, bahnhofActions.generate_action("kontakt_rueckfragen")),
                                          CommandHandler('weiter', bahnhofActions.generate_action("ende_feedback")),
-                                         CallbackQueryHandler(bahnhofActions.generate_action("ende_feedback_callback_query"))],
-            BAHNHOF_STATES["RUECKFRAGEN"]: [MessageHandler(Filters.regex('^(Ja|Ja, gerne! 😎|Nein)$'), bahnhofActions.generate_action("ende_feedback"))]
+                                         CallbackQueryHandler(bahnhofActions.generate_action("ende_callback_query"))],
+            BAHNHOF_STATES["RUECKFRAGEN"]: [MessageHandler(Filters.regex('^(Ja|Ja, gerne! 😎|Nein)$'), bahnhofActions.generate_action("ende_feedback"))],
+
+
+            ConversationHandler.TIMEOUT: [MessageHandler(Filters.regex(r'^(.)+'),bahnhofActions.generate_action("timeout"))]
         },
 
         fallbacks=[CommandHandler('cancel', generalActions.cancel),

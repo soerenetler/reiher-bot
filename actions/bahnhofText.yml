@@ -32,17 +32,16 @@ frage_bahnhof_aufloesung:
     - type: message
       text: 
         de: |
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆🚆🚆🚆🚆
-           🚆🚆🚆🚆🚆🚆
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂
     - type: message
       text:
         de: >
@@ -234,7 +233,7 @@ weg02:
 frage_weinmeisterstrasse:
     - type: message
       text:
-        de: Weil das Trinkwasser in Golm früher nicht so gut war, wurde sehr viel Wein angebaut. Im 17. Jahrhundert änderte sich das.
+        de: Weil das Trinkwasser in Golm früher nicht so gut war, wurde sehr viel Wein angebaut. Im Laufe der Zeit änderte sich das.
     - type: poll
       question: Was meinst, woran lag das?
       options:
@@ -258,7 +257,7 @@ frage_weinmeisterstrasse_aufloesung:
         de: 🐾
     - type: message
       text:
-        de: Tatsächlich war Kaiser Friedrich Wilhelm gelernter Bierbrauer und wollte Bier steuerlich bevorzugen. Die Menschen in Golm begannen daraufhin Hopfen statt Wein anzubauen.
+        de: All diese Gründe führten dazu, dass in Golm heute kein Wein mehr angebaut wird. 
     - type: message
       text:
         de: Die Weinmeisterstraße ist aus dieser Zeit jedoch geblieben.
@@ -453,9 +452,12 @@ foto_reiherberg:
     - type: message
       text:
         de: >
-            Knipse ein Foto und schicke es mir zu. 📸 Unter allen gesendeten Fotos verlosen wir einmal im Monat einen Einkaufsgutschein.
+            Knipse ein Foto und schicke es mir zu. 📸
             Die Fotos findest du im Anschluss auf der unserer Website.
       InlineKeyboard:
+        - text:
+            de: "🧀 Cheese"
+          data: 'foto'
         - text:
             de: "↪️ überspringen"
           data: 'ueberspringen'
@@ -465,8 +467,16 @@ foto_reiherberg:
 foto_reiherberg_aufloesung_callback_query:
     - type: callback
       conditions:
+      - condition: foto
+        action: foto_reiherberg_anweisung
       - condition: ueberspringen
         action: foto_reiherberg_aufloesung
+
+foto_reiherberg_anweisung:
+  - type: message
+    text:
+      de: >
+          Dann zeig mal her! 🖼️
 
 foto_reiherberg_aufloesung:
     - type: function
@@ -508,6 +518,9 @@ weg_kirche_1:
             Gehe bergab, bis du an einen Abzweig nach rechts kommst.
       InlineKeyboard:
         - text:
+            de: "⁉️ Wo lang?"
+          data: 'wo'
+        - text:
             de: "🐾 weiter"
           data: 'weiter'
     - type: return
@@ -516,8 +529,20 @@ weg_kirche_1:
 weg_kirche_2_callback_query:
     - type: callback
       conditions:
+      - condition: wo
+        action: weg_kirche_1_help
       - condition: weiter
         action: weg_kirche_2
+
+weg_kirche_1_help:
+  - type: message
+    text:
+      de: > 
+          HELP
+    InlineKeyboard:
+      - text:
+          de: "🐾 weiter"
+        data: 'weiter'
 
 weg_kirche_2:
     - type: message
@@ -553,6 +578,10 @@ kirche_wortraetsel:
             Ihren Namen erfährst du, wenn du dieses Worträtsel richtig löst.
     - type: photo
       file: "assets/Bilderrätsel.png"
+    - type: message
+      text:
+        de: >
+            Schreib mir die Lösung 
     - type: return
       state: KIRCHE_WORTRAETSEL
 
@@ -578,6 +607,12 @@ kirche_frage:
 kirche_aufloesung:
     - type: function
       func: eval_kirche_frage
+    - type: message
+      text:
+        de: Dohlen sind übrigens eine Rabenart. Hier hast du ein Bild, damit du sie dir besser vorstellen kannst. 
+    - type: photo
+      file: "assets/Dohle.jpg"
+
     - type: message
       text:
         de: >
@@ -679,6 +714,9 @@ info_kapelle:
       file: assets/audio/Kapelle.mp3
       title: "Kapelle"
       performer: "Reiherbot"
+    - type: message
+      text:
+        de: 'https://t.me/pdm_golm'
       InlineKeyboard:
         - text:
             de: "🐾 weiter"
@@ -854,55 +892,57 @@ info_feuerwehr:
             de: "🐾 weiter"
           data: 'weiter'
 
-weg_vierseitenhof:
-    - type: message
-      text:
-        de: '🐾'
-    - type: message
-      text: 
-        de: >
-            Wenn du an der Feuerwehr vorbei gehst,
-            stehst du schon bald vor einer Zufahrt zu einem Innenhof.
-            Hast du den Hof gefunden?
-      InlineKeyboard:
-        - text:
-            de: "🐾 weiter"
-          data: 'weiter'
-    - type: return
-      state: WEG_VIERSEITENHOF
+#weg_vierseitenhof:
+#    - type: message
+#      text:
+#        de: '🐾'
+#    - type: message
+#      text: 
+#        de: >
+#            Wenn du an der Feuerwehr vorbei gehst,
+#            stehst du schon bald vor einer Zufahrt zu einem Innenhof.
+#            Hast du den Hof gefunden?
+#      InlineKeyboard:
+#        - text:
+#            de: "🐾 weiter"
+#          data: 'weiter'
+ #   - type: return
+ #     state: WEG_VIERSEITENHOF
         
-vierseitenhof_callback_query:
-  - type: callback
-    conditions:
-      - condition: weiter
-        action: vierseitenhof
+#vierseitenhof_callback_query:
+#  - type: callback
+#    conditions:
+#      - condition: weiter
+#        action: rueckweg_bahnhof_1
 
-vierseitenhof:
-    - type: message
-      text:
-        de: '🐾'
-    - type: message
-      text: 
-        de: >
-            Diese Gebäude bilden zusammen einen alten Vier-Seiten-Hof. 
-            Doch wo früher Ställe und Scheunen waren, sind heute Wohnungen.
-            In der Mitte des Hofes ist heut Jochens Hostagarten angelegt, 
-            den man auf Anfrage besichtigen kann.
-    - type: message
-      text:
-        de: http://www.jochens-hostagarten.de/
-      InlineKeyboard:
-        - text:
-            de: "🐾 weiter"
-          data: 'weiter'
-    - type: return
-      state: VIERSEITENHOF
+#vierseitenhof:
+#    - type: message
+#      text:
+#        de: '🐾'
+#    - type: message
+#      text: 
+#        de: >
+#            Diese Gebäude bilden zusammen einen alten Vier-Seiten-Hof. 
+#            Doch wo früher Ställe und Scheunen waren, sind heute Wohnungen.
+#            In der Mitte des Hofes ist heut Jochens Hostagarten angelegt, 
+#            den man auf Anfrage besichtigen kann.
+#    - type: message
+#      text:
+#        de: http://www.jochens-hostagarten.de/
+ #     InlineKeyboard:
+ #       - text:
+ #           de: "🐾 weiter"
+ #         data: 'weiter'
+ #   - type: return
+ #     state: VIERSEITENHOF
 
 rueckweg_bahnhof_1_callback_query:
     - type: callback
       conditions:
         - condition: weiter
           action: rueckweg_bahnhof_1
+        - condition: info
+          action: info_feuerwehr
 
 rueckweg_bahnhof_1:
     - type: message
@@ -970,8 +1010,10 @@ ende_bahnhof:
       text:
         de: >
             Sag uns gern auch deine Meinung zum Rundgang.
-            Schreib dein Feedback in den Chat oder sende uns eine Sprachnachricht.
       InlineKeyboard:
+        - text:
+            de: "💛 Feedback geben"
+          data: 'feedback'
         - text:
             de: "↪️ überspringen"
           data: 'ueberspringen'
@@ -983,11 +1025,24 @@ ende_callback_query:
     conditions:
       - condition: ueberspringen
         action: ende_feedback
+      - condition: feedback
+        action: feedback_geben
+
+
+feedback_geben:
+  - type: message
+    text:
+      de: Schreib einfach dein Feedback in den Chat oder sende uns eine Sprachnachricht.
 
 kontakt_rueckfragen:
     - type: message
       text:
         de: Danke für dein Feedback! Dürfen wir dich bei Rückfragen kontaktieren?
+      ReplyKeyboardMarkup:
+        - text:
+            de: "Ja, gerne! 😎"
+        - text:
+            de: "Lieber nicht ⚔️"
     - type: function
       func: get_feedback
     - type: return
@@ -998,6 +1053,13 @@ ende_feedback:
     func: ende_feedback
   - type: message
     text:
-      de: Ok, mit /start geht's zurück an den Anfang, um eine andere Route zu gehen.
+      de: Danke für dein Feedback! Mit /start geht's zurück an den Anfang, um eine andere Route zu gehen.
+  - type: return
+    state: END
+
+timeout:
+  - type: message
+    text:
+      de: Du warst seit einer ganzen Weile nicht aktiv. Mit /start kannst du eine neue Tour mit dem Reiherbot beginnen.
   - type: return
     state: END

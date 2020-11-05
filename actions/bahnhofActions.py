@@ -1,6 +1,7 @@
 from telegram import (ParseMode, InputFile, InputMediaPhoto, ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup, Poll, Update, CallbackQuery)
 from telegram.ext import CallbackContext, ConversationHandler
 from PIL import Image
+import re
 
 import base64
 from io import BytesIO
@@ -32,8 +33,15 @@ def generate_action(action_set):
                 keyboard = [[]]
                 for button in item["InlineKeyboard"]:
                     keyboard[0].append(InlineKeyboardButton(button["text"]["de"], callback_data=button["data"]))
+                
+                reply_markup = InlineKeyboardMarkup(keyboard)
 
-                    reply_markup = InlineKeyboardMarkup(keyboard)
+            elif "ReplyKeyboardMarkup" in item:
+                keyboard = [[]]
+                for button in item["ReplyKeyboardMarkup"]:
+                    keyboard[0].append(button["text"]["de"])
+
+                reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
             else:
                 reply_markup = ReplyKeyboardRemove()
 
@@ -47,7 +55,10 @@ def generate_action(action_set):
                 else:   
                     update.message.reply_text(item["text"]["de"], reply_markup=reply_markup, parse_mode = parse_mode)
             elif item["type"] == "photo":
-                update.message.reply_photo(open(item["file"], 'rb'), reply_markup=reply_markup)
+                if type(update) != CallbackQuery and update.poll_answer:
+                    update.poll_answer.user.send_photo(open(item["file"], 'rb'), reply_markup=reply_markup)
+                else: 
+                    update.message.reply_photo(open(item["file"], 'rb'), reply_markup=reply_markup)
             elif item["type"] == "audio":
                 update.message.reply_audio(open(item["file"], 'rb'), title=item["title"], performer=item["performer"], reply_markup=reply_markup)
             elif item["type"] == "poll":
@@ -140,7 +151,7 @@ def eval_weinmeisterstrasse_aufloesung(update, context):
                                 reply_markup=ReplyKeyboardRemove())
     
     else:
-        update.user.send_message('Das war nicht der Grund.',
+        update.user.send_message('Das war nur ein Grund.',
                                 reply_markup=ReplyKeyboardRemove())
 
 def eval_fehlerbild_reiherberg(update, context):
@@ -158,7 +169,7 @@ def eval_fehlerbild_reiherberg(update, context):
                                 reply_markup=ReplyKeyboardRemove())
 
 def eval_schaetzfrage_reiherberg(update, context):
-    schaetzung = int(update.message.text)
+    schaetzung = int(re.findall(r"\d{1,}", update.message.text)[0])
     echter_wert = 68
     if schaetzung == echter_wert:
         update.message.reply_text('Richtig!',
@@ -181,7 +192,8 @@ def foto_contest(update, context):
 def eval_kirche_wortraetsel(update, context):
     antwort = update.message.text
     echter_wert = "Kaiser-Friedrich-Kirche"
-    if antwort.lower() == echter_wert.lower():
+
+    if re.sub('\W+','',antwort.lower()) == re.sub('\W+','',echter_wert.lower()):
         update.message.reply_text('Richtig!',
             reply_markup=ReplyKeyboardRemove())
     else:
@@ -199,12 +211,12 @@ def eval_kirche_frage(update, context):
 
 def eval_storchenbank(update, context):
     antwort = update.message.text
-    echter_wert = "2013"
+    echter_wert = "2012"
     if antwort.lower() == echter_wert.lower():
-        update.message.reply_text('Richtig!',
+        update.message.reply_text('Du hast die Tafel also entdeckt! Dort werden seit vielen Jahren die Rückkehrzeiten und der Nachwuchs des Storchenpaares festgehalten.',
             reply_markup=ReplyKeyboardRemove())
     else:
-        update.message.reply_text('Fast!', reply_markup=ReplyKeyboardRemove())
+        update.message.reply_text('Fast! Neben der Storchenbank findest du eine Tafel, auf der seit vielen Jahren die Rückkehrzeiten und der Nachwuchs des Storchenpaares festgehalten werden.', reply_markup=ReplyKeyboardRemove())
 
 def eval_frage_feuwerwehr(update, context):
     update = update["poll_answer"]
@@ -227,14 +239,14 @@ def reiherberg_medaille(update, context):
             profile_file = BytesIO(profile_bytes)  # convert image to file-like object
             background = Image.open(profile_file)   # img is now PIL Image object
             logger.info(background.size)
-            foreground = Image.open('assets/golm_medaillie.png')
+            foreground = Image.open('assets/Skyline_02_gelb.png')
 
 
             update.message.reply_photo(utils.overlay_images(background, foreground))            
         else:
-            update.message.reply_photo(open("assets/golm_medaillie.png", 'rb'))
+            update.message.reply_photo(open("assets/Skyline_02_gelb.png", 'rb'))
     else:
-        update.message.reply_photo(open("assets/golm_medaillie.png", 'rb'))
+        update.message.reply_photo(open("assets/Skyline_02_gelb.png", 'rb'))
 
 def bahnhof_timetable(update, context):
     update.message.reply_text('Der nächste Zug fährt in 3 Minuten!', reply_markup=ReplyKeyboardRemove())
@@ -253,13 +265,17 @@ def get_feedback(update, context):
             file_object.write(update.message.text + "\n")
 
 def ende_feedback(update, context):
-    user_id = update.effective_user.id
-    name = update.effective_user.name
+    if type(update) == CallbackQuery:
+        user_id = update.from_user.id
+        name = update.from_user.name
+    else:
+        user_id = update.effective_user.id
+        name = update.effective_user.name
     if update.message.text:
         if update.message.text == "Ja, gerne! 😎":
             with open('../feedback/feedback_mapping.txt','a+') as file_object:
                 file_object.write(str(user_id) + ", " + name + "\n")
-        if update.message.text == "Nein":
+        if update.message.text == "Lieber nicht ⚔️":
             pass
 
 

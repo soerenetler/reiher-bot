@@ -25,6 +25,7 @@ def generate_gif(im1, im2):
     return bio
 
 def overlay_images(background, foreground):
+    foreground = foreground.resize((round(background.size[0]), round(background.size[1])))
     background.paste(foreground, (0, 0), foreground)
     bio = BytesIO()
     bio.name = 'image.png'
