@@ -535,10 +535,11 @@ weg_kirche_2_callback_query:
         action: weg_kirche_2
 
 weg_kirche_1_help:
+  - type: photo
+    file: assets/Hier entlang!.jpg
   - type: message
     text:
-      de: > 
-          HELP
+      de: Vielleicht hilft dieses Bild weiter.
     InlineKeyboard:
       - text:
           de: "🐾 weiter"
