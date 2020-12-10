@@ -209,8 +209,6 @@ if __name__ == '__main__':
 
 
             ConversationHandler.TIMEOUT: [MessageHandler(Filters.regex(r'^(.)+'),generate_action("timeout"))],
-
-            ConversationHandler.TIMEOUT: [MessageHandler(Filters.regex(r'^(.)+'),bahnhofActions.generate_action("timeout"))]
         },
 
         fallbacks=[CommandHandler('cancel', generalActions.cancel),
