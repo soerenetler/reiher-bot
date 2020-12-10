@@ -22,6 +22,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Call
 
 from states import GENERAL_STATES
 from actions import generalActions, bahnhofActions
+from generateActions import generate_action
 from states import INTRO_STATES, BAHNHOF_STATES
 
 from configparser import ConfigParser
@@ -89,120 +90,131 @@ if __name__ == '__main__':
                                         CallbackQueryHandler(generalActions.welche_route_callback_query),
                                         MessageHandler(Filters.regex('^(noch auf dem Weg 😱|Nein)$'), generalActions.weg_zum_bahnhof)],
 
-            INTRO_STATES["ROUTE_AUSWAEHLEN"]: [MessageHandler(Filters.regex('^(Reiherbergaufstieg ⛰️)$'), generalActions.start_reiherberg_route),
-                                               MessageHandler(Filters.regex('^(Seeroute 🌊)$'), generalActions.start_see_route)],
+            INTRO_STATES["ROUTE_AUSWAEHLEN"]: [MessageHandler(Filters.regex('^(Reiherbergaufstieg ⛰️|Reiherberg|Reiherbergaufstieg|Berg)$'), generalActions.start_reiherberg_route),
+                                               MessageHandler(Filters.regex('^(Seeroute 🌊|Seeroute|Zernsee|See)$'), generalActions.start_see_route)],
 
-            INTRO_STATES["TESTROUTE_BESTAETIGEN"]: [CommandHandler('weiter', bahnhofActions.generate_action("frage_bahnhof_gif")),
-                                                    MessageHandler(Filters.regex('^(Ja, ich bin bereit 🏁|Ja)$'), bahnhofActions.generate_action("frage_bahnhof_gif")),
+            INTRO_STATES["TESTROUTE_BESTAETIGEN"]: [CommandHandler('weiter', generate_action("frage_bahnhof_gif")),
+                                                    MessageHandler(Filters.regex('^(Ja, ich bin bereit 🏁|Ja)$'), generate_action("frage_bahnhof_gif")),
                                                     MessageHandler(Filters.regex('^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions.welche_route)],
 
             #######DEMO-ROUTE#######
-            BAHNHOF_STATES["BAHNHOF_FRAGE_GIF"]: [MessageHandler(Filters.photo, bahnhofActions.generate_action("frage_bahnhof_gif_aufloesung"))],
+            BAHNHOF_STATES["BAHNHOF_FRAGE_GIF"]: [MessageHandler(Filters.photo, generate_action("frage_bahnhof_gif_aufloesung"))],
 
-            BAHNHOF_STATES["BAHNHOF_FRAGE_GIF_AUFLOESUNG"]: [CallbackQueryHandler(bahnhofActions.generate_action("bahnhof_frage_callback_query"))],
+            BAHNHOF_STATES["BAHNHOF_FRAGE_GIF_AUFLOESUNG"]: [CallbackQueryHandler(generate_action("bahnhof_frage_callback_query"))],
 
-            BAHNHOF_STATES["BAHNHOF_FRAGE"]: [CommandHandler('weiter', bahnhofActions.generate_action("frage_bahnhof_aufloesung")),
-                                              MessageHandler(Filters.regex(r'^(\d)+'), bahnhofActions.generate_action("frage_bahnhof_aufloesung"))],
-            BAHNHOF_STATES["BAHNHOF_FRAGE_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.generate_action("weg01")),
-                                                        CallbackQueryHandler(bahnhofActions.generate_action("weg01_callback_query"))],
-            BAHNHOF_STATES["WEG01"]: [CommandHandler('weiter', bahnhofActions.generate_action("frage_quiz")),
-                                      CallbackQueryHandler(bahnhofActions.generate_action("frage_quiz_callback_query"))],
-            BAHNHOF_STATES["FRAGE_QUIZ"]: [PollAnswerHandler(bahnhofActions.generate_action("frage_quiz_aufloesung"))],       
-            BAHNHOF_STATES["FRAGE_QUIZ_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.generate_action("weg_01a")),
-                                                      CallbackQueryHandler(bahnhofActions.generate_action("weg_01a_callback_query"))],
+            BAHNHOF_STATES["BAHNHOF_FRAGE"]: [CommandHandler('weiter', generate_action("frage_bahnhof_aufloesung")),
+                                              MessageHandler(Filters.regex(r'^(\d)+'), generate_action("frage_bahnhof_aufloesung"))],
+            BAHNHOF_STATES["BAHNHOF_FRAGE_AUFLOESUNG"]: [CommandHandler('weiter', generate_action("weg01")),
+                                                        CallbackQueryHandler(generate_action("weg01_callback_query"))],
+            BAHNHOF_STATES["WEG01"]: [CommandHandler('weiter', generate_action("frage_quiz")),
+                                      CallbackQueryHandler(generate_action("frage_quiz_callback_query"))],
+            BAHNHOF_STATES["FRAGE_QUIZ"]: [PollAnswerHandler(generate_action("frage_quiz_aufloesung"))],       
+            BAHNHOF_STATES["FRAGE_QUIZ_AUFLOESUNG"]: [CommandHandler('weiter', generate_action("weg_01a")),
+                                                      CallbackQueryHandler(generate_action("weg_01a_callback_query"))],
 
-            BAHNHOF_STATES["WEG01A"]: [CommandHandler('weiter', bahnhofActions.generate_action("frage_ubahn")),
-                                       CallbackQueryHandler(bahnhofActions.generate_action("frage_ubahn_callback_query"))],
+            BAHNHOF_STATES["WEG01A"]: [CommandHandler('weiter', generate_action("frage_ubahn")),
+                                       CallbackQueryHandler(generate_action("frage_ubahn_callback_query"))],
             
-            BAHNHOF_STATES["FRAGE_UBAHN"]: [PollAnswerHandler(bahnhofActions.generate_action("frage_ubahn_aufloesung"))],
-            BAHNHOF_STATES["FRAGE_UBAHN_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.generate_action("weg02")),
-                                                       CallbackQueryHandler(bahnhofActions.generate_action("weg02_callback_query"))],
+            BAHNHOF_STATES["FRAGE_UBAHN"]: [PollAnswerHandler(generate_action("frage_ubahn_aufloesung"))],
+            BAHNHOF_STATES["FRAGE_UBAHN_AUFLOESUNG"]: [CommandHandler('weiter', generate_action("weg02")),
+                                                       CallbackQueryHandler(generate_action("weg02_callback_query"))],
 
-            BAHNHOF_STATES["WEG02"]: [CommandHandler('weiter', bahnhofActions.generate_action("frage_weinmeisterstrasse")),
-                                       CallbackQueryHandler(bahnhofActions.generate_action("frage_weinmeisterstrasse_callback_query"))],
+            BAHNHOF_STATES["WEG02"]: [CommandHandler('weiter', generate_action("frage_weinmeisterstrasse")),
+                                       CallbackQueryHandler(generate_action("frage_weinmeisterstrasse_callback_query"))],
 
-            BAHNHOF_STATES["FRAGE_WEINMEISTERATRASSE"]: [PollAnswerHandler(bahnhofActions.generate_action("frage_weinmeisterstrasse_aufloesung"))],
+            BAHNHOF_STATES["FRAGE_WEINMEISTERATRASSE"]: [PollAnswerHandler(generate_action("frage_weinmeisterstrasse_aufloesung"))],
             
-            BAHNHOF_STATES["FRAGE_WEINMEISTERATRASSE_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.generate_action("fehlerbild_reiherberg_bank")),
-                                                                    CallbackQueryHandler(bahnhofActions.generate_action("fehlerbild_reiherberg_bank_callback_query"))],
+            BAHNHOF_STATES["FRAGE_WEINMEISTERATRASSE_AUFLOESUNG"]: [CommandHandler('weiter', generate_action("fehlerbild_reiherberg_bank")),
+                                                                    CallbackQueryHandler(generate_action("fehlerbild_reiherberg_bank_callback_query"))],
 
-            BAHNHOF_STATES["FEHLERBILD_REIHERBERG"]: [CommandHandler('weiter', bahnhofActions.generate_action("fehlerbild_reiherberg_aufloesung")),
-                                                      PollAnswerHandler(bahnhofActions.generate_action("fehlerbild_reiherberg_aufloesung"))],
-            BAHNHOF_STATES["FEHLERBILD_REIHERBERG_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.generate_action("aufstieg_reiherberg")),
-                                                                 CallbackQueryHandler(bahnhofActions.generate_action("aufstieg_reiherberg_callback_query"))],
-            BAHNHOF_STATES["AUFSTIEG_REIHERBERG"]: [CommandHandler('weiter', bahnhofActions.generate_action("schaetzfrage_reiherberg")),
-                                                    CallbackQueryHandler(bahnhofActions.generate_action("schaetzfrage_reiherberg_callback_query"))],
-            BAHNHOF_STATES["SCHAETZFRAGE_REIHERBERG"]: [CommandHandler('weiter', bahnhofActions.generate_action("schaetzfrage_reiherberg_aufloesung")),
-                                                        MessageHandler(Filters.regex(r'^(\d)+'),bahnhofActions.generate_action("schaetzfrage_reiherberg_aufloesung"))],
-            BAHNHOF_STATES["SCHAETZFRAGE_REIHERBERG_AUFLOESUNG"]: [CommandHandler('weiter', bahnhofActions.generate_action("foto_reiherberg")),
-                                                                   CallbackQueryHandler(bahnhofActions.generate_action("foto_reiherberg_callback_query"))],
-            BAHNHOF_STATES["FOTO_REIHERBERG"]: [CommandHandler('weiter', bahnhofActions.generate_action("foto_reiherberg_aufloesung")),
-                                                MessageHandler(Filters.photo, bahnhofActions.generate_action("foto_reiherberg_aufloesung")),
-                                                CallbackQueryHandler(bahnhofActions.generate_action("foto_reiherberg_aufloesung_callback_query"))],
+            BAHNHOF_STATES["FEHLERBILD_REIHERBERG"]: [CommandHandler('weiter', generate_action("fehlerbild_reiherberg_aufloesung")),
+                                                      PollAnswerHandler(generate_action("fehlerbild_reiherberg_aufloesung"))],
+            BAHNHOF_STATES["FEHLERBILD_REIHERBERG_AUFLOESUNG"]: [CommandHandler('weiter', generate_action("aufstieg_reiherberg")),
+                                                                 CallbackQueryHandler(generate_action("aufstieg_reiherberg_callback_query"))],
+            BAHNHOF_STATES["AUFSTIEG_REIHERBERG"]: [CommandHandler('weiter', generate_action("schaetzfrage_reiherberg")),
+                                                    CallbackQueryHandler(generate_action("schaetzfrage_reiherberg_callback_query"))],
+            BAHNHOF_STATES["SCHAETZFRAGE_REIHERBERG"]: [CommandHandler('weiter', generate_action("schaetzfrage_reiherberg_aufloesung")),
+                                                        MessageHandler(Filters.regex(r'^(\d)+'),generate_action("schaetzfrage_reiherberg_aufloesung"))],
+            BAHNHOF_STATES["SCHAETZFRAGE_REIHERBERG_AUFLOESUNG"]: [CommandHandler('weiter', generate_action("foto_reiherberg")),
+                                                                   CallbackQueryHandler(generate_action("foto_reiherberg_callback_query"))],
+            BAHNHOF_STATES["FOTO_REIHERBERG"]: [CommandHandler('weiter', generate_action("foto_reiherberg_aufloesung")),
+                                                MessageHandler(Filters.photo, generate_action("foto_reiherberg_aufloesung")),
+                                                CallbackQueryHandler(generate_action("foto_reiherberg_aufloesung_callback_query"))],
 
-            BAHNHOF_STATES["FOTO_REIHERBERG_AUFLOESUNG"]: [CallbackQueryHandler(bahnhofActions.generate_action("weg_kirche_1_callback_query")),
-                                                           CommandHandler('weiter', bahnhofActions.generate_action("weg_kirche_1"))],
+            BAHNHOF_STATES["FOTO_REIHERBERG_AUFLOESUNG"]: [CallbackQueryHandler(generate_action("weg_kirche_1_callback_query")),
+                                                           CommandHandler('weiter', generate_action("weg_kirche_1"))],
 
-            BAHNHOF_STATES["WEG_KIRCHE_1"]: [CallbackQueryHandler(bahnhofActions.generate_action("weg_kirche_2_callback_query")),
-                                            CommandHandler('weiter', bahnhofActions.generate_action("weg_kirche_2"))],
+            BAHNHOF_STATES["WEG_KIRCHE_1"]: [CallbackQueryHandler(generate_action("weg_kirche_2_callback_query")),
+                                            CommandHandler('weiter', generate_action("weg_kirche_2"))],
 
-            BAHNHOF_STATES["WEG_KIRCHE_2"]: [CallbackQueryHandler(bahnhofActions.generate_action("kirche_wortraetsel_callback_query")),
-                                             CommandHandler('weiter', bahnhofActions.generate_action("kirche_wortraetsel"))],
+            BAHNHOF_STATES["WEG_KIRCHE_2"]: [CallbackQueryHandler(generate_action("kirche_wortraetsel_callback_query")),
+                                             CommandHandler('weiter', generate_action("kirche_wortraetsel"))],
 
-            BAHNHOF_STATES["KIRCHE_WORTRAETSEL"]: [MessageHandler(Filters.regex(r'^(.)+'),bahnhofActions.generate_action("kirche_frage"))],
+            BAHNHOF_STATES["KIRCHE_WORTRAETSEL"]: [MessageHandler(Filters.regex(r'^(.)+'),generate_action("kirche_frage"))],
 
-            BAHNHOF_STATES["FRAGE_KIRCHE"]: [PollAnswerHandler(bahnhofActions.generate_action("kirche_aufloesung"))],
+            BAHNHOF_STATES["FRAGE_KIRCHE"]: [PollAnswerHandler(generate_action("kirche_aufloesung"))],
 
-            BAHNHOF_STATES["KIRCHE_AUFLOESEUNG"]: [CallbackQueryHandler(bahnhofActions.generate_action("weg_storchenbank_callback_query")),
-                                                    CommandHandler('weiter', bahnhofActions.generate_action("weg_storchenbank"))],
+            BAHNHOF_STATES["KIRCHE_AUFLOESEUNG"]: [CallbackQueryHandler(generate_action("weg_storchenbank_callback_query")),
+                                                    CommandHandler('weiter', generate_action("weg_storchenbank"))],
 
-            BAHNHOF_STATES["WEG_STORCHENBANK"]: [CallbackQueryHandler(bahnhofActions.generate_action("frage_storchenbank_callback_query")),
-                                                 CommandHandler('weiter', bahnhofActions.generate_action("frage_storchenbank"))],
+            BAHNHOF_STATES["WEG_STORCHENBANK"]: [CallbackQueryHandler(generate_action("frage_storchenbank_callback_query")),
+                                                 CommandHandler('weiter', generate_action("frage_storchenbank"))],
 
-            BAHNHOF_STATES["FRAGE_STORCHENBANK"]: [MessageHandler(Filters.regex(r'^(\d)+'),bahnhofActions.generate_action("frage_storchenbank_aufloesung"))],
+            BAHNHOF_STATES["FRAGE_STORCHENBANK"]: [MessageHandler(Filters.regex(r'^(\d)+'),generate_action("frage_storchenbank_aufloesung"))],
 
-            BAHNHOF_STATES["KAPELLE"]: [CallbackQueryHandler(bahnhofActions.generate_action("weg_schule_callback_query")),
-                                        CommandHandler('weiter', bahnhofActions.generate_action("weg_schule"))],
+            BAHNHOF_STATES["KAPELLE"]: [CallbackQueryHandler(generate_action("weg_schule_callback_query")),
+                                        CommandHandler('weiter', generate_action("weg_schule"))],
             
-            BAHNHOF_STATES["WEG_SCHULE"]: [CallbackQueryHandler(bahnhofActions.generate_action("schule_callback_query")),
-                                        CommandHandler('weiter', bahnhofActions.generate_action("schule"))],
+            BAHNHOF_STATES["WEG_SCHULE"]: [CallbackQueryHandler(generate_action("schule_callback_query")),
+                                        CommandHandler('weiter', generate_action("schule"))],
 
-            BAHNHOF_STATES["SCHULE"]: [CallbackQueryHandler(bahnhofActions.generate_action("weg_landhotel_callback_query")),
-                                       CommandHandler('weiter', bahnhofActions.generate_action("weg_landhotel"))],
+            BAHNHOF_STATES["SCHULE"]: [CallbackQueryHandler(generate_action("weg_landhotel_callback_query")),
+                                       CommandHandler('weiter', generate_action("weg_landhotel"))],
 
-            BAHNHOF_STATES["WEG_LANDHOTEL"]: [CallbackQueryHandler(bahnhofActions.generate_action("weg_feuerwehr_callback_query")),
-                                              CommandHandler('weiter', bahnhofActions.generate_action("weg_feuerwehr"))],
+            BAHNHOF_STATES["WEG_LANDHOTEL"]: [CallbackQueryHandler(generate_action("weg_feuerwehr_callback_query")),
+                                              CommandHandler('weiter', generate_action("weg_feuerwehr"))],
                                     
-            BAHNHOF_STATES["FEUERWEHR"]: [CallbackQueryHandler(bahnhofActions.generate_action("frage_feuerwehr_callback_query")),
-                                          CommandHandler('weiter', bahnhofActions.generate_action("frage_feuerwehr"))],
+            BAHNHOF_STATES["FEUERWEHR"]: [CallbackQueryHandler(generate_action("frage_feuerwehr_callback_query")),
+                                          CommandHandler('weiter', generate_action("frage_feuerwehr"))],
 
-            BAHNHOF_STATES["FRAGE_FEUERWEHR"]: [PollAnswerHandler(bahnhofActions.generate_action("frage_feuerwehr_aufloesung"))],
+            BAHNHOF_STATES["FRAGE_FEUERWEHR"]: [PollAnswerHandler(generate_action("frage_feuerwehr_aufloesung"))],
 
-            BAHNHOF_STATES["FRAGE_FEUERWEHR_AUFLOESUNG"]: [CallbackQueryHandler(bahnhofActions.generate_action("rueckweg_bahnhof_2_callback_query")),
-                                                           CommandHandler('weiter', bahnhofActions.generate_action("rueckweg_bahnhof_2"))],
+            BAHNHOF_STATES["FRAGE_FEUERWEHR_AUFLOESUNG"]: [CallbackQueryHandler(generate_action("rueckweg_bahnhof_2_callback_query")),
+                                                           CommandHandler('weiter', generate_action("rueckweg_bahnhof_2"))],
                                     
-            #BAHNHOF_STATES["WEG_VIERSEITENHOF"]: [CallbackQueryHandler(bahnhofActions.generate_action("vierseitenhof_callback_query")),
-            #                                      CommandHandler('weiter', bahnhofActions.generate_action("vierseitenhof"))],
+            #BAHNHOF_STATES["WEG_VIERSEITENHOF"]: [CallbackQueryHandler(generate_action("vierseitenhof_callback_query")),
+            #                                      CommandHandler('weiter', generate_action("vierseitenhof"))],
 
-            #BAHNHOF_STATES["VIERSEITENHOF"]: [CallbackQueryHandler(bahnhofActions.generate_action("rueckweg_bahnhof_1_callback_query")),
-            #                                 CommandHandler('weiter', bahnhofActions.generate_action("rueckweg_bahnhof_1"))],
+            #BAHNHOF_STATES["VIERSEITENHOF"]: [CallbackQueryHandler(generate_action("rueckweg_bahnhof_1_callback_query")),
+            #                                 CommandHandler('weiter', generate_action("rueckweg_bahnhof_1"))],
 
-            BAHNHOF_STATES["RUECKWEG_BAHNHOF_1"]: [CallbackQueryHandler(bahnhofActions.generate_action("rueckweg_bahnhof_2_callback_query")),
-                                                  CommandHandler('weiter', bahnhofActions.generate_action("rueckweg_bahnhof_2"))],
+            BAHNHOF_STATES["RUECKWEG_BAHNHOF_1"]: [CallbackQueryHandler(generate_action("rueckweg_bahnhof_2_callback_query")),
+                                                  CommandHandler('weiter', generate_action("rueckweg_bahnhof_2"))],
 
-            BAHNHOF_STATES["RUECKWEG_BAHNHOF_2"]: [CallbackQueryHandler(bahnhofActions.generate_action("ende_bahnhof_callback_query")),
-                                                  CommandHandler('weiter', bahnhofActions.generate_action("ende_bahnhof"))],
-            BAHNHOF_STATES["FEEDBACK"]: [MessageHandler(Filters.voice, bahnhofActions.generate_action("kontakt_rueckfragen")),
-                                         MessageHandler(Filters.text, bahnhofActions.generate_action("kontakt_rueckfragen")),
-                                         CommandHandler('weiter', bahnhofActions.generate_action("ende_feedback")),
-                                         CallbackQueryHandler(bahnhofActions.generate_action("ende_callback_query"))],
-            BAHNHOF_STATES["RUECKFRAGEN"]: [MessageHandler(Filters.regex('^(Ja|Ja, gerne! 😎|Nein)$'), bahnhofActions.generate_action("ende_feedback"))],
+            BAHNHOF_STATES["RUECKWEG_BAHNHOF_2"]: [CallbackQueryHandler(generate_action("bahnhof_ueberfuehrung_callback_query")),
+                                                  CommandHandler('weiter', generate_action("bahnhof_ueberfuehrung"))],
+            BAHNHOF_STATES["BAHNHOF_UEBERFUERUNG"]: [CallbackQueryHandler(generate_action("weg_science_park_callback_query")),
+                                                     CommandHandler('weiter', generate_action("weg_science_park"))],
+            BAHNHOF_STATES["WEG_SCIENCE_PARK"]: [CallbackQueryHandler(generate_action("blick_science_park_callback_query")),
+                                                     CommandHandler('weiter', generate_action("blick_science_park"))],
 
+            BAHNHOF_STATES["BLICK_SCIENCE_PARK"]: [CallbackQueryHandler(generate_action("ende_bahnhof_callback_query")),
+                                                     CommandHandler('weiter', generate_action("ende_bahnhof"))],
+                                        
+            BAHNHOF_STATES["FEEDBACK"]: [MessageHandler(Filters.voice, generate_action("kontakt_rueckfragen")),
+                                         MessageHandler(Filters.text, generate_action("kontakt_rueckfragen")),
+                                         CommandHandler('weiter', generate_action("ende_feedback")),
+                                         CallbackQueryHandler(generate_action("ende_callback_query"))],
+            BAHNHOF_STATES["RUECKFRAGEN"]: [MessageHandler(Filters.regex('^(Ja|Ja, gerne! 😎|Nein)$'), generate_action("ende_feedback"))],
+
+
+            ConversationHandler.TIMEOUT: [MessageHandler(Filters.regex(r'^(.)+'),generate_action("timeout"))],
 
             ConversationHandler.TIMEOUT: [MessageHandler(Filters.regex(r'^(.)+'),bahnhofActions.generate_action("timeout"))]
         },
 
         fallbacks=[CommandHandler('cancel', generalActions.cancel),
+                   CommandHandler('start', generalActions.start_name),
                    CommandHandler('restart', restart, filters=Filters.user(username='@soeren101')),
                    CommandHandler('restart', restart, filters=Filters.user(username='@aehryk')),
                    TypeHandler(Update, generalActions.log_update)]

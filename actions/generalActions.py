@@ -6,6 +6,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
 
 from states import INTRO_STATES
 from actions.utils import log
+from generateActions import generate_action
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filename='../logs/bot_log',
                     level=logging.INFO)
@@ -26,6 +27,9 @@ def cancel(update: Update, context: CallbackContext):
     return ConversationHandler.END
 
 def start_name(update: Update, context: CallbackContext):
+    if context.args:
+        return generate_action(context.args[0])(update, context)
+
     context.user_data["daten"] = False
     yes_no_keyboard = [['Ja, gerne! 😎',
                         'Nein, nenn mich lieber anders! 👻']]

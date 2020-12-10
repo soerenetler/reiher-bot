@@ -982,6 +982,88 @@ rueckweg_bahnhof_2:
     - type: return
       state: RUECKWEG_BAHNHOF_2
 
+bahnhof_ueberfuehrung_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: bahnhof_ueberfuehrung
+
+bahnhof_ueberfuehrung:
+    - type: message
+      text:
+        de: '🐾'
+    - type: message
+      text:
+        de: > 
+            Hier war früher eine Überführung zum Gleis 2 auf der anderen Seite.
+    - type: photo
+      file: "assets/Schule 1925.PNG"
+    - type: message
+      text:
+        de: > 
+            Google Maps denkt, dass diese immernoch steht. (Stand 2020)
+      InlineKeyboard:
+          - text:
+              de: "🐾 weiter"
+            data:  'weiter'
+    - type: return
+      state: BAHNHOF_UEBERFUERUNG
+
+weg_science_park_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: weg_science_park
+
+weg_science_park:
+    - type: message
+      text:
+        de: '🐾'
+    - type: message
+      text:
+        de: > 
+            Unser weg führt uns noch etwas weiter an den Bahnschines entlang, bis du an die Straße kommst.
+      InlineKeyboard:
+      - text:
+          de: "🐾 weiter"
+        data:  'weiter'
+    - type: return
+      state: WEG_SCIENCE_PARK
+
+blick_science_park_callback_query:
+    - type: callback
+      conditions:
+        - condition: weiter
+          action: blick_science_park
+
+blick_science_park:
+    - type: message
+      text:
+        de: '🐾'
+    - type: message
+      text:
+        de: > 
+            Siehst du die Gebäude am Horizont? 🌇
+            Das ist der Potsdam Science Park.
+            Du kannst ihn auch online entdecken:
+      InlineKeyboard:
+      - text:
+          de: "🚀 Eindrucksvolle Drohnenbilder"
+        url:  'https://potsdam-sciencepark.de/der-park/#rundflug-potsdam-science-park'
+      - text:
+          de: "🧭 Interaktive Karte"
+        url: "https://potsdam-sciencepark.de/?map=open"
+    - type: message
+      text:
+        de: > 
+            Viel Spaß!
+      InlineKeyboard:
+      - text:
+          de: "🐾 weiter"
+        data:  'weiter'
+    - type: return
+      state: BLICK_SCIENCE_PARK
+
 ende_bahnhof_callback_query:
     - type: callback
       conditions:
