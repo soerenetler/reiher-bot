@@ -1022,7 +1022,7 @@ weg_science_park:
     - type: message
       text:
         de: > 
-            Unser weg führt uns noch etwas weiter an den Bahnschienen entlang, bis du an die Straße kommst.
+            Unser Weg führt uns noch etwas weiter an den Bahnschienen entlang, bis du an die Straße kommst.
       InlineKeyboard:
       - text:
           de: "🐾 weiter"
