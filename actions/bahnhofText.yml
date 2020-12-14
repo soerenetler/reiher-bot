@@ -997,7 +997,7 @@ bahnhof_ueberfuehrung:
         de: > 
             Hier war früher eine Überführung zum Gleis 2 auf der anderen Seite.
     - type: photo
-      file: "assets/Schule 1925.PNG"
+      file: "assets/Ueberfuehrung.PNG"
     - type: message
       text:
         de: > 
