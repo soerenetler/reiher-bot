@@ -995,7 +995,7 @@ bahnhof_ueberfuehrung:
     - type: message
       text:
         de: > 
-            Hier war früher eine Überführung zum Gleis 2 auf der anderen Seite.
+            Hier war früher eine Überführung zum Gleis 1 auf der anderen Seite.
     - type: photo
       file: "assets/Ueberfuehrung.PNG"
     - type: message
@@ -1022,7 +1022,7 @@ weg_science_park:
     - type: message
       text:
         de: > 
-            Unser weg führt uns noch etwas weiter an den Bahnschines entlang, bis du an die Straße kommst.
+            Unser weg führt uns noch etwas weiter an den Bahnschienen entlang, bis du an die Straße kommst.
       InlineKeyboard:
       - text:
           de: "🐾 weiter"
