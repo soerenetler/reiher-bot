@@ -26,6 +26,10 @@ def cancel(update: Update, context: CallbackContext):
 
     return ConversationHandler.END
 
+def admin(update: Update, context: CallbackContext):
+    update.message.reply_text("Bitte tippe den Apdmin-Token ein.")
+    return INTRO_STATES["ADMIN"]
+
 def start_name(update: Update, context: CallbackContext):
     if context.args:
         return generate_action(context.args[0])(update, context)

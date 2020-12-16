@@ -24,6 +24,7 @@ from states import GENERAL_STATES
 from actions import generalActions, bahnhofActions
 from generateActions import generate_action
 from states import INTRO_STATES, BAHNHOF_STATES
+import adminbot
 
 from configparser import ConfigParser
 import argparse
@@ -212,6 +213,7 @@ if __name__ == '__main__':
         },
 
         fallbacks=[CommandHandler('cancel', generalActions.cancel),
+                   CommandHandler('admin', generalActions.admin),
                    CommandHandler('start', generalActions.start_name),
                    CommandHandler('restart', restart, filters=Filters.user(username='@soeren101')),
                    CommandHandler('restart', restart, filters=Filters.user(username='@aehryk')),
