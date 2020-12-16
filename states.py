@@ -7,7 +7,8 @@ INTRO_STATES = {key: value for value, key in enumerate(["NAME",
                                                         "DATENSCHUTZ",
                                                         "STARTPUNKT",
                                                         "ROUTE_AUSWAEHLEN",
-                                                        "TESTROUTE_BESTAETIGEN"
+                                                        "TESTROUTE_BESTAETIGEN",
+                                                        "ADMIN"
                                                         ],10)}
 
 BAHNHOF_STATES = {key: value for value, key in enumerate(["BAHNHOF_FRAGE_GIF",
@@ -54,3 +55,4 @@ BAHNHOF_STATES = {key: value for value, key in enumerate(["BAHNHOF_FRAGE_GIF",
                                                           "FEEDBACK",
                                                           "RUECKFRAGEN",
                                                           "END"],50)}
+

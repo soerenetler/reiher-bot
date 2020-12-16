@@ -21,7 +21,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Call
                           ConversationHandler, CallbackQueryHandler, PollAnswerHandler, PollHandler, TypeHandler)
 
 from states import GENERAL_STATES
-from actions import generalActions, bahnhofActions
+from actions import generalActions
 from generateActions import generate_action
 from states import INTRO_STATES, BAHNHOF_STATES
 import adminbot
@@ -72,11 +72,10 @@ if __name__ == '__main__':
     dp = updater.dispatcher
 
     conv_handler = ConversationHandler(
-        allow_reentry=True,
         per_chat=False,
         conversation_timeout = 6 * 60 * 60, 
         entry_points=[CommandHandler('start', generalActions.start_name)],
-        persistent=True, name='reiherbot',
+        persistent=False, name='reiherbot',
 
         states={
             INTRO_STATES["NAME"]: [MessageHandler(Filters.regex('^(Nein, nenn mich lieber anders! 👻|Nein|Ups, verschrieben 🙈)$'), generalActions.name_frage),
