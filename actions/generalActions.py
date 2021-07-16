@@ -4,7 +4,6 @@ from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, 
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
                           ConversationHandler, CallbackContext)
 
-from states import INTRO_STATES
 from actions.utils import log
 from generateActions import generate_action
 
