@@ -99,10 +99,10 @@ start_name:
     func: default_data
   - type: sticker
     id: CAACAgIAAxkBAAIGbl8_fWbeUAx5dTF6v9o0gc1bgs9SAAJUAANBtVYMarf4xwiNAfobBA
-  - type: message
-    text: 'Hi, ich bin Ronni der Reiher! Ich führe dich heute durch Golm.'
   - type: function
     func: default_name
+  - type: message
+    text: 'Hi, ich bin Ronni der Reiher! Ich führe dich heute durch Golm.'
   - type: message
     text: Darf ich dich {name} nennen?
     ReplyKeyboardMarkup:
