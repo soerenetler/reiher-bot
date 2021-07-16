@@ -69,8 +69,8 @@ if __name__ == '__main__':
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
-    reiherbergActions = read_action_yaml("actions/reiherbergActions.yml", action_functions=reiherbergActions.action_functions)
-    en_reiherbergActions = read_action_yaml("actions/en_reiherbergActions.yml", action_functions=en_reiherbergActions.action_functions)
+    reiherbergActions = read_action_yaml("actions/reiherberg.yml", action_functions=reiherbergActions.action_functions)
+    en_reiherbergActions = read_action_yaml("actions/en_reiherberg.yml", action_functions=en_reiherbergActions.action_functions)
 
     cqh = callback_query_handler({**generalActions, **reiherbergActions, **en_reiherbergActions})
 
