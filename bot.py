@@ -45,6 +45,14 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    @app.route("/")
+    def hello_world():
+        return "<p>Hello, World!</p>"
+
     def stop_and_restart():
         """Gracefully stop the Updater and replace the current process with a new one"""
         updater.stop()

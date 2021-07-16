@@ -2,3 +2,4 @@ python-telegram-bot
 digitalguide
 Pillow
 PyYAML
+Flask
