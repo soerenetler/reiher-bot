@@ -1,0 +1,767 @@
+en_frage_bahnhof_gif:
+    - type: message
+      text: "You are now in front of the railway station building of Golm. In the past it looked like this:"
+    - type: photo
+      file: "assets/bahnhof_alt.jpg"
+    - type: message
+      text: "Try to take a picture of the building from the same perspective and send it to me. 📸"
+    - type: return
+      state: EN_BAHNHOF_FRAGE_GIF
+
+en_frage_bahnhof_gif_aufloesung:
+    - type: function
+      func: send_bahnhof_gif
+    - type: message
+      text: 'It hasn´t changed much, has it?'
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_frage_bahnhof'
+    - type: return
+      state: EN_BAHNHOF_FRAGE_GIF_AUFLOESUNG
+
+en_frage_bahnhof:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: 'Since we are at the station: What do you think, how many regional trains come and leave daily from the Golm stop? 🚂'
+    - type: return
+      state: EN_BAHNHOF_FRAGE
+
+en_frage_bahnhof_aufloesung:
+    - type: function
+      func: eval_schaetzfrage_bahnhof
+    - type: message
+      text: |
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂🚂🚂🚂🚂
+           🚂🚂🚂🚂🚂🚂
+    - type: message
+      text: >
+            During the week 106 regional trains departure from Golm.
+            If you want to get to Potsdam main station, take a train from platform 2 on the hour
+            and from platform 1 on the half hour.
+    - type: message
+      text: If you want to know more about the railway station Golm, click on "more info".
+      InlineKeyboard:
+        - text: "💡 more info"
+          data:  'action:en_info_bahnhof'
+        - text: "🐾 continue"
+          data:  'action:en_weg01'
+    - type: return
+      state: EN_BAHNHOF_FRAGE_AUFLOESUNG
+
+en_info_bahnhof:
+    - type: audio
+      file: 'assets/audio/Bahnhof.mp3'
+      title: "Bahnhof Golm"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data: 'action:en_weg01'
+
+en_weg01:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: 'Then let's go, after all we have a mountain to explore!'
+    - type: message
+      text: >
+            Take the first path parallel to the railway line. 🛤️ 
+            The railway tracks should stay on the right from you.
+            Follow the road until you reach a small footpath.
+    - type: message
+      text: 'Let me know when you are there!'
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_frage_quiz'
+    - type: return
+      state: EN_WEG01
+
+en_frage_quiz:
+    - type: message
+      text: '🐾'
+    - type: poll
+      question: 
+      Did you know that herons are the heraldic animals of Golm? Why do you think is it so?
+      options:
+        - "The King of Prussia Friedrich IV bred herons in Golm for the Sanssouci Park."
+        - "Many herons lived in the moors around Golm."
+        - "In mythology herons stand for good harvests."
+      correct_option_id: 1
+    - type: return
+      state: EN_FRAGE_QUIZ
+
+en_frage_quiz_aufloesung:
+    - type: function
+      func: eval_frage_quiz
+    - type: sticker
+      id: CAACAgIAAxkBAAIltF-WnMTLW4yEo7mHp-wc3TimCuCVAAIDAANwgCcYRPP-4x304-sbBA
+    - type: message
+      text: Many herons have always lived around Golm. They felt particularly at home in the moors and on the Reiherberg ("the heron mountain").
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data: 'action:en_weg_01a'
+    - type: return
+      state: EN_FRAGE_QUIZ_AUFLOESUNG
+
+en_weg_01a:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: 'Follow the footpath until you reach a small staircase!'
+    - type: message
+      text: If you look carefully on the next trail, you can discover a Berlin underground station! 🔍 Pay special attention to the properties on the left.
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_frage_ubahn'
+    - type: return
+      state: EN_WEG01A
+
+en_frage_ubahn:
+    - type: message
+      text: '🐾'
+    - type: poll
+      question: Have you discovered the Berlin underground station? If so, do you remember which U-Bahn station it was?
+      options:
+        - "Kurfürstendamm"
+        - "Unter den Linden"
+        - "Zoologischer Garten"
+      correct_option_id: 0
+    - type: return
+      state: EN_FRAGE_UBAHN
+
+en_frage_ubahn_aufloesung:
+    - type: function
+      func: eval_ubahn_aufloesung
+    - type: message
+      text: The sign hung on the veranda on the left side from you.
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_weg02'
+    - type: return
+      state: EN_FRAGE_UBAHN_AUFLOESUNG
+
+en_weg02:
+    - type: message
+      text: 🐾
+    - type: message
+      text: Our path takes us under the bridge. Shortly after, you will find Weinmeisterstraße on your left.
+    - type: message
+      text: Let me know when you find the street sign.
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data: 'action:en_frage_weinmeisterstrasse'
+    - type: return
+      state: EN_WEG02
+
+en_frage_weinmeisterstrasse:
+    - type: message
+      text: Since the drinking water in Golm was not so good in the past, a lot of wine was grown. Over the time it had changed.
+    - type: poll
+      question: What do you think the reason it had happened was?
+      options:
+        - "A tax was introduced which made wine growing more expensive."
+        - "In 1745, the grapevines froze to death due to severe weather conditions."
+        - "Thanks to wine imports, people realised that their own wine did not taste that good."
+        - "All the reasons had led to this."
+      correct_option_id: 3
+    - type: return
+      state: EN_FRAGE_WEINMEISTERATRASSE
+
+en_frage_weinmeisterstrasse_aufloesung:
+    - type: message
+      text: 🐾
+    - type: message
+      text: All these reasons have led to the fact that wine is no longer grown in Golm today. 
+    - type: message
+      text: The street name Weinmeisterstraße, however, still remains here.
+      InlineKeyboard:
+        - text: "💡 more info"
+          data:  'action:en_info_weinmeister'
+        - text: "🐾 continue"
+          data:  'action:en_fehlerbild_reiherberg_bank'
+    - type: return
+      state: EN_FRAGE_WEINMEISTERATRASSE_AUFLOESUNG
+
+en_info_weinmeister:
+    - type: photo
+      file: assets/Weinpresse_Zeichnung.jpg
+    - type: audio
+      file: assets/audio/Weinmeisterstrae.mp3
+      title: "Weinmeister"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_fehlerbild_reiherberg_bank'
+
+en_fehlerbild_reiherberg_bank:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: Look there! Here you can already see the signpost to Reiherberg.
+    - type: photo
+      file: assets/fehlerbild_reiherberg_bank.jpg
+    - type: poll
+      question: All right, I admit it, I have made one trick in the picture. Can you spot it?
+      options:
+        - "The maple"
+        - "The bus stop"
+        - "The poop bag dispenser"
+        - "The supermarket sign"
+      correct_option_id: 3
+    - type: return
+      state: EN_FEHLERBILD_REIHERBERG
+    
+en_fehlerbild_reiherberg_aufloesung:
+    - type: function
+      func: eval_fehlerbild_reiherberg
+    - type: message
+      text: There used to be a small store here. Today, a small gallery - the art supermarket - is located here.
+      InlineKeyboard:
+        - text: "💡 more info"
+          data:  'action:en_info_supermarkt'
+        - text: "🐾 continue"
+          data:  'action:en_aufstieg_reiherberg'
+
+    - type: return
+      state: EN_FEHLERBILD_REIHERBERG_AUFLOESUNG
+
+en_info_supermarkt:
+    - type: audio
+      file: assets/audio/Supermarkt.mp3
+      title: "Supermarkt Golm"
+      performer: "Reiherbot"
+    - type: message
+      text: "You can find out more about the exhibitions here: https://artsupermarkt.de/"
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_aufstieg_reiherberg'
+
+en_aufstieg_reiherberg:
+    - type: message
+      text: 🐾
+    - type: message
+      text: >
+           Finally you are already at the foot of the Reiherberg! Follow the small path upwards until you reach the viewing platform!
+           We'll meet again at the top, and now you can enjoy the nature in peace. 
+    - type: message
+      text: >
+            If that's too quiet for you, you can also listen to the legend of Reiherberg on the way.
+            Let me know when you reach the viewing platform.
+      InlineKeyboard:
+        - text: "💡 The Legend"
+          data:  'info_sage_reiherberg'
+        - text: "🐾 continue"
+          data:  'weiter_schaetzfrage_reiherberg'
+    - type: return
+      state: EN_AUFSTIEG_REIHERBERG
+
+en_info_sage_reiherberg:
+    - type: audio
+      file: assets/audio/Sage Entstehung des Reiherbergs.mp3
+      title: "Reiherberg Sage"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'weiter'
+
+en_schaetzfrage_reiherberg:
+    - type: message
+      text: 🐾
+    - type: message
+      text: You have made it! You are now standing on the top of the second highest mountain in Golm. ⛰️
+    - type: photo
+      file: assets/reiherberg/Aussicht_Reiherberg.png
+    - type: message
+      text: How high do you think Reiherberg is?
+    - type: return
+      state: EN_SCHAETZFRAGE_REIHERBERG
+
+en_schaetzfrage_reiherberg_aufloesung:
+    - type: function
+      func: eval_schaetzfrage_reiherberg
+    - type: message
+      text: >
+            At 68 metres, the Reiherberg is the second highest mountain in Golm. 
+            Only the 71-metre-high Ehrenpfortenberg is higher. 
+            But the view from Reiherberg is incomparable and invites you to take photos. 🌄
+      InlineKeyboard:
+        - text: "💡 more info"
+          data:  'info_reiherberg'
+        - text: "🐾 continue"
+          data:  'weiter_foto_reiherberg'
+    - type: return
+      state: EN_SCHAETZFRAGE_REIHERBERG_AUFLOESUNG
+
+en_info_reiherberg:
+    - type: audio
+      file: assets/audio/Reiherberg.mp3
+      title: "Reiherberg"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'weiter'
+
+en_foto_reiherberg:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: >
+            Take a pic and send it to me. 📸
+            You can find the photos on our website afterwards.
+      InlineKeyboard:
+        - text: "🧀 Cheese"
+          data: 'action:en_foto_reiherberg_anweisung'
+        - text: "↪️ skip"
+          data: 'action:en_foto_reiherberg_aufloesung'
+    - type: return
+      state: EN_FOTO_REIHERBERG
+
+en_foto_reiherberg_anweisung:
+  - type: message
+    text: Let me see it! 🖼️
+
+en_foto_reiherberg_aufloesung:
+    - type: function
+      func: foto_contest
+    - type: media_group
+      files:
+        - "assets/reiherberg/reiherberg14.jpg"
+        - "assets/reiherberg/reiherberg18.jpg"
+        - "assets/reiherberg/reiherberg17.jpg"
+        - "assets/reiherberg/reiherberg02.jpg"
+    - type: message
+      text: >
+           These are the pictures other hikers have taken.
+           Reiherberg is worth visiting at any time of the year.
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data: 'action:en_weg_kirche_1'
+    - type: return
+      state: EN_FOTO_REIHERBERG_AUFLOESUNG
+
+en_weg_kirche_1:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: > 
+            Our path now leads us down the mountain.
+            When you leave the viewing platform, follow the path on the far left.
+            Go downhill until you reach a junction to the right.
+      InlineKeyboard:
+        - text: "⁉️ Which way?"
+          data: 'action:en_weg_kirche_1_help'
+        - text: "🐾 continue"
+          data: 'action:en_weg_kirche_2'
+    - type: return
+      state: EN_WEG_KIRCHE_1
+
+en_weg_kirche_1_help:
+  - type: photo
+    file: assets/Hier entlang!.jpg
+  - type: message
+    text: Perhaps this picture will help.
+    InlineKeyboard:
+      - text: "🐾 continue"
+        data: 'action:en_weg_kirche_2'
+
+en_weg_kirche_2:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: >
+            Turn to the right and follow the path,
+            until you reach a small staircase on your left.
+            You should already be able to see the church there.
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data: 'action:en_kirche_wortraetsel'
+    - type: return
+      state: EN_WEG_KIRCHE_2
+
+en_kirche_wortraetsel:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: >
+            You are standing in front of the village church of Golm.
+            You can find out its name by solving this word puzzle correctly.
+    - type: photo
+      file: "assets/Bilderrätsel.png"
+    - type: message
+      text: >
+            Text me the solution.
+    - type: return
+      state: EN_KIRCHE_WORTRAETSEL
+
+en_kirche_frage:
+    - type: function
+      func: eval_kirche_wortraetsel
+    - type: message
+      parse_mode: MarkdownV2
+      text: >
+            Since the church was the present of the Emperor (de: Kaiser) Friedrich to the village\,
+            it bears his name\: *Kaiser\-Friedrich\-Kirche*\.
+    - type: poll
+      question: The church was awarded with a distinction by the Nature and Biodiversity Conservation Union (NABU). Can you imagine why? 
+      options:
+        - "Jackdaws nest permanently in the church tower."
+        - "The masonry of the church has insect hotels embedded in the walls of the church."
+        - "The meadow behind the church is home to a particularly large number of praying mantises."
+      correct_option_id: 0
+    - type: return
+      state: EN_FRAGE_KIRCHE
+
+en_kirche_aufloesung:
+    - type: function
+      func: eval_kirche_frage
+    - type: message
+      text: Jackdaw is a type of raven, by the way. Here's a picture so you can get a better idea of them. 
+    - type: photo
+      file: "assets/Dohle.jpg"
+
+    - type: message
+      text: Do you want to learn more about the church, or rather move on?
+      InlineKeyboard:
+        - text: "💡 more info"
+          data:  'action:en_weg_storchenbank'
+        - text: "🐾 continue"
+          data:  'action:en_info_kirche'
+    - type: return
+      state: EN_KIRCHE_AUFLOESEUNG
+
+en_info_kirche:
+    - type: audio
+      file: assets/audio/Kaiser Friedrich-Kirche.mp3
+      title: "Kaiser-Friedrich-Kirche"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_weg_storchenbank'
+
+en_weg_storchenbank:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: If you walk around the church, you will come to the stork bench. 
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_frage_storchenbank'
+    - type: return
+      state: EN_WEG_STORCHENBANK
+
+en_frage_storchenbank:
+    - type: message
+      text: 🐾
+    - type: message
+      text: Storks come to Golm every year and nest on the opposite chimney. 
+    - type: message
+      text: Can you find out in which year one of the storks was back in Golm the earliest?
+    - type: return
+      state: EN_FRAGE_STORCHENBANK
+
+en_frage_storchenbank_aufloesung:
+    - type: function
+      func: eval_storchenbank
+    - type: message
+      text: >
+           When you sit on the stork bench, the village chapel is to your right.
+           It hosts regular events there, which you can find out about in our broadcast.
+    - type: message
+      text: >
+            But now it's time to head back, isn't it?
+            Don't worry, there are still a few things left to discover. 😉
+      InlineKeyboard:
+        - text: "💡 more info"
+          data: 'action:en_info_kapelle'
+        - text: "🐾 continue"
+          data:  'action:en_weg_schule'
+    - type: return
+      state: EN_KAPELLE
+
+en_info_kapelle:
+    - type: audio
+      file: assets/audio/Kapelle.mp3
+      title: "Kapelle"
+      performer: "Reiherbot"
+    - type: message
+      text: 'https://t.me/pdm_golm'
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_info_kapelle'
+
+en_weg_schule:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: >
+            Follow the road to the right, directly past the old cemetery,
+            until you see the town hall on your right.
+            No worries, you won´t miss it, because you will find an emblem with me, the heron, on it.
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data: 'action:en_schule'
+    - type: return
+      state: EN_WEG_SCHULE
+
+en_schule:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: >
+            This building was once the school in Golm.
+            To the left of the building, the former schoolyard, was the Golm slide. 
+    - type: photo
+      file: "assets/Rutschberg 1903.PNG"
+    - type: message
+      text: >
+            Among other things, the local council is meeting here today.
+            Unfortunately, there is no more sliding here.
+      InlineKeyboard:
+        - text: "💡 more info"
+          data: 'action:en_info_schule'
+        - text: "🐾 continue"
+          data: 'action:en_weg_landhotel'
+    - type: return
+      state: EN_SCHULE
+
+en_info_schule:
+    - type: photo
+      file: "assets/Schule 1925.PNG"
+    - type: audio
+      file: assets/audio/Schule und Rodelbahn.mp3
+      title: "Schule und Rodelbahn"
+      performer: "Reiherbot"
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data: 'action:en_weg_landhotel'
+
+en_weg_landhotel:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: Folge der Reiherbergstraße weiter bis zum Landhotel.
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data: 'action:en_weg_feuerwehr'
+    - type: return
+      state: EN_WEG_LANDHOTEL
+
+en_weg_feuerwehr:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: >
+            Cross the road and follow the small, diagonal side road.
+            Our destination is the fire station - you may already be able to see the tower.
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data: 'action:en_frage_feuerwehr'
+    - type: return
+      state: EN_FEUERWEHR
+
+en_frage_feuerwehr:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: >
+            Golm has had its own volunteer fire brigade for 110 years.
+            Many people from Golm are still involved in the fire brigade or support it financially.
+    - type: poll
+      question: Do you know what the tower is used for?
+      options:
+        - "This is a lookout from which fires used to be sighted."
+        - "The fire hoses are hung up there to dry."
+        - "The siren sits high up in the tower to be heard better."
+      correct_option_id: 1
+    - type: return
+      state: EN_FRAGE_FEUERWEHR
+
+en_frage_feuerwehr_aufloesung:
+    - type: function
+      func: eval_frage_feuwerwehr
+    - type: message
+      text: This tower is used to dry the hoses after a firefighting job.
+      InlineKeyboard:
+        - text: "💡 more info"
+          data: 'action:en_info_feuerwehr'
+        - text: "🐾 continue"
+          data: 'action:en_weg_vierseitenhof'
+    - type: return
+      state: EN_FRAGE_FEUERWEHR_AUFLOESUNG
+
+en_info_feuerwehr:
+    - type: audio
+      file: assets/audio/Freiwillige Feuerwehr.mp3
+      title: "Voluntary fire brigade "
+      performer: "Reiherbot"
+    - type: message
+      text: https://feuerwehr-golm.jimdofree.com/
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data: 'action:en_rueckweg_bahnhof_1'
+
+#weg_vierseitenhof:
+#    - type: message
+#      text: '🐾'
+#    - type: message
+#      text: >
+#            Wenn du an der Feuerwehr vorbei gehst,
+#            stehst du schon bald vor einer Zufahrt zu einem Innenhof.
+#            Hast du den Hof gefunden?
+#      InlineKeyboard:
+#        - text: "🐾 continue"
+#          data: 'action:en_vierseitenhof'
+ #   - type: return
+ #     state: WEG_VIERSEITENHOF
+
+#vierseitenhof:
+#    - type: message
+#      text: '🐾'
+#    - type: message
+#      text: >
+#            Diese Gebäude bilden zusammen einen alten Vier-Seiten-Hof. 
+#            Doch wo früher Ställe und Scheunen waren, sind heute Wohnungen.
+#            In der Mitte des Hofes ist heut Jochens Hostagarten angelegt, 
+#            den man auf Anfrage besichtigen kann.
+#    - type: message
+#      text: http://www.jochens-hostagarten.de/
+ #     InlineKeyboard:
+ #       - text: "🐾 continue"
+ #         data: 'action:en_rueckweg_bahnhof_1'
+ #   - type: return
+ #     state: VIERSEITENHOF
+
+en_rueckweg_bahnhof_1:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: >
+            This was the last stage of our tour.
+            Follow Thomas-Müntzer-Straße to the right until the end of the street.
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_rueckweg_bahnhof_2'
+    - type: return
+      state: EN_RUECKWEG_BAHNHOF_1
+
+en_rueckweg_bahnhof_2:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: Turn left and walk parallel to the railway tracks until you reach Golm station.
+      InlineKeyboard:
+        - text: "🐾 continue"
+          data:  'action:en_bahnhof_ueberfuehrung'
+    - type: return
+      state: EN_RUECKWEG_BAHNHOF_2
+
+en_bahnhof_ueberfuehrung:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: There used to be an overpass here to platform 1 on the other side.
+    - type: photo
+      file: "assets/Ueberfuehrung.PNG"
+    - type: message
+      text: Google Maps assumes it is still here (as of 2021).
+      InlineKeyboard:
+          - text: "🐾 continue"
+            data:  'action:en_weg_science_park'
+    - type: return
+      state: EN_BAHNHOF_UEBERFUERUNG
+
+en_weg_science_park:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: Our path takes us a little further along the railway tracks until you reach the road.
+      InlineKeyboard:
+      - text: "🐾 continue"
+        data:  'action:en_blick_science_park'
+    - type: return
+      state: EN_WEG_SCIENCE_PARK
+
+en_blick_science_park:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: > 
+            See the buildings on the horizon? 🌇
+            This is Potsdam Science Park.
+            You can also discover it online:
+      InlineKeyboard:
+      - text: "🚀 Impressive drone images"
+        url:  'https://potsdam-sciencepark.de/der-park/#rundflug-potsdam-science-park'
+      - text: "🧭 Interactive map"
+        url: "https://potsdam-sciencepark.de/?map=open"
+    - type: message
+      text: > 
+            Enjoy!
+      InlineKeyboard:
+      - text: "🐾 continue"
+        data:  'action:en_ende_bahnhof'
+    - type: return
+      state: EN_BLICK_SCIENCE_PARK
+
+en_ende_bahnhof:
+    - type: message
+      text: '🐾'
+    - type: message
+      text: >
+            Our tour ends here.
+            I hope you had a lot of fun and got to know Golm from a new perspective.
+            In any case, you have earned the Reiherberg medal!
+    - type: function
+      func: reiherberg_medaille
+    - type: sticker
+      id: CAACAgIAAxkBAAIltV-Wn3-dJmK4HqhloT5ahNmlbJYHAAIBAANwgCcYrK_-hlK8LIQbBA
+    - type: message
+      text: "Here are the next trains:"
+    - type: function
+      func: bahnhof_timetable
+    - type: message
+      text: Feel free to tell us what you think about the tour.
+      InlineKeyboard:
+        - text: "💛 Feedback Time"
+          data: 'action:en_feedback_geben'
+        - text: "↪️ skip"
+          data: 'action:en_ende_feedback'
+    - type: return
+      state: EN_FEEDBACK
+
+en_feedback_geben:
+  - type: message
+    text: Just write your feedback in the chat or send us a voice message.
+
+en_kontakt_rueckfragen:
+    - type: message
+      text: Thank you for your feedback! May we contact you if we have any questions?
+      ReplyKeyboardMarkup:
+        - text: "Yes, sure! 😎"
+        - text: "Better not ⚔️"
+    - type: function
+      func: get_feedback
+    - type: return
+      state: EN_RUECKFRAGEN
+
+en_ende_feedback:
+  - type: function
+    func: ende_feedback
+  - type: message
+    text: Thanks for your feedback! With /start you can go back and take a new tour.
+  - type: return
+    state: EN_END
+
+en_timeout:
+  - type: message
+    text: You have not been active for a while. With /start you can start a new tour with the Reiherbot.
+  - type: return
+    state: EN_END

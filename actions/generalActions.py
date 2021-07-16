@@ -44,7 +44,7 @@ def start_name(update: Update, context: CallbackContext):
     context.user_data["name"] = update.message.from_user.first_name
     update.message.reply_text('Darf ich dich {} nennen? '.format(context.user_data["name"]),
         reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
-    return INTRO_STATES["NAME"]
+    return "NAME"
 
 @log(logger)
 def name_startpunkt(update: Update, context: CallbackContext):
@@ -61,13 +61,13 @@ def name_startpunkt(update: Update, context: CallbackContext):
                               reply_markup=ReplyKeyboardRemove())
     update.message.reply_text('Bist du auch schon dort?',
                               reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
-    return INTRO_STATES["STARTPUNKT"]
+    return "STARTPUNKT"
 
 @log(logger)
 def name_frage(update: Update, context: CallbackContext):
     update.message.reply_text('Wie darf ich dich nennen?',
                             reply_markup=ReplyKeyboardRemove())
-    return INTRO_STATES["NAME_AENDERN"]
+    return "NAME_AENDERN"
 
 @log(logger)
 def name_aendern(update: Update, context: CallbackContext):
@@ -77,7 +77,7 @@ def name_aendern(update: Update, context: CallbackContext):
 
     context.user_data["name"] = update.message.text
 
-    return INTRO_STATES["NAME"]
+    return "NAME"
 
 @log(logger)
 def datenschutz(update: Update, context: CallbackContext):
@@ -86,7 +86,7 @@ def datenschutz(update: Update, context: CallbackContext):
     update.message.reply_text('Um unsere Stadteilführung weiter zu verbessern würden wir gerne ein paar Daten von dir sammeln. '
                               'Ist das ok für dich? Mehr unter www.reiherbot.de/datenschutz',
                             reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
-    return INTRO_STATES["DATENSCHUTZ"]
+    return "DATENSCHUTZ"
 
 @log(logger)
 def weg_zum_bahnhof(update: Update, context: CallbackContext):
@@ -101,7 +101,7 @@ def weg_zum_bahnhof(update: Update, context: CallbackContext):
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text('Tippe weiter, wenn du angekommen bist!',
                               reply_markup=reply_markup)
-    return INTRO_STATES["STARTPUNKT"]
+    return "STARTPUNKT"
 
 @log(logger)
 def welche_route_callback_query(update: Update, context: CallbackContext):
@@ -114,6 +114,7 @@ def welche_route_callback_query(update: Update, context: CallbackContext):
 @log(logger)
 def welche_route(update: Update, context: CallbackContext):
     keyboard = [["Reiherbergaufstieg ⛰️"],
+                ["Heron Hill Climb 🇬🇧"],
                 ["Seeroute 🌊"]]
 
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
@@ -121,7 +122,7 @@ def welche_route(update: Update, context: CallbackContext):
     update.message.reply_text('Sehr gut 😊 Welche Route gehen wir heute? ',
                               #'Wenn du mehr über die Routen erfahren möchtest, schreibe /info routen und ich erzähle dir mehr.'
                               reply_markup=reply_markup)
-    return INTRO_STATES["ROUTE_AUSWAEHLEN"]
+    return "ROUTE_AUSWAEHLEN"
 
 @log(logger)
 def start_reiherberg_route(update: Update,context: CallbackContext):
@@ -133,7 +134,19 @@ def start_reiherberg_route(update: Update,context: CallbackContext):
                               reply_markup=ReplyKeyboardRemove())
 
     update.message.reply_text('Kann’s losgehen?', reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
-    return INTRO_STATES["TESTROUTE_BESTAETIGEN"]
+    return "REIHERBERGROUTE_BESTAETIGEN"
+
+@log(logger)
+def start_reiherberg_route(update: Update,context: CallbackContext):
+    yes_no_keyboard = [['Ja, ich bin bereit 🏁',
+                        'Ich würde doch lieber eine andere Route gehen 🤔'
+                        ]]
+    update.message.reply_text('Klasse Wahl 👍 Auf der Reiherbergroute zeige ich dir mein Zuhause, den Reiherberg. '
+                              'Für diesen Weg brauchen wir etwa eine Stunde.',
+                              reply_markup=ReplyKeyboardRemove())
+
+    update.message.reply_text('Kann’s losgehen?', reply_markup=ReplyKeyboardMarkup(yes_no_keyboard, one_time_keyboard=True))
+    return "EN_REIHERBERGROUTE_BESTAETIGEN"
 
 
 @log(logger)

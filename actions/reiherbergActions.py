@@ -7,7 +7,7 @@ import base64
 from io import BytesIO
 import yaml
 
-from states import BAHNHOF_STATES
+from states import REIHERBERGROUTE_STATES
 
 from actions import utils
 from actions.utils import log
