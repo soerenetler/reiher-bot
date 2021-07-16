@@ -45,13 +45,11 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    from flask import Flask
+    import os
 
-    app = Flask(__name__)
-
-    @app.route("/")
-    def hello_world():
-        return "<p>Hello, World!</p>"
+    TOKEN = args.telegram_token
+    PORT = int(os.environ.get('PORT', '8443'))
+    
 
     def stop_and_restart():
         """Gracefully stop the Updater and replace the current process with a new one"""
@@ -72,7 +70,7 @@ if __name__ == '__main__':
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
     my_persistence = PicklePersistence(filename='../bot_persistence')
-    updater = Updater(args.telegram_token, persistence=my_persistence, use_context=True)
+    updater = Updater(TOKEN, persistence=my_persistence, use_context=True)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
@@ -291,10 +289,8 @@ if __name__ == '__main__':
     dp.add_error_handler(error_handler)
 
 
-    # Start the Bot
-    updater.start_polling()
-
-    # Run the bot until you press Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
+    updater.start_webhook(listen="0.0.0.0",
+                        port=PORT,
+                        url_path=TOKEN,
+                        webhook_url="https://reiher-bot.herokuapp.com/" + TOKEN)
     updater.idle()
