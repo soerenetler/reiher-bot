@@ -70,7 +70,7 @@ en_weg01:
     - type: message
       text: '🐾'
     - type: message
-      text: 'Then let's go, after all we have a mountain to explore!'
+      text: "Then let's go, after all we have a mountain to explore!"
     - type: message
       text: >
             Take the first path parallel to the railway line. 🛤️ 
@@ -88,8 +88,7 @@ en_frage_quiz:
     - type: message
       text: '🐾'
     - type: poll
-      question: 
-      Did you know that herons are the heraldic animals of Golm? Why do you think is it so?
+      question: Did you know that herons are the heraldic animals of Golm? Why do you think is it so?
       options:
         - "The King of Prussia Friedrich IV bred herons in Golm for the Sanssouci Park."
         - "Many herons lived in the moors around Golm."

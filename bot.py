@@ -71,6 +71,9 @@ if __name__ == '__main__':
 
     reiherbergActions = read_action_yaml("actions/reiherberg.yml", action_functions=reiherbergActions.action_functions)
     en_reiherbergActions = read_action_yaml("actions/en_reiherberg.yml", action_functions=en_reiherbergActions.action_functions)
+    generalActions = read_action_yaml("actions/general.yml", action_functions=generalActions.action_functions)
+
+    print(generalActions.keys())
 
     cqh = callback_query_handler({**generalActions, **reiherbergActions, **en_reiherbergActions})
 
@@ -78,7 +81,7 @@ if __name__ == '__main__':
         allow_reentry=True,
         per_chat=False,
         conversation_timeout = 6 * 60 * 60, 
-        entry_points=[CommandHandler('start', generalActions.start_name)],
+        entry_points=[CommandHandler('start', generalActions["start_name"])],
         persistent=True, name='reiherbot',
 
         states={
@@ -91,7 +94,6 @@ if __name__ == '__main__':
 
             "STARTPUNKT": [MessageHandler(Filters.regex('^(schon da ⚓|Ja)$'), generalActions["welche_route"]),
                                         CommandHandler('weiter', generalActions["welche_route"]),
-                                        CallbackQueryHandler(generalActions["welche_route_callback_query"]),
                                         MessageHandler(Filters.regex('^(noch auf dem Weg 😱|Nein)$'), generalActions["weg_zum_bahnhof"])],
 
             "ROUTE_AUSWAEHLEN": [MessageHandler(Filters.regex('^(Reiherbergaufstieg ⛰️|Reiherberg|Reiherbergaufstieg|Berg)$'), generalActions["start_reiherberg_route"]),
@@ -101,14 +103,14 @@ if __name__ == '__main__':
                                                     MessageHandler(Filters.regex('^(Ja, ich bin bereit 🏁|Ja)$'), reiherbergActions["frage_bahnhof_gif"]),
                                                     MessageHandler(Filters.regex('^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions["welche_route"])],
 
-            "EN_REIHERBERGROUTE_BESTAETIGEN": [CommandHandler('weiter', reiherbergActions["en_frage_bahnhof_gif"]),
-                                                    MessageHandler(Filters.regex('^(Ja, ich bin bereit 🏁|Ja)$'), reiherbergActions["en_frage_bahnhof_gif"]),
+            "EN_REIHERBERGROUTE_BESTAETIGEN": [CommandHandler('weiter', en_reiherbergActions["en_frage_bahnhof_gif"]),
+                                                    MessageHandler(Filters.regex('^(Ja, ich bin bereit 🏁|Ja)$'), en_reiherbergActions["en_frage_bahnhof_gif"]),
                                                     MessageHandler(Filters.regex('^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions["welche_route"])],
 
             #######REIHERBERG-ROUTE#######
             "BAHNHOF_FRAGE_GIF": [MessageHandler(Filters.photo, reiherbergActions["frage_bahnhof_gif_aufloesung"])],
 
-            "BAHNHOF_FRAGE_GIF_AUFLOESUNG": [CommandHandler('weiter', reiherbergActions["bahnhof_frage"])],
+            "BAHNHOF_FRAGE_GIF_AUFLOESUNG": [CommandHandler('weiter', reiherbergActions["frage_bahnhof"])],
 
             "BAHNHOF_FRAGE": [CommandHandler('weiter', reiherbergActions["frage_bahnhof_aufloesung"]),
                                               MessageHandler(Filters.regex(r'^(\d)+'), reiherbergActions["frage_bahnhof_aufloesung"])],
@@ -188,7 +190,7 @@ if __name__ == '__main__':
             #######EN_REIHERBERG-ROUTE#######
             "EN_BAHNHOF_FRAGE_GIF": [MessageHandler(Filters.photo, en_reiherbergActions["en_frage_bahnhof_gif_aufloesung"])],
 
-            "EN_BAHNHOF_FRAGE_GIF_AUFLOESUNG": [CommandHandler('weiter', en_reiherbergActions["en_bahnhof_frage"])],
+            "EN_BAHNHOF_FRAGE_GIF_AUFLOESUNG": [CommandHandler('weiter', en_reiherbergActions["en_frage_bahnhof"])],
 
             "EN_BAHNHOF_FRAGE": [CommandHandler('weiter', en_reiherbergActions["en_frage_bahnhof_aufloesung"]),
                                               MessageHandler(Filters.regex(r'^(\d)+'), en_reiherbergActions["en_frage_bahnhof_aufloesung"])],
@@ -269,12 +271,12 @@ if __name__ == '__main__':
             ConversationHandler.TIMEOUT: [MessageHandler(Filters.regex(r'^(.)+'), reiherbergActions["timeout"])],
         },
 
-        fallbacks=[CommandHandler('cancel', generalActions.cancel),
-                   CommandHandler('start', generalActions.start_name),
+        fallbacks=[CommandHandler('cancel', generalActions["cancel"]),
+                   CommandHandler('start', generalActions["start_name"]),
                    CallbackQueryHandler(cqh),
                    CommandHandler('restart', restart, filters=Filters.user(username='@soeren101')),
                    CommandHandler('restart', restart, filters=Filters.user(username='@aehryk')),
-                   TypeHandler(Update, generalActions.log_update)]
+                   TypeHandler(Update, generalActions["log_update"])]
     )
 
     dp.add_handler(conv_handler)
