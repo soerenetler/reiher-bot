@@ -6,7 +6,6 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
                           ConversationHandler, CallbackContext)
 
 from actions.utils import log
-from digitalguide import generate_action
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filename='./bot.log',
                     level=logging.INFO)
