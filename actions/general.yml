@@ -120,6 +120,9 @@ name_startpunkt:
     text: Unsere Reise startet am Bahnhof Golm. Ich warte direkt vor dem orangen Bahnhofsgebäude auf dich. 🚉
   - type: message
     text: Bist du auch schon dort?
+    ReplyKeyboardMarkup:
+        - text: "schon da ⚓"
+        - text: "noch auf dem Weg 😱"
   - type: return
     state: STARTPUNKT
 
