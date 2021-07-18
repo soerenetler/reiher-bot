@@ -40,9 +40,9 @@ frage_bahnhof_aufloesung:
       text: Wenn du mehr Infos zum Bahnhof Golm haben möchtest, tippe auf "mehr Infos".
       InlineKeyboard:
         - text: "💡 mehr Infos"
-          data:  'info'
+          data:  'action:info_bahnhof'
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:weg01'
     - type: return
       state: BAHNHOF_FRAGE_AUFLOESUNG
 
@@ -55,7 +55,7 @@ frage_bahnhof_gif_aufloesung:
       text: 'So viel hat sich gar nicht geändert, oder?'
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:frage_bahnhof'
     - type: return
       state: BAHNHOF_FRAGE_GIF_AUFLOESUNG
 
@@ -66,7 +66,7 @@ info_bahnhof:
       performer: "Reiherbot"
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:weg01'
 
 weg01:
     - type: message
@@ -82,7 +82,7 @@ weg01:
       text: 'Gib mir dann Bescheid!'
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:frage_quiz'
     - type: return
       state: WEG01
 
@@ -108,7 +108,7 @@ frage_quiz_aufloesung:
       text: Um Golm herum lebten schon seit jeher viele Reiher. Besonders in den Mooren und auf dem Reiherberg fühlten sie sich wohl.
       InlineKeyboard:
         - text: "🐾 weiter"
-          data: 'weiter'
+          data: 'action:weg_01a'
     - type: return
       state: FRAGE_QUIZ_AUFLOESUNG
 
@@ -121,7 +121,7 @@ weg_01a:
       text: Wenn du auf dem nächsten Wegabschnitt genau hinschaust, kannst du einen Berliner U-Bahnhof entdecken! 🔍 Beachte besonders die Grundstücke auf der linken Seite.
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:frage_ubahn'
     - type: return
       state: WEG01A
 
@@ -145,7 +145,7 @@ frage_ubahn_aufloesung:
       text: Das Schild hing über einer Gartenlaube auf der linken Seite deines Weges.
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:weg02'
     - type: return
       state: FRAGE_UBAHN_AUFLOESUNG
 
@@ -158,7 +158,7 @@ weg02:
       text: Gib mir Bescheid, wenn du das Straßenschild gefunden hast.
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:frage_weinmeisterstrasse'
     
     - type: return
       state: WEG02
@@ -228,9 +228,9 @@ fehlerbild_reiherberg_aufloesung:
       text: Früher gab es hier einen kleinen Laden. Heute befindet sich dort der art supermarket - eine kleine Gallerie.
       InlineKeyboard:
         - text: "💡 mehr Infos"
-          data:  'info'
+          data:  'action:info_supermarkt'
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:aufstieg_reiherberg'
     - type: return
       state: FEHLERBILD_REIHERBERG_AUFLOESUNG
 
@@ -243,7 +243,7 @@ info_supermarkt:
       text: "Mehr über die Ausstellungen findest du hier: https://artsupermarkt.de/"
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:aufstieg_reiherberg'
 
 aufstieg_reiherberg:
     - type: message
@@ -271,7 +271,7 @@ info_sage_reiherberg:
       performer: "Reiherbot"
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:schaetzfrage_reiherberg'
 
 schaetzfrage_reiherberg:
     - type: message
@@ -295,9 +295,9 @@ schaetzfrage_reiherberg_aufloesung:
             Doch dafür ist die Aussicht vom Reiherberg unvergleichlich und lädt zum Fotografieren ein. 🌄
       InlineKeyboard:
         - text: "💡 mehr Infos"
-          data:  'info'
+          data:  'action:info_reiherberg'
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:foto_reiherberg'
     - type: return
       state: SCHAETZFRAGE_REIHERBERG_AUFLOESUNG
 
@@ -308,7 +308,7 @@ info_reiherberg:
       performer: "Reiherbot"
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'weiter'
+          data: 'action:foto_reiherberg'
 
 foto_reiherberg:
     - type: message
@@ -372,7 +372,7 @@ weg_kirche_1_help:
     text: Vielleicht hilft dieses Bild weiter.
     InlineKeyboard:
       - text: "🐾 weiter"
-        data: 'weiter'
+        data: 'action:weg_kirche_2'
 
 weg_kirche_2:
     - type: message
