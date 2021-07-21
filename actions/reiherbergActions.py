@@ -40,7 +40,7 @@ def write_photo(update, context):
 
     client.put_object(Bucket='reiherbot',
                       Key= str(datetime.now)+"_"+str(user_id) + "_" + name + '.jpg',
-                      Body=update.message.photo[0].get_file().download_as_bytearray(),
+                      Body=update.message.photo[-1].get_file().download_as_bytearray(),
                       ACL='private',
                       #Metadata={
                       #    'x-amz-meta-my-key': 'your-value'
@@ -49,7 +49,7 @@ def write_photo(update, context):
 
 
 def send_bahnhof_gif(update, context):
-    im_bytes = update.message.photo[0].get_file().download_as_bytearray()
+    im_bytes = update.message.photo[-1].get_file().download_as_bytearray()
 
     im_file = BytesIO(im_bytes)  # convert image to file-like object
     im1 = Image.open(im_file)   # img is now PIL Image object
