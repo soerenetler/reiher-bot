@@ -39,7 +39,7 @@ def write_photo(update, context):
     name = update.effective_user.name
 
     client.put_object(Bucket='reiherbot',
-                      Key= str(datetime.now)+"_"+str(user_id) + "_" + name + '.jpg',
+                      Key= str(datetime.now())+"_"+str(user_id) + "_" + name + '.jpg',
                       Body=update.message.photo[-1].get_file().download_as_bytearray(),
                       ACL='private',
                       #Metadata={
