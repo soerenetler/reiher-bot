@@ -20,18 +20,26 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
+from configparser import ConfigParser
+from datetime import datetime
+
+config = ConfigParser()
+config.read("config.ini")
 
 session = boto3.session.Session()
 client = session.client('s3',
-                        region_name='fra1',
-                        endpoint_url='https://fra1.digitaloceanspaces.com',
+                        region_name=config["space"]["region_name"],
+                        endpoint_url=config["space"]["endpoint_url"],
                         aws_access_key_id=os.getenv('SPACES_KEY'),
                         aws_secret_access_key=os.getenv('SPACES_SECRET'))
 
 
 def write_photo(update, context):
+    user_id = update.effective_user.id
+    name = update.effective_user.name
+
     client.put_object(Bucket='reiherbot',
-                      Key='test.jpg',
+                      Key= str(datetime.now)+"_"+str(user_id) + "_" + name + '.jpg',
                       Body=update.message.photo[0].get_file().download_as_bytearray(),
                       ACL='private',
                       #Metadata={
