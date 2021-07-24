@@ -28,8 +28,8 @@ class DBHelper():
     """
     def __init__(self, dbname="persistencedb"):
         with open("ca-certificate.crt", "w") as text_file:
-            text_file.write(os.system.env('MONGODB_CERT'))
-        mongoengine.connect(host=os.system.env("MONGODB_URL"), db=dbname, tlsCAFile='ca-certificate.crt')
+            text_file.write(os.getenv('MONGODB_CERT'))
+        mongoengine.connect(host=os.getenv("MONGODB_URL"), db=dbname, tlsCAFile='ca-certificate.crt')
     def add_item(self, data, collection):
         if collection == "Conversations":
             document = Conversations(obj=data)
