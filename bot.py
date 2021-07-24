@@ -27,6 +27,8 @@ from actions import generalActions, en_reiherbergActions, reiherbergActions
 from configparser import ConfigParser
 import argparse
 
+from mongo_persistence import DBPersistence
+
 import os
 import sys
 import traceback
@@ -69,7 +71,7 @@ if __name__ == '__main__':
     # Create the Updater and pass it your bot's token.
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
-    my_persistence = PicklePersistence(filename='../bot_persistence')
+    my_persistence = DBPersistence()
     updater = Updater(TOKEN, persistence=my_persistence, use_context=True)
 
     # Get the dispatcher to register handlers
