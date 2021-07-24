@@ -36,7 +36,7 @@ class DBHelper():
         logger.debug("INIT DBHelper")
         with open("ca-certificate.crt", "w") as text_file:
             text_file.write(os.getenv('MONGODB_CERT'))
-        mongoengine.connect(host=os.getenv("MONGODB_URL"), db=dbname, tlsCAFile='ca-certificate.crt')
+        mongoengine.connect(host=os.getenv("MONGODB_URL")+"&tlsCAFile=ca-certificate.crt", db=dbname)
     def add_item(self, data, collection):
         logger.debug("add item: {} to {}".format(data, collection))
         if collection == "Conversations":
