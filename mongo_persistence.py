@@ -7,6 +7,12 @@ import json
 from bson import json_util
 import os
 
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+logger = logging.getLogger(__name__)
+
 class Conversations(mongoengine.Document):
     obj = mongoengine.DictField()
     meta = { 'collection': 'Conversations', 'ordering': ['-id']}
@@ -27,10 +33,12 @@ class DBHelper():
     """Class to add and get documents from a mongo database using mongoengine
     """
     def __init__(self, dbname="persistencedb"):
+        logger.debug("INIT DBHelper")
         with open("ca-certificate.crt", "w") as text_file:
             text_file.write(os.getenv('MONGODB_CERT'))
         mongoengine.connect(host=os.getenv("MONGODB_URL"), db=dbname, tlsCAFile='ca-certificate.crt')
     def add_item(self, data, collection):
+        logger.debug("add item: {} to {}".format(data, collection))
         if collection == "Conversations":
             document = Conversations(obj=data)
         elif collection == "UserData":
@@ -41,6 +49,7 @@ class DBHelper():
             document = BotData(obj=data)
         document.save()
     def get_item(self, collection):
+        logger.debug("get item: {}".format(collection))
         if collection == "Conversations":
             document = Conversations.objects()
         elif collection == "UserData":
