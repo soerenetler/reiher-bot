@@ -3,4 +3,5 @@ digitalguide
 Pillow
 PyYAML
 boto3
+pymongo[srv]
 mongoengine
