@@ -57,10 +57,10 @@ class DBHelper():
     """
     def __init__(self, dbname="persistencedb"):
         print("INIT DBHelper")
-        print(os.getenv("DATABASE_URL")+"&tlsCAFile=ca-certificate.crt")
+        print("mongodb+srv://"+ os.getenv("DATABASE_USER")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
         with open("ca-certificate.crt", "w") as text_file:
             text_file.write(os.getenv('DATABASE_CERT'))
-        mongoengine.connect(host=os.getenv("DATABASE_URL")+"&tlsCAFile=ca-certificate.crt", db=dbname)
+        mongoengine.connect(host="mongodb+srv://"+ os.getenv("DATABASE_USER")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
     def add_item(self, data, collection):
         print("add item: {} to {}".format(data, collection))
         if collection == "Conversations":
