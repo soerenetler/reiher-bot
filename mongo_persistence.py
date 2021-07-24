@@ -33,12 +33,13 @@ class DBHelper():
     """Class to add and get documents from a mongo database using mongoengine
     """
     def __init__(self, dbname="persistencedb"):
-        logger.debug("INIT DBHelper")
+        print("INIT DBHelper")
+        print(os.getenv("DATABASE_URL")+"&tlsCAFile=ca-certificate.crt")
         with open("ca-certificate.crt", "w") as text_file:
             text_file.write(os.getenv('DATABASE_CERT'))
         mongoengine.connect(host=os.getenv("DATABASE_URL")+"&tlsCAFile=ca-certificate.crt", db=dbname)
     def add_item(self, data, collection):
-        logger.debug("add item: {} to {}".format(data, collection))
+        print("add item: {} to {}".format(data, collection))
         if collection == "Conversations":
             document = Conversations(obj=data)
         elif collection == "UserData":
@@ -49,7 +50,7 @@ class DBHelper():
             document = BotData(obj=data)
         document.save()
     def get_item(self, collection):
-        logger.debug("get item: {}".format(collection))
+        print("get item: {}".format(collection))
         if collection == "Conversations":
             document = Conversations.objects()
         elif collection == "UserData":
