@@ -35,8 +35,8 @@ class DBHelper():
     def __init__(self, dbname="persistencedb"):
         logger.debug("INIT DBHelper")
         with open("ca-certificate.crt", "w") as text_file:
-            text_file.write(os.getenv('MONGODB_CERT'))
-        mongoengine.connect(host=os.getenv("MONGODB_URL")+"&tlsCAFile=ca-certificate.crt", db=dbname)
+            text_file.write(os.getenv('DATABASE_CERT'))
+        mongoengine.connect(host=os.getenv("DATABASE_URL")+"&tlsCAFile=ca-certificate.crt", db=dbname)
     def add_item(self, data, collection):
         logger.debug("add item: {} to {}".format(data, collection))
         if collection == "Conversations":
