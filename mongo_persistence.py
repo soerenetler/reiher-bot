@@ -43,7 +43,7 @@ class DBHelper():
             document = Conversations(obj=data)
         elif collection == "UserData":
             document = UserData(obj=data)
-        elif collection == "chat_data_collection":
+        elif collection == "ChatData":
             document = ChatData(obj=data)
         else:
             document = BotData(obj=data)
