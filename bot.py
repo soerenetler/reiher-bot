@@ -27,7 +27,7 @@ from actions import generalActions, en_reiherbergActions, reiherbergActions
 from configparser import ConfigParser
 import argparse
 
-from mongo_persistence import DBPersistence
+from digital_guide.mongo_persistence import DBPersistence
 
 import os
 import sys
