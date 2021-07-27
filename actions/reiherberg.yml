@@ -49,6 +49,8 @@ frage_bahnhof_aufloesung:
 frage_bahnhof_gif_aufloesung:
     - type: function
       func: write_photo
+      bucket: reiherbot
+      folder: bahnhof_gif
     - type: function
       func: send_bahnhof_gif
     - type: message

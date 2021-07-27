@@ -34,12 +34,12 @@ client = session.client('s3',
                         aws_secret_access_key=os.getenv('SPACES_SECRET'))
 
 
-def write_photo(update, context):
+def write_photo(update, context, bucket, folder):
     user_id = update.effective_user.id
     name = update.effective_user.name
 
-    client.put_object(Bucket='reiherbot',
-                      Key= str(datetime.now())+"_"+str(user_id) + "_" + name + '.jpg',
+    client.put_object(Bucket=bucket,
+                      Key= folder + "/" + str(datetime.now())+"_"+str(user_id) + "_" + name + '.jpg',
                       Body=update.message.photo[-1].get_file().download_as_bytearray(),
                       ACL='private',
                       #Metadata={
@@ -47,6 +47,9 @@ def write_photo(update, context):
                       #}
                       )
 
+def write_message(update, context):
+    user_id = update.effective_user.id
+    name = update.effective_user.name
 
 def send_bahnhof_gif(update, context):
     im_bytes = update.message.photo[-1].get_file().download_as_bytearray()
