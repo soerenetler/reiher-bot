@@ -271,5 +271,6 @@ action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "bahnhof_timetable": bahnhof_timetable,
                     "get_feedback": get_feedback,
                     "ende_feedback": ende_feedback,
-                    "write_photo": write_photo
+                    "write_photo": write_photo,
+                    "write_message": write_message
                     }
