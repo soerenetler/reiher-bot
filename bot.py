@@ -28,6 +28,7 @@ from configparser import ConfigParser
 import argparse
 
 from digitalguide.mongo_persistence import DBPersistence
+from digitalguide import writeActions
 
 import os
 import sys
@@ -77,7 +78,7 @@ if __name__ == '__main__':
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
-    reiherbergActions = read_action_yaml("actions/reiherberg.yml", action_functions=reiherbergActions.action_functions)
+    reiherbergActions = read_action_yaml("actions/reiherberg.yml", action_functions={**reiherbergActions.action_functions, **writeActions.action_functions})
     en_reiherbergActions = read_action_yaml("actions/en_reiherberg.yml", action_functions=en_reiherbergActions.action_functions)
     generalActions = read_action_yaml("actions/general.yml", action_functions=generalActions.action_functions)
 
