@@ -47,9 +47,19 @@ def write_photo(update, context, bucket, folder):
                       #}
                       )
 
-def write_message(update, context):
+def write_message(update, context, bucket, folder):
     user_id = update.effective_user.id
     name = update.effective_user.name
+    message = update.effective_message.text
+
+    client.put_object(Bucket=bucket,
+                      Key= folder + "/" + str(datetime.now())+"_"+str(user_id) + "_" + name + '.txt',
+                      Body=message,
+                      ACL='private',
+                      #Metadata={
+                      #    'x-amz-meta-my-key': 'your-value'
+                      #}
+                      )
 
 def send_bahnhof_gif(update, context):
     im_bytes = update.message.photo[-1].get_file().download_as_bytearray()

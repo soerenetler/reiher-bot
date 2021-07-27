@@ -18,6 +18,10 @@ frage_bahnhof:
 
 frage_bahnhof_aufloesung:
     - type: function
+      func: write_message
+      bucket: reiherbot
+      folder: frage_bahnhof
+    - type: function
       func: eval_schaetzfrage_bahnhof
     - type: message
       text: |
