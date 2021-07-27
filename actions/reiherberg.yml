@@ -769,7 +769,9 @@ kontakt_rueckfragen:
         - text: "Ja, gerne! 😎"
         - text: "Lieber nicht ⚔️"
     - type: function
-      func: get_feedback
+      func: write
+      bucket: reiherbot
+      folder: feedback
     - type: return
       state: RUECKFRAGEN
 

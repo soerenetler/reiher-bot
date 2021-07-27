@@ -1,4 +1,3 @@
-import boto3
 import os
 from telegram import (ParseMode, InputFile, InputMediaPhoto, ReplyKeyboardMarkup, ReplyKeyboardRemove,
                       KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup, Poll, Update, CallbackQuery)
@@ -19,47 +18,6 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-
-from configparser import ConfigParser
-from datetime import datetime
-
-config = ConfigParser()
-config.read("config.ini")
-
-session = boto3.session.Session()
-client = session.client('s3',
-                        region_name=config["space"]["region_name"],
-                        endpoint_url=config["space"]["endpoint_url"],
-                        aws_access_key_id=os.getenv('SPACES_KEY'),
-                        aws_secret_access_key=os.getenv('SPACES_SECRET'))
-
-
-def write_photo(update, context, bucket, folder):
-    user_id = update.effective_user.id
-    name = update.effective_user.name
-
-    client.put_object(Bucket=bucket,
-                      Key= folder + "/" + str(datetime.now())+"_"+str(user_id) + "_" + name + '.jpg',
-                      Body=update.message.photo[-1].get_file().download_as_bytearray(),
-                      ACL='private',
-                      #Metadata={
-                      #    'x-amz-meta-my-key': 'your-value'
-                      #}
-                      )
-
-def write_message(update, context, bucket, folder):
-    user_id = update.effective_user.id
-    name = update.effective_user.name
-    message = update.effective_message.text
-
-    client.put_object(Bucket=bucket,
-                      Key= folder + "/" + str(datetime.now())+"_"+str(user_id) + "_" + name + '.txt',
-                      Body=message,
-                      ACL='private',
-                      #Metadata={
-                      #    'x-amz-meta-my-key': 'your-value'
-                      #}
-                      )
 
 def send_bahnhof_gif(update, context):
     im_bytes = update.message.photo[-1].get_file().download_as_bytearray()
@@ -226,21 +184,6 @@ def bahnhof_timetable(update, context):
     update.message.reply_text(
         'Der nächste Zug fährt in 3 Minuten!', reply_markup=ReplyKeyboardRemove())
 
-
-def get_feedback(update, context):
-    if type(update) == CallbackQuery:
-        user_id = update.from_user.id
-    else:
-        user_id = update.effective_user.id
-
-    if update.message.voice:
-        voice_file = update.message.voice.get_file()
-        voice_file.download('../feedback/' + str(user_id) + '.mp3')
-    if update.message.text:
-        with open('../feedback/' + str(user_id) + '.txt', 'a+') as file_object:
-            file_object.write(update.message.text + "\n")
-
-
 def ende_feedback(update, context):
     if type(update) == CallbackQuery:
         user_id = update.from_user.id
@@ -269,8 +212,5 @@ action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "eval_frage_feuwerwehr": eval_frage_feuwerwehr,
                     "reiherberg_medaille": reiherberg_medaille,
                     "bahnhof_timetable": bahnhof_timetable,
-                    "get_feedback": get_feedback,
-                    "ende_feedback": ende_feedback,
-                    "write_photo": write_photo,
-                    "write_message": write_message
+                    "ende_feedback": ende_feedback
                     }
