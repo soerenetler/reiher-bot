@@ -144,16 +144,6 @@ def eval_schaetzfrage_reiherberg(update, context):
         update.message.reply_text('Knapp daneben!',
                                   reply_markup=ReplyKeyboardRemove())
 
-
-def foto_contest(update, context):
-    if update.message.photo:
-        user_id = update.effective_user.id
-        name = update.effective_user.name
-        photo_file = update.message.photo[-1].get_file()
-        photo_file.download("../photos/" + str(user_id) + "_" + name + '.jpg')
-        update.message.reply_text('Tolle Aussicht, oder? ')
-
-
 def eval_kirche_wortraetsel(update, context):
     antwort = update.message.text
     echter_wert = "Kaiser-Friedrich-Kirche"

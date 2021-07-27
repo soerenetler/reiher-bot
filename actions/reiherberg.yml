@@ -334,7 +334,11 @@ foto_reiherberg_anweisung:
 
 foto_reiherberg_aufloesung:
     - type: function
-      func: foto_contest
+      func: write_photo
+      bucket: reiherbot
+      folder: reiherberg
+    - type: message
+      text: 'Tolle Aussicht, oder? '
     - type: media_group
       files:
         - "assets/reiherberg/reiherberg14.jpg"
