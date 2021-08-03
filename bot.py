@@ -42,15 +42,7 @@ logging.basicConfig(level=logging.DEBUG,
 logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Read Telegram Token')
-    parser.add_argument('telegram_token', type=str,
-                        help='the telegram token for your bot')
-
-    args = parser.parse_args()
-
-    import os
-
-    TOKEN = args.telegram_token
+    TOKEN = os.environ.get('TELEGRAM_TOKEN')
     PORT = int(os.environ.get('PORT', '8080'))
     
 
