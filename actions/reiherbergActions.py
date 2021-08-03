@@ -44,45 +44,16 @@ def eval_schaetzfrage_bahnhof(update, context):
         update.message.reply_text('Nicht ganz!',
                                   reply_markup=ReplyKeyboardRemove())
 
-
-def eval_frage_quiz(update, context):
+def eval_quiz(update, context, correct_option_id, corret_answer_text, wrong_answer_text):
     update = update["poll_answer"]
-
-    if update.option_ids == [1]:
-        user = context.user_data["name"]
-        update.user.send_message('Richtig, {} 🎉 '.format(user),
-                                 reply_markup=ReplyKeyboardRemove())
-
+    
+    if update.option_ids == [correct_option_id]:
+        user = context.user_data["name"] 
+        update.user.send_message(corret_answer_text.format(name=context.user_data["name"]),
+                                reply_markup=ReplyKeyboardRemove())
     else:
-        update.user.send_message('Nicht ganz!',
-                                 reply_markup=ReplyKeyboardRemove())
-
-
-def eval_ubahn_aufloesung(update, context):
-    update = update["poll_answer"]
-
-    if update.option_ids == [0]:
-        user = context.user_data["name"]
-        update.user.send_message('Richtig, {} 🎉 es war der Kurfürstendamm! '.format(user),
-                                 reply_markup=ReplyKeyboardRemove())
-
-    else:
-        update.user.send_message('Hast du das Schild übersehen? Die richtige Antwort war Kurfürstendamm! ',
-                                 reply_markup=ReplyKeyboardRemove())
-
-
-def eval_weinmeisterstrasse_aufloesung(update, context):
-    update = update["poll_answer"]
-
-    user = context.user_data["name"]
-    if update.option_ids == [0]:
-        update.user.send_message('Richtig!',
-                                 reply_markup=ReplyKeyboardRemove())
-
-    else:
-        update.user.send_message('Das war nur ein Grund.',
-                                 reply_markup=ReplyKeyboardRemove())
-
+        update.user.send_message(wrong_answer_text.format(name=context.user_data["name"]),
+                                reply_markup=ReplyKeyboardRemove())
 
 def eval_fehlerbild_reiherberg(update, context):
     update = update["poll_answer"]
@@ -122,18 +93,6 @@ def eval_kirche_wortraetsel(update, context):
     else:
         update.message.reply_text('Fast!', reply_markup=ReplyKeyboardRemove())
 
-
-def eval_kirche_frage(update, context):
-    update = update["poll_answer"]
-
-    user = context.user_data["name"]
-    if update.option_ids == [0]:
-        update.user.send_message('Stimmt {}!'.format(user),
-                                 reply_markup=ReplyKeyboardRemove())
-    else:
-        update.user.send_message('Ups!', reply_markup=ReplyKeyboardRemove())
-
-
 def eval_storchenbank(update, context):
     antwort = update.message.text
     echter_wert = "2012"
@@ -143,17 +102,6 @@ def eval_storchenbank(update, context):
     else:
         update.message.reply_text(
             'Fast! Neben der Storchenbank findest du eine Tafel, auf der seit vielen Jahren die Rückkehrzeiten und der Nachwuchs des Storchenpaares festgehalten werden.', reply_markup=ReplyKeyboardRemove())
-
-
-def eval_frage_feuwerwehr(update, context):
-    update = update["poll_answer"]
-
-    user = context.user_data["name"]
-    if update.option_ids == [1]:
-        update.user.send_message('Stimmt {}!'.format(user),
-                                 reply_markup=ReplyKeyboardRemove())
-    else:
-        update.user.send_message('Ups!', reply_markup=ReplyKeyboardRemove())
 
 
 def reiherberg_medaille(update, context):
@@ -201,16 +149,12 @@ def ende_feedback(update, context):
 
 action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "eval_schaetzfrage_bahnhof": eval_schaetzfrage_bahnhof,
-                    "eval_frage_quiz": eval_frage_quiz,
-                    "eval_ubahn_aufloesung": eval_ubahn_aufloesung,
-                    "eval_weinmeisterstrasse_aufloesung": eval_weinmeisterstrasse_aufloesung,
                     "eval_fehlerbild_reiherberg": eval_fehlerbild_reiherberg,
                     "eval_schaetzfrage_reiherberg": eval_schaetzfrage_reiherberg,
                     "eval_kirche_wortraetsel": eval_kirche_wortraetsel,
-                    "eval_kirche_frage": eval_kirche_frage,
                     "eval_storchenbank": eval_storchenbank,
-                    "eval_frage_feuwerwehr": eval_frage_feuwerwehr,
                     "reiherberg_medaille": reiherberg_medaille,
                     "bahnhof_timetable": bahnhof_timetable,
-                    "ende_feedback": ende_feedback
+                    "ende_feedback": ende_feedback,
+                    "eval_quiz": eval_quiz
                     }

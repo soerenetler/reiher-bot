@@ -107,7 +107,10 @@ frage_quiz:
 
 frage_quiz_aufloesung:
     - type: function
-      func: eval_frage_quiz
+      func: eval_quiz
+      correct_option_id: 1
+      corret_answer_text: 'Richtig, {user} 🎉'
+      wrong_answer_text: 'Nicht ganz!'
     - type: sticker
       id: CAACAgIAAxkBAAIltF-WnMTLW4yEo7mHp-wc3TimCuCVAAIDAANwgCcYRPP-4x304-sbBA
     - type: message
@@ -146,7 +149,10 @@ frage_ubahn:
 
 frage_ubahn_aufloesung:
     - type: function
-      func: eval_ubahn_aufloesung
+      func: eval_quiz
+      correct_option_id: 0
+      corret_answer_text: 'Richtig, {user} 🎉 es war der Kurfürstendamm! '
+      wrong_answer_text: 'Hast du das Schild übersehen? Die richtige Antwort war Kurfürstendamm! '
     - type: message
       text: Das Schild hing über einer Gartenlaube auf der linken Seite deines Weges.
       InlineKeyboard:
@@ -229,7 +235,10 @@ fehlerbild_reiherberg_bank:
     
 fehlerbild_reiherberg_aufloesung:
     - type: function
-      func: eval_fehlerbild_reiherberg
+      func: eval_quiz
+      correct_option_id: 3
+      corret_answer_text: 'Richtig!'
+      wrong_answer_text: 'Das war nur ein Grund.'
     - type: message
       text: Früher gab es hier einen kleinen Laden. Heute befindet sich dort der art supermarket - eine kleine Gallerie.
       InlineKeyboard:
@@ -433,7 +442,10 @@ kirche_frage:
 
 kirche_aufloesung:
     - type: function
-      func: eval_kirche_frage
+      func: eval_quiz
+      correct_option_id: 0
+      corret_answer_text: 'Stimmt {user}!'
+      wrong_answer_text: 'Ups!'
     - type: message
       text: Dohlen sind übrigens eine Rabenart. Hier hast du ein Bild, damit du sie dir besser vorstellen kannst. 
     - type: photo
@@ -600,7 +612,10 @@ frage_feuerwehr:
 
 frage_feuerwehr_aufloesung:
     - type: function
-      func: eval_frage_feuwerwehr
+      func: eval_quiz
+      correct_option_id: 1
+      corret_answer_text: 'Stimmt {user}!'
+      wrong_answer_text: 'Ups!'
     - type: message
       text: >
             In diesem Turm werden nach einem Einsatz die Schläuche getrocknet.
