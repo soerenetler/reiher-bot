@@ -7,16 +7,13 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
 
 from actions.utils import log
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filename='./bot.log',
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
 
-
-@log(logger)
 def log_update(update: Update, context: CallbackContext):
-    pass
-
+    logger.warning("The incoming update was not handled: {}".format(update))
 
 def return_end(update: Update, context: CallbackContext):
     return ConversationHandler.END
@@ -47,13 +44,10 @@ def change_data(update: Update, context: CallbackContext):
 def change_name(update: Update, context: CallbackContext):
     context.user_data["name"] = update.message.text
 
-def pass_func(update: Update, context: CallbackContext):
-    pass
-
 action_functions = {"change_name": change_name,
                     "change_data": change_data,
                     "default_name": default_name,
                     "default_data": default_data,
                     "entry_conversation": entry_conversation,
                     "return_end": return_end,
-                    "pass_func": pass_func}
+                    "log_update": log_update}

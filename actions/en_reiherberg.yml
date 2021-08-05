@@ -764,3 +764,7 @@ en_timeout:
     text: You have not been active for a while. With /start you can start a new tour with the Reiherbot.
   - type: return
     state: EN_END
+
+weiter_tipp:
+  - type: message
+    text: "Sorry, I could not understand you. To continue enter /weiter or click the continue button."
