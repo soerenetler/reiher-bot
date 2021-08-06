@@ -132,8 +132,8 @@ if __name__ == '__main__':
             "FEHLERBILD_REIHERBERG_AUFLOESUNG": [CommandHandler('weiter', reiherbergActions["aufstieg_reiherberg"]),
                                             TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
-            "AUFSTIEG_REIHERBERG": [CommandHandler('weiter', reiherbergActions["schaetzfrage_reiherberg"],
-                                            TypeHandler(Update, reiherbergActions["weiter_tipp"]))],
+            "AUFSTIEG_REIHERBERG": [CommandHandler('weiter', reiherbergActions["schaetzfrage_reiherberg"]),
+                                            TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
             "SCHAETZFRAGE_REIHERBERG": [MessageHandler(Filters.regex(r'^(\d)+'),reiherbergActions["schaetzfrage_reiherberg_aufloesung"])],
 
