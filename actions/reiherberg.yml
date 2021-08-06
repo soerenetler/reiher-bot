@@ -8,6 +8,10 @@ frage_bahnhof_gif:
     - type: return
       state: BAHNHOF_FRAGE_GIF
 
+frage_bahnhof_gif_tipp:
+    - type: message
+      text: "Ich habe eigentlich ein Bild erwartet. Wenn du mir ein Bild schickst, kann ich es für dich mit der altetn Aufnahme gegenüberstellen."
+
 frage_bahnhof:
     - type: message
       text: '🐾'
@@ -15,6 +19,10 @@ frage_bahnhof:
       text: 'Da wir am Bahnhof starten: Was schätzt du, wie viele Regionalbahnen fahren täglich vom Bahnhof Golm ab? 🚂'
     - type: return
       state: BAHNHOF_FRAGE
+
+frage_bahnhof_tipp:
+    - type: message
+      text: 'Hmm, das habe ich nicht verstande. Du kannst mir einfach die Antwort als Zahl schicken.'
 
 frage_bahnhof_aufloesung:
     - type: function
@@ -105,6 +113,10 @@ frage_quiz:
     - type: return
       state: FRAGE_QUIZ
 
+frage_quiz_tipp:
+    - type: message
+      text: 'Die Eingabe habe ich nicht verstanden. Wenn du das Quiz beantwortest, kommst du automatisch weiter.'
+
 frage_quiz_aufloesung:
     - type: function
       func: eval_quiz
@@ -147,6 +159,10 @@ frage_ubahn:
     - type: return
       state: FRAGE_UBAHN
 
+frage_ubahn_tipp:
+    - type: message
+      text: 'Die Eingabe habe ich nicht verstanden. Wenn du das Quiz beantwortest, kommst du automatisch weiter.'
+
 frage_ubahn_aufloesung:
     - type: function
       func: eval_quiz
@@ -188,6 +204,10 @@ frage_weinmeisterstrasse:
       correct_option_id: 3
     - type: return
       state: FRAGE_WEINMEISTERATRASSE
+
+frage_weinmeisterstrasse_tipp:
+    - type: message
+      text: 'Die Eingabe habe ich nicht verstanden. Wenn du das Quiz beantwortest, kommst du automatisch weiter.'
 
 frage_weinmeisterstrasse_aufloesung:
     - type: message
@@ -232,7 +252,11 @@ fehlerbild_reiherberg_bank:
       correct_option_id: 3
     - type: return
       state: FEHLERBILD_REIHERBERG
-    
+
+fehlerbild_reiherberg_tipp:
+    - type: message
+      text: 'Die Eingabe habe ich nicht verstanden. Wenn du das Quiz beantwortest, kommst du automatisch weiter.'
+
 fehlerbild_reiherberg_aufloesung:
     - type: function
       func: eval_quiz
@@ -300,6 +324,10 @@ schaetzfrage_reiherberg:
     - type: return
       state: SCHAETZFRAGE_REIHERBERG
 
+schaetzfrage_reiherberg_tipp:
+    - type: message
+      text: Deine Nachricht habe ich nicht verstanden. Wie viele Meter sind es?
+
 schaetzfrage_reiherberg_aufloesung:
     - type: function
       func: eval_schaetzfrage_reiherberg
@@ -339,6 +367,10 @@ foto_reiherberg:
           data: 'action:foto_reiherberg_aufloesung'
     - type: return
       state: FOTO_REIHERBERG
+
+foto_reiherberg_tipp:
+    - type: message
+      text: Schick mir ein Foto von dem Ausblick. Dann geht es weiter...
 
 foto_reiherberg_anweisung:
   - type: message
@@ -422,6 +454,10 @@ kirche_wortraetsel:
     - type: return
       state: KIRCHE_WORTRAETSEL
 
+kirche_wortraetsel_tipp:
+    - type: message
+      text: 'Diese Antwort habe ich nicht erwartet. Du kannst mir einfach die Lösung des Rätsel als Nachricht schicken.'
+
 kirche_frage:
     - type: function
       func: eval_kirche_wortraetsel
@@ -439,6 +475,10 @@ kirche_frage:
       correct_option_id: 0
     - type: return
       state: FRAGE_KIRCHE
+
+kirche_frage_tipp:
+    - type: message
+      text: 'Die Eingabe habe ich nicht verstanden. Wenn du das Quiz beantwortest, kommst du automatisch weiter.'
 
 kirche_aufloesung:
     - type: function
@@ -491,6 +531,10 @@ frage_storchenbank:
       text: Kannst du herausfinden, in welchem Jahr einer der Störche am frühesten zurück in Golm war?
     - type: return
       state: FRAGE_STORCHENBANK
+
+frage_storchenbank_tipp:
+    - type: message
+      text: In welchem Jahr war es den? Du kannst mir die Jahreszahl als Nachricht schicken.
 
 frage_storchenbank_aufloesung:
     - type: function
@@ -609,6 +653,10 @@ frage_feuerwehr:
       correct_option_id: 1
     - type: return
       state: FRAGE_FEUERWEHR
+
+frage_feuerwehr_tipp:
+    - type: message
+      text: 'Die Eingabe habe ich nicht verstanden. Wenn du das Quiz beantwortest, kommst du automatisch weiter.'
 
 frage_feuerwehr_aufloesung:
     - type: function
@@ -773,6 +821,10 @@ ende_bahnhof:
     - type: return
       state: FEEDBACK
 
+feedback_tipp:
+    - type: message
+      text: Ich bin gespannt, wie es dir gefallen hat. Du kannst mir dein Feedbakc als Text- oder Sprachnachricht schicken.
+
 feedback_geben:
   - type: message
     text: Schreib einfach dein Feedback in den Chat oder sende uns eine Sprachnachricht.
@@ -789,6 +841,10 @@ kontakt_rueckfragen:
       folder: feedback
     - type: return
       state: RUECKFRAGEN
+
+rueckfragen_tipp:
+  - type: message
+    text: 'Das habe ich nicht verstanden :/ Du kannst mit "Ja" oder "Nein" antworten oder die 🎛️ Antwortbuttons benutzen.'
 
 ende_feedback:
   - type: function

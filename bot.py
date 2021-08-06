@@ -106,37 +106,47 @@ if __name__ == '__main__':
 
             #######REIHERBERG-ROUTE#######
             "BAHNHOF_FRAGE_GIF": prechecks+[MessageHandler(Filters.photo, reiherbergActions["frage_bahnhof_gif_aufloesung"]),
-                                            TypeHandler(Update, reiherbergActions["en_start_reiherberg_route_tipp"])],
+                                            TypeHandler(Update, reiherbergActions["frage_bahnhof_gif_tipp"])],
 
             "BAHNHOF_FRAGE_GIF_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["frage_bahnhof"]),
                                                        TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
             "BAHNHOF_FRAGE": prechecks+[CommandHandler('weiter', reiherbergActions["frage_bahnhof_aufloesung"]),
-                                        MessageHandler(Filters.regex(r'^(\d)+'), reiherbergActions["frage_bahnhof_aufloesung"])],
+                                        MessageHandler(Filters.regex(r'^(\d)+'), reiherbergActions["frage_bahnhof_aufloesung"]),
+                                        TypeHandler(Update, reiherbergActions["frage_bahnhof_tipp"])],
+
             "BAHNHOF_FRAGE_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["weg01"]),
                                                    TypeHandler(Update, reiherbergActions["weiter_tipp"])],
+
             "WEG01": prechecks+[CommandHandler('weiter', reiherbergActions["frage_quiz"]),
                                 TypeHandler(Update, reiherbergActions["weiter_tipp"])],
-            "FRAGE_QUIZ": prechecks+[PollAnswerHandler(reiherbergActions["frage_quiz_aufloesung"])],
+
+            "FRAGE_QUIZ": prechecks+[PollAnswerHandler(reiherbergActions["frage_quiz_aufloesung"]),
+                                     TypeHandler(Update, reiherbergActions["frage_quiz_tipp"])],
+
             "FRAGE_QUIZ_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["weg_01a"]),
                                                 TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
             "WEG01A": prechecks+[CommandHandler('weiter', reiherbergActions["frage_ubahn"]),
                                  TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
-            "FRAGE_UBAHN": prechecks+[PollAnswerHandler(reiherbergActions["frage_ubahn_aufloesung"])],
+            "FRAGE_UBAHN": prechecks+[PollAnswerHandler(reiherbergActions["frage_ubahn_aufloesung"]),
+                                      TypeHandler(Update, reiherbergActions["frage_ubahn_tipp"])],
+
             "FRAGE_UBAHN_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["weg02"]),
                                                  TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
             "WEG02": prechecks+[CommandHandler('weiter', reiherbergActions["frage_weinmeisterstrasse"]),
                                 TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
-            "FRAGE_WEINMEISTERATRASSE": prechecks+[PollAnswerHandler(reiherbergActions["frage_weinmeisterstrasse_aufloesung"])],
+            "FRAGE_WEINMEISTERATRASSE": prechecks+[PollAnswerHandler(reiherbergActions["frage_weinmeisterstrasse_aufloesung"]),
+            TypeHandler(Update, reiherbergActions["frage_weinmeisterstrasse_tipp"])],
 
             "FRAGE_WEINMEISTERATRASSE_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["fehlerbild_reiherberg_bank"]),
                                                               TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
-            "FEHLERBILD_REIHERBERG": prechecks+[PollAnswerHandler(reiherbergActions["fehlerbild_reiherberg_aufloesung"])],
+            "FEHLERBILD_REIHERBERG": prechecks+[PollAnswerHandler(reiherbergActions["fehlerbild_reiherberg_aufloesung"]),
+                                                TypeHandler(Update, reiherbergActions["fehlerbild_reiherberg_tipp"])],
 
             "FEHLERBILD_REIHERBERG_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["aufstieg_reiherberg"]),
                                                            TypeHandler(Update, reiherbergActions["weiter_tipp"])],
@@ -144,13 +154,15 @@ if __name__ == '__main__':
             "AUFSTIEG_REIHERBERG": prechecks+[CommandHandler('weiter', reiherbergActions["schaetzfrage_reiherberg"]),
                                               TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
-            "SCHAETZFRAGE_REIHERBERG": prechecks+[MessageHandler(Filters.regex(r'^(\d)+'), reiherbergActions["schaetzfrage_reiherberg_aufloesung"])],
+            "SCHAETZFRAGE_REIHERBERG": prechecks+[MessageHandler(Filters.regex(r'^(\d)+'), reiherbergActions["schaetzfrage_reiherberg_aufloesung"]),
+                                              TypeHandler(Update, reiherbergActions["schaetzfrage_reiherberg_tipp"])],
 
             "SCHAETZFRAGE_REIHERBERG_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["foto_reiherberg"]),
                                                              TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
             "FOTO_REIHERBERG": prechecks+[CommandHandler('weiter', reiherbergActions["foto_reiherberg_aufloesung"]),
-                                          MessageHandler(Filters.photo, reiherbergActions["foto_reiherberg_aufloesung"])],
+                                          MessageHandler(Filters.photo, reiherbergActions["foto_reiherberg_aufloesung"]),
+                                          TypeHandler(Update, reiherbergActions["foto_reiherberg_tipp"])],
 
             "FOTO_REIHERBERG_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["weg_kirche_1"]),
                                                      TypeHandler(Update, reiherbergActions["weiter_tipp"])],
@@ -161,9 +173,11 @@ if __name__ == '__main__':
             "WEG_KIRCHE_2": prechecks+[CommandHandler('weiter', reiherbergActions["kirche_wortraetsel"]),
                                        TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
-            "KIRCHE_WORTRAETSEL": prechecks+[MessageHandler(Filters.regex(r'^(.)+'), reiherbergActions["kirche_frage"])],
+            "KIRCHE_WORTRAETSEL": prechecks+[MessageHandler(Filters.regex(r'^(.)+'), reiherbergActions["kirche_frage"]),
+                                            TypeHandler(Update, reiherbergActions["kirche_wortraetsel_tipp"])],
 
-            "FRAGE_KIRCHE": prechecks+[PollAnswerHandler(reiherbergActions["kirche_aufloesung"])],
+            "FRAGE_KIRCHE": prechecks+[PollAnswerHandler(reiherbergActions["kirche_aufloesung"]),
+                                       TypeHandler(Update, reiherbergActions["kirche_frage_tipp"])],
 
             "KIRCHE_AUFLOESEUNG": prechecks+[CommandHandler('weiter', reiherbergActions["weg_storchenbank"]),
                                              TypeHandler(Update, reiherbergActions["weiter_tipp"])],
@@ -171,7 +185,8 @@ if __name__ == '__main__':
             "WEG_STORCHENBANK": prechecks+[CommandHandler('weiter', reiherbergActions["frage_storchenbank"]),
                                            TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
-            "FRAGE_STORCHENBANK": prechecks+[MessageHandler(Filters.regex(r'^(\d)+'), reiherbergActions["frage_storchenbank_aufloesung"])],
+            "FRAGE_STORCHENBANK": prechecks+[MessageHandler(Filters.regex(r'^(\d)+'), reiherbergActions["frage_storchenbank_aufloesung"]),
+                                             TypeHandler(Update, reiherbergActions["frage_storchenbank_tipp"])],
 
             "KAPELLE": prechecks+[CommandHandler('weiter', reiherbergActions["weg_schule"]),
                                   TypeHandler(Update, reiherbergActions["weiter_tipp"])],
@@ -188,7 +203,8 @@ if __name__ == '__main__':
             "FEUERWEHR": prechecks+[CommandHandler('weiter', reiherbergActions["frage_feuerwehr"]),
                                     TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
-            "FRAGE_FEUERWEHR": prechecks+[PollAnswerHandler(reiherbergActions["frage_feuerwehr_aufloesung"])],
+            "FRAGE_FEUERWEHR": prechecks+[PollAnswerHandler(reiherbergActions["frage_feuerwehr_aufloesung"]),
+                                          TypeHandler(Update, reiherbergActions["frage_feuerwehr_tipp"])],
 
             "FRAGE_FEUERWEHR_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["rueckweg_bahnhof_2"]),
                                                      TypeHandler(Update, reiherbergActions["weiter_tipp"])],
@@ -215,8 +231,10 @@ if __name__ == '__main__':
             "FEEDBACK": prechecks+[MessageHandler(Filters.voice, reiherbergActions["kontakt_rueckfragen"]),
                                    MessageHandler(
                                        Filters.text, reiherbergActions["kontakt_rueckfragen"]),
-                                   CommandHandler('weiter', reiherbergActions["ende_feedback"])],
-            "RUECKFRAGEN": prechecks+[MessageHandler(Filters.regex('^(Ja|Ja, gerne! 😎|Nein)$'), reiherbergActions["ende_feedback"])],
+                                   CommandHandler('weiter', reiherbergActions["ende_feedback"]),
+                                   TypeHandler(Update, reiherbergActions["feedback_tipp"])],
+            "RUECKFRAGEN": prechecks+[MessageHandler(Filters.regex('^(Ja|Ja, gerne! 😎|Nein)$'), reiherbergActions["ende_feedback"]),
+                                      TypeHandler(Update, reiherbergActions["rueckfragen_tipp"])],
 
             #######EN_REIHERBERG-ROUTE#######
             "EN_BAHNHOF_FRAGE_GIF": prechecks+[MessageHandler(Filters.photo, en_reiherbergActions["en_frage_bahnhof_gif_aufloesung"])],
