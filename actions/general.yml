@@ -19,7 +19,7 @@ en_start_reiherberg_route:
   - type: return
     state: EN_REIHERBERGROUTE_BESTAETIGEN
 
-start_reiherberg_route_tipp:
+en_start_reiherberg_route_tipp:
   - type: message
     text: 'I did not understand you :/ You can type "yes" or "no" or use the 🎛️ answer buttons.'
 
