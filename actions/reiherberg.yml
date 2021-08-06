@@ -803,3 +803,7 @@ timeout:
     text: Du warst seit einer ganzen Weile nicht aktiv. Mit /start kannst du eine neue Tour mit dem Reiherbot beginnen.
   - type: return
     state: END
+
+weiter_tipp:
+  - type: message
+    text: "Ich habe deine Eingabe nicht verstanden: Weiter kommst du mit /weiter oder einem klick of den Button"
