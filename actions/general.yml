@@ -4,10 +4,6 @@ name_frage:
   - type: return
     state: NAME_AENDERN
 
-nicht_verstanden:
-  - type: message
-    text: Leider habe ich dich nicht verstanden. Versuche deine Eingabe anders zu formulieren oder nutze die hinterlegten Antwortbuttons.
-
 start_see_route:
   - type: message
     text: Leider ist die Seeroute noch nicht verfügbar.
@@ -23,6 +19,10 @@ en_start_reiherberg_route:
   - type: return
     state: EN_REIHERBERGROUTE_BESTAETIGEN
 
+start_reiherberg_route_tipp:
+  - type: message
+    text: 'I did not understand you :/ You can type "yes" or "no" or use the 🎛️ answer buttons.'
+
 start_reiherberg_route:
   - type: message
     text: Klasse Wahl 👍 Auf der Reiherbergroute zeige ich dir mein Zuhause, den Reiherberg.
@@ -33,6 +33,10 @@ start_reiherberg_route:
         - text: "Ich würde doch lieber eine andere Route gehen 🤔"
   - type: return
     state: REIHERBERGROUTE_BESTAETIGEN
+
+start_reiherberg_route_tipp:
+  - type: message
+    text: 'Das habe ich nicht verstanden :/ Du kannst mit "Ja" oder "Nein" antworten oder die 🎛️ Antwortbuttons benutzen.'
 
 welche_route:
   - type: photo
@@ -45,6 +49,10 @@ welche_route:
         - text: "Seeroute 🌊"
   - type: return
     state: ROUTE_AUSWAEHLEN
+
+welche_route_tipp:
+  - type: message
+    text: 'Das habe ich nicht verstanden :/ Du kannst mit \reiherbergaufstieg, \seeroute und \reiherbergaufstieg_en antworten oder die 🎛️ Antwortbuttons benutzen.'
 
 weg_zum_bahnhof:
   - type: message
@@ -75,6 +83,10 @@ datenschutz:
   - type: return
     state: DATENSCHUTZ
 
+datenschutz_tipp:
+  - type: message
+    text: 'Das habe ich nicht verstanden :/ Du kannst mit "Ja" oder "Nein" antworten oder die 🎛️ Antwortbuttons benutzen.'
+
 name_aendern:
   - type: message
     text: 'Ich nenne dich {name}, okay?'
@@ -85,6 +97,10 @@ name_aendern:
     func: change_name
   - type: return
     state: NAME
+
+name_aendern_tipp:
+  - type: message
+    text: 'Das habe ich nicht verstanden :/ Du kannst einfach deinen Namen eingeben.'
 
 cancel:
   - type: message
@@ -125,6 +141,10 @@ name_startpunkt:
         - text: "noch auf dem Weg 😱"
   - type: return
     state: STARTPUNKT
+
+startpunkt_tipp:
+  - type: message
+    text: 'Das habe ich nicht verstanden :/ Du kannst mit "Ja" oder "Nein" antworten oder die 🎛️ Antwortbuttons benutzen.'
 
 log_update:
   - type: function
