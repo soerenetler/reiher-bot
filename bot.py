@@ -69,39 +69,60 @@ if __name__ == '__main__':
 
         states={
             "NAME": prechecks+[MessageHandler(Filters.regex('^(Nein, nenn mich lieber anders! 👻|Nein|Ups, verschrieben 🙈)$'), generalActions["name_frage"]),
-                               MessageHandler(Filters.regex('^(Ja, gerne! 😎|Das klingt besser 😊|Ja)$'), generalActions["datenschutz"]),
+                               CommandHandler(
+                                   "Nein", generalActions["name_frage"]),
+                               CommandHandler(
+                                   "Ja", generalActions["datenschutz"]),
+                               MessageHandler(Filters.regex(
+                                   '^(Ja, gerne! 😎|Das klingt besser 😊|Ja)$'), generalActions["datenschutz"]),
                                TypeHandler(Update, generalActions["datenschutz_tipp"])],
 
             "NAME_AENDERN": prechecks+[MessageHandler(Filters.text & ~Filters.command, generalActions["name_aendern"]),
-            TypeHandler(Update, generalActions["name_aendern_tipp"])],
+                                       TypeHandler(Update, generalActions["name_aendern_tipp"])],
 
             "DATENSCHUTZ": prechecks+[MessageHandler(Filters.regex('^(Nein|Ja|Ja, klar 🌻|Lieber nicht ⚔️)$'), generalActions["name_startpunkt"]),
-                                TypeHandler(Update, generalActions["datenschutz_tipp"])],
+                                      CommandHandler(
+                                   "Nein", generalActions["name_startpunkt"]),
+                               CommandHandler(
+                                   "Ja", generalActions["name_startpunkt"]),
+                                      TypeHandler(Update, generalActions["datenschutz_tipp"])],
 
             "STARTPUNKT": prechecks+[MessageHandler(Filters.regex('^(schon da ⚓|Ja)$'), generalActions["welche_route"]),
+                                    CommandHandler(
+                                   "Ja", generalActions["welche_route"]),
                                      CommandHandler(
                                          'weiter', generalActions["welche_route"]),
-                                     MessageHandler(Filters.regex('^(noch auf dem Weg 😱|Nein)$'), generalActions["weg_zum_bahnhof"]),
+                                     MessageHandler(Filters.regex(
+                                         '^(noch auf dem Weg 😱|Nein)$'), generalActions["weg_zum_bahnhof"]),
+                                    CommandHandler(
+                                   "Nein", generalActions["weg_zum_bahnhof"]),
                                      TypeHandler(Update, generalActions["startpunkt_tipp"])],
 
             "ROUTE_AUSWAEHLEN": prechecks+[CommandHandler("reiherbergaufstieg", generalActions["start_reiherberg_route"]),
-                                           MessageHandler(Filters.regex('^(Reiherbergaufstieg ⛰️|Reiherberg|Reiherbergaufstieg|Berg)$'), generalActions["start_reiherberg_route"]),
-                                           CommandHandler("seeroute", generalActions["start_see_route"]),
-                                           MessageHandler(Filters.regex('^(Seeroute 🌊|Seeroute|Zernsee|See)$'), generalActions["start_see_route"]),
-                                           CommandHandler("reiherbergaufstieg_en", generalActions["en_start_reiherberg_route"]),
-                                           MessageHandler(Filters.regex('^(Heron Hill Climb 🇬🇧|English|Heron Hill|Hill)$'), generalActions["en_start_reiherberg_route"]),
+                                           MessageHandler(Filters.regex(
+                                               '^(Reiherbergaufstieg ⛰️|Reiherberg|Reiherbergaufstieg|Berg)$'), generalActions["start_reiherberg_route"]),
+                                           CommandHandler(
+                                               "seeroute", generalActions["start_see_route"]),
+                                           MessageHandler(Filters.regex(
+                                               '^(Seeroute 🌊|Seeroute|Zernsee|See)$'), generalActions["start_see_route"]),
+                                           CommandHandler(
+                                               "reiherbergaufstieg_en", generalActions["en_start_reiherberg_route"]),
+                                           MessageHandler(Filters.regex(
+                                               '^(Heron Hill Climb 🇬🇧|English|Heron Hill|Hill)$'), generalActions["en_start_reiherberg_route"]),
                                            TypeHandler(Update, generalActions["welche_route_tipp"])],
 
             "REIHERBERGROUTE_BESTAETIGEN": prechecks+[CommandHandler('weiter', reiherbergActions["frage_bahnhof_gif"]),
                                                       MessageHandler(Filters.regex(
                                                           '^(Ja, ich bin bereit 🏁|Ja)$'), reiherbergActions["frage_bahnhof_gif"]),
-                                                      MessageHandler(Filters.regex('^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions["welche_route"]),
+                                                      MessageHandler(Filters.regex(
+                                                          '^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions["welche_route"]),
                                                       TypeHandler(Update, generalActions["start_reiherberg_route_tipp"])],
 
             "EN_REIHERBERGROUTE_BESTAETIGEN": prechecks+[CommandHandler('weiter', en_reiherbergActions["en_frage_bahnhof_gif"]),
                                                          MessageHandler(Filters.regex(
                                                              '^(Ja, ich bin bereit 🏁|Ja|yes)$'), en_reiherbergActions["en_frage_bahnhof_gif"]),
-                                                         MessageHandler(Filters.regex('^(Ich würde doch lieber eine andere Route gehen 🤔|Nein|no)$'), generalActions["welche_route"]),
+                                                         MessageHandler(Filters.regex(
+                                                             '^(Ich würde doch lieber eine andere Route gehen 🤔|Nein|no)$'), generalActions["welche_route"]),
                                                          TypeHandler(Update, generalActions["en_start_reiherberg_route_tipp"])],
 
             #######REIHERBERG-ROUTE#######
@@ -112,7 +133,8 @@ if __name__ == '__main__':
                                                        TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
             "BAHNHOF_FRAGE": prechecks+[CommandHandler('weiter', reiherbergActions["frage_bahnhof_aufloesung"]),
-                                        MessageHandler(Filters.regex(r'^(\d)+'), reiherbergActions["frage_bahnhof_aufloesung"]),
+                                        MessageHandler(Filters.regex(
+                                            r'^(\d)+'), reiherbergActions["frage_bahnhof_aufloesung"]),
                                         TypeHandler(Update, reiherbergActions["frage_bahnhof_tipp"])],
 
             "BAHNHOF_FRAGE_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["weg01"]),
@@ -140,7 +162,7 @@ if __name__ == '__main__':
                                 TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
             "FRAGE_WEINMEISTERATRASSE": prechecks+[PollAnswerHandler(reiherbergActions["frage_weinmeisterstrasse_aufloesung"]),
-            TypeHandler(Update, reiherbergActions["frage_weinmeisterstrasse_tipp"])],
+                                                   TypeHandler(Update, reiherbergActions["frage_weinmeisterstrasse_tipp"])],
 
             "FRAGE_WEINMEISTERATRASSE_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["fehlerbild_reiherberg_bank"]),
                                                               TypeHandler(Update, reiherbergActions["weiter_tipp"])],
@@ -155,13 +177,14 @@ if __name__ == '__main__':
                                               TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
             "SCHAETZFRAGE_REIHERBERG": prechecks+[MessageHandler(Filters.regex(r'^(\d)+'), reiherbergActions["schaetzfrage_reiherberg_aufloesung"]),
-                                              TypeHandler(Update, reiherbergActions["schaetzfrage_reiherberg_tipp"])],
+                                                  TypeHandler(Update, reiherbergActions["schaetzfrage_reiherberg_tipp"])],
 
             "SCHAETZFRAGE_REIHERBERG_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["foto_reiherberg"]),
                                                              TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
             "FOTO_REIHERBERG": prechecks+[CommandHandler('weiter', reiherbergActions["foto_reiherberg_aufloesung"]),
-                                          MessageHandler(Filters.photo, reiherbergActions["foto_reiherberg_aufloesung"]),
+                                          MessageHandler(
+                                              Filters.photo, reiherbergActions["foto_reiherberg_aufloesung"]),
                                           TypeHandler(Update, reiherbergActions["foto_reiherberg_tipp"])],
 
             "FOTO_REIHERBERG_AUFLOESUNG": prechecks+[CommandHandler('weiter', reiherbergActions["weg_kirche_1"]),
@@ -174,7 +197,7 @@ if __name__ == '__main__':
                                        TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
             "KIRCHE_WORTRAETSEL": prechecks+[MessageHandler(Filters.regex(r'^(.)+'), reiherbergActions["kirche_frage"]),
-                                            TypeHandler(Update, reiherbergActions["kirche_wortraetsel_tipp"])],
+                                             TypeHandler(Update, reiherbergActions["kirche_wortraetsel_tipp"])],
 
             "FRAGE_KIRCHE": prechecks+[PollAnswerHandler(reiherbergActions["kirche_aufloesung"]),
                                        TypeHandler(Update, reiherbergActions["kirche_frage_tipp"])],
@@ -231,7 +254,8 @@ if __name__ == '__main__':
             "FEEDBACK": prechecks+[MessageHandler(Filters.voice, reiherbergActions["ende_feedback"]),
                                    MessageHandler(
                                        Filters.text, reiherbergActions["ende_feedback"]),
-                                   CommandHandler('weiter', reiherbergActions["ende_feedback"]),
+                                   CommandHandler(
+                                       'weiter', reiherbergActions["ende_feedback"]),
                                    TypeHandler(Update, reiherbergActions["feedback_tipp"])],
 
             #######EN_REIHERBERG-ROUTE#######

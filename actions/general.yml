@@ -21,7 +21,7 @@ en_start_reiherberg_route:
 
 en_start_reiherberg_route_tipp:
   - type: message
-    text: 'I did not understand you :/ You can type "yes" or "no" or use the 🎛️ answer buttons.'
+    text: 'I did not understand you :/ You can type /yes or /no" or use the 🎛️ answer buttons.'
     ReplyKeyboardMarkup:
       - text: "Ja, ich bin bereit 🏁"
       - text: "Ich würde doch lieber eine andere Route gehen 🤔"
@@ -39,7 +39,7 @@ start_reiherberg_route:
 
 start_reiherberg_route_tipp:
   - type: message
-    text: 'Das habe ich nicht verstanden :/ Du kannst mit "Ja" oder "Nein" antworten oder die 🎛️ Antwortbuttons benutzen.'
+    text: 'Das habe ich nicht verstanden :/ Du kannst mit /Ja oder /Nein antworten oder die 🎛️ Antwortbuttons benutzen.'
     ReplyKeyboardMarkup:
         - text: "Ja, ich bin bereit 🏁"
         - text: "Ich würde doch lieber eine andere Route gehen 🤔"
@@ -58,7 +58,7 @@ welche_route:
 
 welche_route_tipp:
   - type: message
-    text: 'Das habe ich nicht verstanden :/ Du kannst mit \reiherbergaufstieg, \seeroute und \reiherbergaufstieg_en antworten oder die 🎛️ Antwortbuttons benutzen.'
+    text: 'Das habe ich nicht verstanden :/ Du kannst mit /reiherbergaufstieg, /seeroute und /reiherbergaufstieg_en antworten oder die 🎛️ Antwortbuttons benutzen.'
     ReplyKeyboardMarkup:
         - text: "Reiherbergaufstieg ⛰️"
         - text: "Heron Hill Climb 🇬🇧"
@@ -95,7 +95,7 @@ datenschutz:
 
 datenschutz_tipp:
   - type: message
-    text: 'Das habe ich nicht verstanden :/ Du kannst mit "Ja" oder "Nein" antworten oder die 🎛️ Antwortbuttons benutzen.'
+    text: 'Das habe ich nicht verstanden :/ Du kannst mit /Ja oder /Nein antworten oder die 🎛️ Antwortbuttons benutzen.'
     ReplyKeyboardMarkup:
         - text: "Ja, klar 🌻"
         - text: "Lieber nicht ⚔️"
