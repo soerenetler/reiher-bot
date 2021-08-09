@@ -232,7 +232,7 @@ if __name__ == '__main__':
                                    MessageHandler(
                                        Filters.text, reiherbergActions["ende_feedback"]),
                                    CommandHandler('weiter', reiherbergActions["ende_feedback"]),
-                                   TypeHandler(Update, reiherbergActions["feedback_tipp"])]
+                                   TypeHandler(Update, reiherbergActions["feedback_tipp"])],
 
             #######EN_REIHERBERG-ROUTE#######
             "EN_BAHNHOF_FRAGE_GIF": prechecks+[MessageHandler(Filters.photo, en_reiherbergActions["en_frage_bahnhof_gif_aufloesung"])],
