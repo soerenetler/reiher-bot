@@ -44,15 +44,12 @@ def eval_schaetzfrage_bahnhof(update, context):
         update.message.reply_text('Nicht ganz!',
                                   reply_markup=ReplyKeyboardRemove())
 
-def eval_quiz(update, context, correct_option_id, corret_answer_text, wrong_answer_text):
-    update = update["poll_answer"]
-    
-    if update.option_ids == [correct_option_id]:
-        user = context.user_data["name"] 
-        update.user.send_message(corret_answer_text.format(name=context.user_data["name"]),
+def eval_quiz(update: Update, context: CallbackContext, correct_option_id:int, corret_answer_text:str, wrong_answer_text:str):
+    if update.poll_answer.option_ids == [correct_option_id]:
+        update.poll_answer.user.send_message(corret_answer_text.format(name=context.user_data["name"]),
                                 reply_markup=ReplyKeyboardRemove())
     else:
-        update.user.send_message(wrong_answer_text.format(name=context.user_data["name"]),
+        update.poll_answer.user.send_message(wrong_answer_text.format(name=context.user_data["name"]),
                                 reply_markup=ReplyKeyboardRemove())
 
 def eval_fehlerbild_reiherberg(update, context):
