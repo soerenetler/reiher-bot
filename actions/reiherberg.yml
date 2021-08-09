@@ -10,7 +10,7 @@ frage_bahnhof_gif:
 
 frage_bahnhof_gif_tipp:
     - type: message
-      text: "Ich habe eigentlich ein Bild erwartet. Wenn du mir ein Bild schickst, kann ich es für dich mit der altetn Aufnahme gegenüberstellen."
+      text: "Ich habe eigentlich ein Bild erwartet. Wenn du mir ein Bild schickst, kann ich es für dich mit der alten Aufnahme gegenüberstellen."
 
 frage_bahnhof:
     - type: message

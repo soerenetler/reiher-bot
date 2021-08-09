@@ -114,7 +114,7 @@ start_name:
   - type: function
     func: default_data
   - type: sticker
-    id: CAACAgIAAxkBAAIGbl8_fWbeUAx5dTF6v9o0gc1bgs9SAAJUAANBtVYMarf4xwiNAfobBA
+    id: 'CAACAgIAAxkBAAIgdmERAUCmyNVG8wwMKjbg2BbjaDT-AALuDQACqfWJSH_X4Qk1m_U_IAQ'
   - type: function
     func: default_name
   - type: message
