@@ -168,7 +168,7 @@ frage_ubahn_aufloesung:
       func: eval_quiz
       correct_option_id: 0
       correct_answer_text: 'Richtig, {name} 🎉 es war der Kurfürstendamm!'
-      correct_answer_sticker: 'CAACAgIAAxkBAAIggGERFrPYw51Erz5RecwdZIFjbB1kAAIeDQACvgyJSLaWEeynH1OyIAQ'
+      correct_answer_sticker: 'AAMCAgADGQEAAiC_YREhluVgHHOr0kq7Xfxq1hfwpWgAAtUOAALYQIlIAAGojzJZBfGrAQAHbQADIAQ'
       wrong_answer_text: 'Hast du das Schild übersehen? Die richtige Antwort war Kurfürstendamm!'
     - type: message
       text: Das Schild hing über einer Gartenlaube auf der linken Seite deines Weges.
