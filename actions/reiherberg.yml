@@ -121,7 +121,7 @@ frage_quiz_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 1
-      corret_answer_text: 'Richtig, {user} 🎉'
+      corret_answer_text: 'Richtig, {name} 🎉'
       wrong_answer_text: 'Nicht ganz!'
     - type: sticker
       id: CAACAgIAAxkBAAIltF-WnMTLW4yEo7mHp-wc3TimCuCVAAIDAANwgCcYRPP-4x304-sbBA
@@ -167,7 +167,7 @@ frage_ubahn_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 0
-      corret_answer_text: 'Richtig, {user} 🎉 es war der Kurfürstendamm! '
+      corret_answer_text: 'Richtig, {name} 🎉 es war der Kurfürstendamm! '
       wrong_answer_text: 'Hast du das Schild übersehen? Die richtige Antwort war Kurfürstendamm! '
     - type: message
       text: Das Schild hing über einer Gartenlaube auf der linken Seite deines Weges.
@@ -486,7 +486,7 @@ kirche_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 0
-      corret_answer_text: 'Stimmt {user}!'
+      corret_answer_text: 'Stimmt {name}!'
       wrong_answer_text: 'Ups!'
     - type: message
       text: Dohlen sind übrigens eine Rabenart. Hier hast du ein Bild, damit du sie dir besser vorstellen kannst. 
@@ -664,7 +664,7 @@ frage_feuerwehr_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 1
-      corret_answer_text: 'Stimmt {user}!'
+      corret_answer_text: 'Stimmt {name}!'
       wrong_answer_text: 'Ups!'
     - type: message
       text: >
