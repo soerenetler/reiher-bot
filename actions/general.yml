@@ -157,7 +157,7 @@ name_startpunkt:
 
 startpunkt_tipp:
   - type: message
-    text: 'Das habe ich nicht verstanden :/ Du kannst mit "Ja" oder "Nein" antworten oder die 🎛️ Antwortbuttons benutzen.'
+    text: 'Das habe ich nicht verstanden :/ Du kannst mit /Ja oder /Nein antworten oder die 🎛️ Antwortbuttons benutzen.'
 
 log_update:
   - type: function
