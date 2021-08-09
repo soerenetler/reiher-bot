@@ -36,7 +36,7 @@ def default_name(update: Update, context: CallbackContext):
     context.user_data["name"] = update.message.from_user.first_name
 
 def change_data(update: Update, context: CallbackContext):
-    if update.message.text == "Ja" or update.message.text == "Ja, klar 🌻":
+    if update.message.text == "Ja" or update.message.text == "Ja, klar 🌻" or update.message.text == "/Ja":
         context.user_data["daten"] = True
     else:
         context.user_data["daten"] = False
