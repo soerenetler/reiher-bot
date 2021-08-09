@@ -235,7 +235,7 @@ info_weinmeister:
       text: 🍷
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'weiter'
+          data:  'action:fehlerbild_reiherberg_bank'
 
 fehlerbild_reiherberg_bank:
     - type: message
