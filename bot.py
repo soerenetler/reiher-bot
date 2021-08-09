@@ -82,21 +82,21 @@ if __name__ == '__main__':
 
             "DATENSCHUTZ": prechecks+[MessageHandler(Filters.regex('^(Nein|Ja|Ja, klar 🌻|Lieber nicht ⚔️)$'), generalActions["name_startpunkt"]),
                                       CommandHandler(
-                                   "Nein", generalActions["name_startpunkt"]),
-                               CommandHandler(
-                                   "Ja", generalActions["name_startpunkt"]),
-                                      TypeHandler(Update, generalActions["datenschutz_tipp"])],
+                "Nein", generalActions["name_startpunkt"]),
+                CommandHandler(
+                "Ja", generalActions["name_startpunkt"]),
+                TypeHandler(Update, generalActions["datenschutz_tipp"])],
 
             "STARTPUNKT": prechecks+[MessageHandler(Filters.regex('^(schon da ⚓|Ja)$'), generalActions["welche_route"]),
-                                    CommandHandler(
-                                   "Ja", generalActions["welche_route"]),
                                      CommandHandler(
+                "Ja", generalActions["welche_route"]),
+                CommandHandler(
                                          'weiter', generalActions["welche_route"]),
-                                     MessageHandler(Filters.regex(
-                                         '^(noch auf dem Weg 😱|Nein)$'), generalActions["weg_zum_bahnhof"]),
-                                    CommandHandler(
-                                   "Nein", generalActions["weg_zum_bahnhof"]),
-                                     TypeHandler(Update, generalActions["startpunkt_tipp"])],
+                MessageHandler(Filters.regex(
+                    '^(noch auf dem Weg 😱|Nein)$'), generalActions["weg_zum_bahnhof"]),
+                CommandHandler(
+                "Nein", generalActions["weg_zum_bahnhof"]),
+                TypeHandler(Update, generalActions["startpunkt_tipp"])],
 
             "ROUTE_AUSWAEHLEN": prechecks+[CommandHandler("reiherbergaufstieg", generalActions["start_reiherberg_route"]),
                                            MessageHandler(Filters.regex(
@@ -114,9 +114,13 @@ if __name__ == '__main__':
             "REIHERBERGROUTE_BESTAETIGEN": prechecks+[CommandHandler('weiter', reiherbergActions["frage_bahnhof_gif"]),
                                                       MessageHandler(Filters.regex(
                                                           '^(Ja, ich bin bereit 🏁|Ja)$'), reiherbergActions["frage_bahnhof_gif"]),
-                                                      MessageHandler(Filters.regex(
-                                                          '^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions["welche_route"]),
-                                                      TypeHandler(Update, generalActions["start_reiherberg_route_tipp"])],
+                                                      CommandHandler(
+                "Ja", generalActions["frage_bahnhof_gif"]),
+                MessageHandler(Filters.regex(
+                    '^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions["welche_route"]),
+                CommandHandler(
+                "Nein", generalActions["welche_route"]),
+                TypeHandler(Update, generalActions["start_reiherberg_route_tipp"])],
 
             "EN_REIHERBERGROUTE_BESTAETIGEN": prechecks+[CommandHandler('weiter', en_reiherbergActions["en_frage_bahnhof_gif"]),
                                                          MessageHandler(Filters.regex(
