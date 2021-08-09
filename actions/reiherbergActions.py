@@ -44,9 +44,11 @@ def eval_schaetzfrage_bahnhof(update, context):
         update.message.reply_text('Nicht ganz!',
                                   reply_markup=ReplyKeyboardRemove())
 
-def eval_quiz(update: Update, context: CallbackContext, correct_option_id:int, corret_answer_text:str, wrong_answer_text:str):
+def eval_quiz(update: Update, context: CallbackContext, correct_option_id:int, correct_answer_text:str, wrong_answer_text:str, correct_answer_sticker=None):
     if update.poll_answer.option_ids == [correct_option_id]:
-        update.poll_answer.user.send_message(corret_answer_text.format(name=context.user_data["name"]),
+        if correct_answer_sticker:
+            update.poll_answer.user.send_sticker(correct_answer_sticker)
+        update.poll_answer.user.send_message(correct_answer_text.format(name=context.user_data["name"]),
                                 reply_markup=ReplyKeyboardRemove())
     else:
         update.poll_answer.user.send_message(wrong_answer_text.format(name=context.user_data["name"]),

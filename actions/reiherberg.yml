@@ -121,7 +121,7 @@ frage_quiz_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 1
-      corret_answer_text: 'Richtig, {name} 🎉'
+      correct_answer_text: 'Richtig, {name} 🎉'
       wrong_answer_text: 'Nicht ganz!'
     - type: sticker
       id: CAACAgIAAxkBAAIltF-WnMTLW4yEo7mHp-wc3TimCuCVAAIDAANwgCcYRPP-4x304-sbBA
@@ -167,8 +167,9 @@ frage_ubahn_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 0
-      corret_answer_text: 'Richtig, {name} 🎉 es war der Kurfürstendamm! '
-      wrong_answer_text: 'Hast du das Schild übersehen? Die richtige Antwort war Kurfürstendamm! '
+      correct_answer_text: 'Richtig, {name} 🎉 es war der Kurfürstendamm!'
+      correct_answer_sticker: 'CAACAgIAAxkBAAIggGERFrPYw51Erz5RecwdZIFjbB1kAAIeDQACvgyJSLaWEeynH1OyIAQ'
+      wrong_answer_text: 'Hast du das Schild übersehen? Die richtige Antwort war Kurfürstendamm!'
     - type: message
       text: Das Schild hing über einer Gartenlaube auf der linken Seite deines Weges.
       InlineKeyboard:
@@ -263,7 +264,7 @@ fehlerbild_reiherberg_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 3
-      corret_answer_text: 'Richtig!'
+      correct_answer_text: 'Richtig!'
       wrong_answer_text: 'Das war nur ein Grund.'
     - type: message
       text: Früher gab es hier einen kleinen Laden. Heute befindet sich dort der art supermarket - eine kleine Gallerie.
@@ -486,7 +487,7 @@ kirche_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 0
-      corret_answer_text: 'Stimmt {name}!'
+      correct_answer_text: 'Stimmt {name}!'
       wrong_answer_text: 'Ups!'
     - type: message
       text: Dohlen sind übrigens eine Rabenart. Hier hast du ein Bild, damit du sie dir besser vorstellen kannst. 
@@ -663,7 +664,7 @@ frage_feuerwehr_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 1
-      corret_answer_text: 'Stimmt {name}!'
+      correct_answer_text: 'Stimmt {name}!'
       wrong_answer_text: 'Ups!'
     - type: message
       text: >
