@@ -26,7 +26,7 @@ frage_bahnhof_tipp:
 
 frage_bahnhof_aufloesung:
     - type: function
-      func: write_message
+      func: write
       bucket: reiherbot
       folder: frage_bahnhof
     - type: function
@@ -60,7 +60,7 @@ frage_bahnhof_aufloesung:
 
 frage_bahnhof_gif_aufloesung:
     - type: function
-      func: write_photo
+      func: write
       bucket: reiherbot
       folder: bahnhof_gif
     - type: function
@@ -381,7 +381,7 @@ foto_reiherberg_anweisung:
 
 foto_reiherberg_aufloesung:
     - type: function
-      func: write_photo
+      func: write
       bucket: reiherbot
       folder: reiherberg
     - type: message
@@ -492,7 +492,6 @@ kirche_aufloesung:
       text: Dohlen sind übrigens eine Rabenart. Hier hast du ein Bild, damit du sie dir besser vorstellen kannst. 
     - type: photo
       file: "assets/Dohle.jpg"
-
     - type: message
       text: >
             Willst du mehr über die Kirche erfahren, oder weitergehen?
@@ -833,10 +832,7 @@ feedback_geben:
 
 kontakt_rueckfragen:
     - type: message
-      text: Danke für dein Feedback! Dürfen wir dich bei Rückfragen kontaktieren?
-      ReplyKeyboardMarkup:
-        - text: "Ja, gerne! 😎"
-        - text: "Lieber nicht ⚔️"
+      text: Danke für dein Feedback! Mit /start geht's zurück an den Anfang, um eine andere Route zu gehen.
     - type: function
       func: write
       bucket: reiherbot
@@ -844,13 +840,7 @@ kontakt_rueckfragen:
     - type: return
       state: RUECKFRAGEN
 
-rueckfragen_tipp:
-  - type: message
-    text: 'Das habe ich nicht verstanden :/ Du kannst mit "Ja" oder "Nein" antworten oder die 🎛️ Antwortbuttons benutzen.'
-
 ende_feedback:
-  - type: function
-    func: ende_feedback
   - type: message
     text: Danke für dein Feedback! Mit /start geht's zurück an den Anfang, um eine andere Route zu gehen.
   - type: return
