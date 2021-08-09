@@ -228,13 +228,11 @@ if __name__ == '__main__':
             "BLICK_SCIENCE_PARK": prechecks+[CommandHandler('weiter', reiherbergActions["ende_bahnhof"]),
                                              TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
-            "FEEDBACK": prechecks+[MessageHandler(Filters.voice, reiherbergActions["kontakt_rueckfragen"]),
+            "FEEDBACK": prechecks+[MessageHandler(Filters.voice, reiherbergActions["ende_feedback"]),
                                    MessageHandler(
-                                       Filters.text, reiherbergActions["kontakt_rueckfragen"]),
+                                       Filters.text, reiherbergActions["ende_feedback"]),
                                    CommandHandler('weiter', reiherbergActions["ende_feedback"]),
-                                   TypeHandler(Update, reiherbergActions["feedback_tipp"])],
-            "RUECKFRAGEN": prechecks+[MessageHandler(Filters.regex('^(Ja|Ja, gerne! 😎|Nein)$'), reiherbergActions["ende_feedback"]),
-                                      TypeHandler(Update, reiherbergActions["rueckfragen_tipp"])],
+                                   TypeHandler(Update, reiherbergActions["feedback_tipp"])]
 
             #######EN_REIHERBERG-ROUTE#######
             "EN_BAHNHOF_FRAGE_GIF": prechecks+[MessageHandler(Filters.photo, en_reiherbergActions["en_frage_bahnhof_gif_aufloesung"])],
