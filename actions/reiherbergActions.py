@@ -138,7 +138,7 @@ def ende_feedback(update, context):
         name = update.effective_user.name
     if update.message.text:
         if update.message.text == "Ja, gerne! 😎":
-            with open('../feedback/feedback_mapping.txt', 'a+') as file_object:
+            with open('feedback_mapping.txt', 'a+') as file_object:
                 file_object.write(str(user_id) + ", " + name + "\n")
         if update.message.text == "Lieber nicht ⚔️":
             pass
