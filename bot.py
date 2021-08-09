@@ -115,7 +115,7 @@ if __name__ == '__main__':
                                                       MessageHandler(Filters.regex(
                                                           '^(Ja, ich bin bereit 🏁|Ja)$'), reiherbergActions["frage_bahnhof_gif"]),
                                                       CommandHandler(
-                "Ja", generalActions["frage_bahnhof_gif"]),
+                "Ja", reiherbergActions["frage_bahnhof_gif"]),
                 MessageHandler(Filters.regex(
                     '^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'), generalActions["welche_route"]),
                 CommandHandler(
