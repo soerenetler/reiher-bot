@@ -231,6 +231,8 @@ info_weinmeister:
       file: assets/audio/Weinmeisterstrae.mp3
       title: "Weinmeister"
       performer: "Reiherbot"
+    - type: message
+      text: 🍷
       InlineKeyboard:
         - text: "🐾 weiter"
           data:  'weiter'
