@@ -1,4 +1,5 @@
 import logging
+from typing_extensions import Required
 
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton,
                       Sticker, InlineKeyboardButton, InlineKeyboardMarkup, Update)
@@ -37,7 +38,7 @@ class User(mongoengine.Document):
     meta = {'db_alias': dbname}
 
 def entry_conversation(update: Update, context: CallbackContext):
-    User(id=update.effective_user.id, first_name=update.effective_user.first_name, last_name=update.effective_user.last_name, username=update.effective_user.username, language_code=update.effective_user.language_code).save()
+    User(id=str(update.effective_user.id), first_name=update.effective_user.first_name, last_name=update.effective_user.last_name, username=update.effective_user.username, language_code=update.effective_user.language_code).save()
     if context.args:
         keyboard = [[InlineKeyboardButton(
             "🐾 los", callback_data='action:' + context.args[0])]]
