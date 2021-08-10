@@ -28,7 +28,7 @@ def return_end(update: Update, context: CallbackContext):
     return ConversationHandler.END
 
 class User(mongoengine.Document):
-    id = mongoengine.StringField(required=True)
+    user_id = mongoengine.StringField(required=True)
     first_name = mongoengine.StringField(required=True, max_length=50)
     last_name = mongoengine.StringField(max_length=50)
     username = mongoengine.StringField(max_length=50)
@@ -37,7 +37,7 @@ class User(mongoengine.Document):
     meta = {'db_alias': dbname}
 
 def entry_conversation(update: Update, context: CallbackContext):
-    User(id=str(update.effective_user.id), first_name=update.effective_user.first_name, last_name=update.effective_user.last_name, username=update.effective_user.username, language_code=update.effective_user.language_code).save()
+    User(user_id=str(update.effective_user.id), first_name=update.effective_user.first_name, last_name=update.effective_user.last_name, username=update.effective_user.username, language_code=update.effective_user.language_code).save()
     if context.args:
         keyboard = [[InlineKeyboardButton(
             "🐾 los", callback_data='action:' + context.args[0])]]
