@@ -5,12 +5,19 @@ from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton,
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
                           ConversationHandler, CallbackContext)
 
+import mongoengine
+import datetime
+import os
+
 from actions.utils import log
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
+dbname = "reiherbot_user"
+mongoengine.connect(host="mongodb+srv://"+ os.getenv("DATABASE_USERNAME")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
+
 
 def log_update(update: Update, context: CallbackContext):
     logger.warning("The incoming update was not handled: {}".format(update))
@@ -18,7 +25,16 @@ def log_update(update: Update, context: CallbackContext):
 def return_end(update: Update, context: CallbackContext):
     return ConversationHandler.END
 
+class User(mongoengine.Document):
+    id = mongoengine.StringField(required=True)
+    first_name = mongoengine.StringField(required=True, max_length=50)
+    last_name = mongoengine.StringField(max_length=50)
+    username = mongoengine.StringField(max_length=50)
+    language_code = mongoengine.StringField(max_length=10)
+    entry_time = mongoengine.DateTimeField(default=datetime.datetime.utcnow)
+
 def entry_conversation(update: Update, context: CallbackContext):
+    User(id=update.effective_user.id, first_name=update.effective_user.first_name, last_name=update.effective_user.last_name, username=update.effective_user.username, language_code=update.effective_user.language_code).save()
     if context.args:
         keyboard = [[InlineKeyboardButton(
             "🐾 los", callback_data='action:' + context.args[0])]]
