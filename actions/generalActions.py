@@ -1,5 +1,4 @@
 import logging
-from typing_extensions import Required
 
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton,
                       Sticker, InlineKeyboardButton, InlineKeyboardMarkup, Update)
