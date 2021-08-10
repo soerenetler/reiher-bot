@@ -16,6 +16,8 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 dbname = "reiherbot_user"
+with open("ca-certificate.crt", "w") as text_file:
+            text_file.write(os.getenv('DATABASE_CERT'))
 mongoengine.connect(host="mongodb+srv://"+ os.getenv("DATABASE_USERNAME")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
 
 
