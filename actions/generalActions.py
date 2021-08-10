@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 dbname = "reiherbot_user"
 with open("ca-certificate.crt", "w") as text_file:
             text_file.write(os.getenv('DATABASE_CERT'))
-mongoengine.connect(host="mongodb+srv://"+ os.getenv("DATABASE_USERNAME")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
+mongoengine.connect(alias=dbname, host="mongodb+srv://"+ os.getenv("DATABASE_USERNAME")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
 
 
 def log_update(update: Update, context: CallbackContext):
@@ -34,6 +34,7 @@ class User(mongoengine.Document):
     username = mongoengine.StringField(max_length=50)
     language_code = mongoengine.StringField(max_length=10)
     entry_time = mongoengine.DateTimeField(default=datetime.datetime.utcnow)
+    meta = {'db_alias': dbname}
 
 def entry_conversation(update: Update, context: CallbackContext):
     User(id=update.effective_user.id, first_name=update.effective_user.first_name, last_name=update.effective_user.last_name, username=update.effective_user.username, language_code=update.effective_user.language_code).save()
