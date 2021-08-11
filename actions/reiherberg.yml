@@ -128,7 +128,7 @@ frage_quiz_aufloesung:
       correct_answer_text: 'Richtig, {name} 🎉'
       wrong_answer_text: 'Nicht ganz!'
     - type: sticker
-      id: CAACAgIAAxkBAAIltF-WnMTLW4yEo7mHp-wc3TimCuCVAAIDAANwgCcYRPP-4x304-sbBA
+      id: 'CAACAgIAAxkBAAIiL2ET4VMouosJKz-SHErJSCIjJjABAAL0DQAC8kuhSBy3iiOyQmuyIAQ'
     - type: message
       text: |
             In den Mooren um Golm fühlen sie sich wohl.
