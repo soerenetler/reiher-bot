@@ -202,7 +202,7 @@ frage_weinmeisterstrasse:
     - type: message
       text: Weil das Trinkwasser in Golm früher nicht so gut war, wurde sehr viel Wein angebaut. Im Laufe der Zeit änderte sich das.
     - type: poll
-      question: Was meinst, woran lag das?
+      question: Was meinst du, woran lag das?
       options:
         - "Es wurde eine Steuer eingeführt, die den Weinanbau teurer werden ließ."
         - "1745 erfroren die Reben aufgrund der kalten Witterung."
@@ -217,8 +217,6 @@ frage_weinmeisterstrasse_tipp:
       text: 'Die Eingabe habe ich nicht verstanden. Wenn du das Quiz beantwortest, kommst du automatisch weiter.'
 
 frage_weinmeisterstrasse_aufloesung:
-    - type: message
-      text: 🐾
     - type: message
       text: All diese Gründe führten dazu, dass in Golm heute kein Wein mehr angebaut wird. 
     - type: message
