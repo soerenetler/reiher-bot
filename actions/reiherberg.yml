@@ -90,14 +90,14 @@ weg01:
     - type: message
       text: '🐾'
     - type: message
-      text: 'Dann lass uns losgehen, immerhin haben wir einen Berg zu erkunden!'
+      text: 'Dann lass uns losgehen!'
     - type: message
-      text: >
-            Der erste Weg verläuft parallel zur Bahnstrecke. 🛤️ 
-            Die Bahnschienen sollten rechts von dir verlaufen. 
-            Folge der Straße, bis du an einen kleinen Fußweg gelangst.
+      text: |
+            Unser Weg verläuft parallel zur Bahnstrecke. 🛤️ 
+            Die Schienen sollten rechts von dir liegen. 
+            Folge der Straße bis zu einen kleinen Fußweg.
     - type: message
-      text: 'Gib mir dann Bescheid!'
+      text: Dort treffen wir uns wieder!
       InlineKeyboard:
         - text: "🐾 weiter"
           data:  'action:frage_quiz'
@@ -130,7 +130,9 @@ frage_quiz_aufloesung:
     - type: sticker
       id: CAACAgIAAxkBAAIltF-WnMTLW4yEo7mHp-wc3TimCuCVAAIDAANwgCcYRPP-4x304-sbBA
     - type: message
-      text: Um Golm herum lebten schon seit jeher viele Reiher. Besonders in den Mooren und auf dem Reiherberg fühlten sie sich wohl.
+      text: |
+            In den Mooren um Golm fühlen sie sich wohl.
+            Mit etwas Glück kannst du auf unserem Weg einen entdecken.
       InlineKeyboard:
         - text: "🐾 weiter"
           data: 'action:weg_01a'
@@ -143,7 +145,7 @@ weg_01a:
     - type: message
       text: 'Folge dem Fußweg, bis du an eine kleine Treppe gelangst!'
     - type: message
-      text: Wenn du auf dem nächsten Wegabschnitt genau hinschaust, kannst du einen Berliner U-Bahnhof entdecken! 🔍 Beachte besonders die Grundstücke auf der linken Seite.
+      text: Wenn du genau hinschaust, kannst du einen Berliner U-Bahnhof entdecken! 🔍 Beachte besonders die Grundstücke auf der linken Seite.
       InlineKeyboard:
         - text: "🐾 weiter"
           data:  'action:frage_ubahn'
@@ -154,7 +156,7 @@ frage_ubahn:
     - type: message
       text: '🐾'
     - type: poll
-      question: Hast du die Berliner U-Bahn-Station entdecken können? 🚇 Wenn ja, weißt du noch, welche U-Bahn-Station es war?
+      question: Hast du die Berliner U-Bahn-Station entdecken können? 🚇 Welche war es?
       options:
         - "Kurfürstendamm"
         - "Unter den Linden"
