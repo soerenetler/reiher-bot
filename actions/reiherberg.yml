@@ -189,10 +189,8 @@ weg02:
       text: 🐾
     - type: message
       text:  Unser Weg führt uns unter der Unterführung hindurch. Kurz dahinter findest du auf der linken Seite die Weinmeisterstraße.
-    - type: message
-      text: Gib mir Bescheid, wenn du das Straßenschild gefunden hast.
       InlineKeyboard:
-        - text: "🐾 weiter"
+        - text: "🐾 Gefunden!"
           data:  'action:frage_weinmeisterstrasse'
     
     - type: return
@@ -202,14 +200,14 @@ frage_weinmeisterstrasse:
     - type: message
       text: 🐾
     - type: message
-      text: Weil das Trinkwasser in Golm früher nicht so gut war, wurde sehr viel Wein angebaut. Im Laufe der Zeit änderte sich das.
+      text: Weil das Trinkwasser in Golm früher nicht so gut war, wurde sehr viel Wein angebaut. 🍇
     - type: poll
-      question: Was meinst du, woran lag das?
+      question: Warum wird in Golm kein Wein mehr angebaut?
       options:
-        - "Es wurde eine Steuer eingeführt, die den Weinanbau teurer werden ließ."
-        - "1745 erfroren die Reben aufgrund der kalten Witterung."
-        - "Durch Weinimporte merkte man, dass der eigene Wein nicht schmeckt."
-        - "Alle Gründe führten dazu."
+        - "🤑 Durch eine Steuer wurde der Weinanbau teurer."
+        - "🥶 Im kalten Winter 1745 erfroren die Reben."
+        - "🤮 Man merkte, dass der eigene Wein nicht schmeckt."
+        - "🥶🤮🤑 Alle Gründe führten dazu."
       correct_option_id: 3
     - type: return
       state: FRAGE_WEINMEISTERATRASSE
