@@ -207,7 +207,7 @@ frage_weinmeisterstrasse:
         - "🤑 Durch eine Steuer wurde der Weinanbau teurer."
         - "🥶 Im kalten Winter 1745 erfroren die Reben."
         - "🤮 Man merkte, dass der eigene Wein nicht schmeckt."
-        - "🥶🤮🤑 Alle Gründe führten dazu."
+        - "🤑🥶🤮 Alle Gründe führten dazu."
       correct_option_id: 3
     - type: return
       state: FRAGE_WEINMEISTERATRASSE
@@ -246,7 +246,9 @@ fehlerbild_reiherberg_bank:
     - type: message
       text: '🐾'
     - type: message
-      text: Schau dort! Hier siehst du schon den Wegweiser zum Reiherberg.
+      text: |
+            Schau dort!
+            Hier siehst du schon den Wegweiser zum Reiherberg.
     - type: photo
       file: assets/fehlerbild_reiherberg_bank.jpg
     - type: poll
@@ -269,9 +271,11 @@ fehlerbild_reiherberg_aufloesung:
       func: eval_quiz
       correct_option_id: 3
       correct_answer_text: 'Richtig!'
-      wrong_answer_text: 'Das war nur ein Grund.'
+      wrong_answer_text: 'Das war nicht der Fehler!'
     - type: message
-      text: Früher gab es hier einen kleinen Laden. Heute befindet sich dort der art supermarket - eine kleine Gallerie.
+      text: |
+            Früher gab es hier einen kleinen Laden.
+            Heute befindet sich dort der art supermarkt - eine Gallerie.
       InlineKeyboard:
         - text: "💡 mehr Infos"
           data:  'action:info_supermarkt'
@@ -297,11 +301,9 @@ aufstieg_reiherberg:
     - type: message
       text: >
             Jetzt stehst du bereits am Fuße des Reiherbergs! Folge dem kleinen Pfad nach oben, bis du zur Aussichtsplattform kommst!
-            Wir treffen uns oben wieder, dann kannst du in Ruhe die Natur genießen. 
     - type: message
       text: >
-            Wenn dir das zu ruhig ist, kannst du dir auf dem Weg auch die Sage um die Entstehung des Reiherbergs anhören.
-            Sag mir Bescheid, wenn du die Aussichtsplattform erreicht hast.
+            Auf dem Weg kannst du in Ruhe die Natur genießen oder die Sage über die Entstehung des Reiherbergs anhören.
       InlineKeyboard:
         - text: "💡 Sage"
           data:  'action:info_sage_reiherberg'
@@ -323,11 +325,13 @@ schaetzfrage_reiherberg:
     - type: message
       text: 🐾
     - type: message
-      text: Du hast es geschafft! Du stehst jetzt auf dem zweithöchsten Berg in Golm. ⛰️
+      text: |
+            Du hast es geschafft!
+            Du stehst jetzt auf dem zweithöchsten Berg in Golm. ⛰️
     - type: photo
       file: assets/reiherberg/Aussicht_Reiherberg.png
     - type: message
-      text: Was glaubst du, wie hoch ist der Reiherberg?
+      text: Was schätzt du, wie hoch ist der Reiherberg?
     - type: return
       state: SCHAETZFRAGE_REIHERBERG
 
@@ -341,8 +345,8 @@ schaetzfrage_reiherberg_aufloesung:
     - type: message
       text: >
             Mit 68 Metern ist der Reiherberg der zweithöchste Berg in Golm. 
-            Höher ist nur der 71 Meter hohe Ehrenpfortenberg. 
-            Doch dafür ist die Aussicht vom Reiherberg unvergleichlich und lädt zum Fotografieren ein. 🌄
+            Höher ist nur Ehrenpfortenberg. 
+            Doch dafür ist die Aussicht von hier unvergleichlich und lädt zum Fotografieren ein. 🌄
       InlineKeyboard:
         - text: "💡 mehr Infos"
           data:  'action:info_reiherberg'
@@ -364,9 +368,10 @@ foto_reiherberg:
     - type: message
       text: '🐾'
     - type: message
+      parse_mode: MarkdownV2
       text: >
-            Knipse ein Foto und schicke es mir zu. 📸
-            Die Fotos findest du im Anschluss auf der unserer Website.
+            Knipse ein Foto und schicke es mir zu\. 📸
+            Die schönsten Aufnahmen findest du auf unserer Website[reiherbot.de]\.
       InlineKeyboard:
         - text: "🧀 Cheese"
           data: 'action:foto_reiherberg_anweisung'
@@ -381,8 +386,7 @@ foto_reiherberg_tipp:
 
 foto_reiherberg_anweisung:
   - type: message
-    text: >
-          Dann zeig mal her! 🖼️
+    text: Dann zeig mal her! 🖼️
 
 foto_reiherberg_aufloesung:
     - type: function
