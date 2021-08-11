@@ -45,8 +45,11 @@ en_frage_bahnhof_aufloesung:
     - type: message
       text: >
             During the week 106 regional trains departure from Golm.
-            If you want to get to Potsdam main station, take a train from platform 2 on the hour
-            and from platform 1 on the half hour.
+    - type: message
+      text: |
+            *to Potsdam main station*
+            🕛 from platform 2 on the hour 
+            🕡 from platform 1 on the half hour
     - type: message
       text: If you want to know more about the railway station Golm, click on "more info".
       InlineKeyboard:
