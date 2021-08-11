@@ -49,7 +49,7 @@ frage_bahnhof_aufloesung:
     - type: message
       parse_mode: MarkdownV2
       text: |
-            *Richtung Potsdam Hbf.*
+            *Richtung Potsdam Hbf\.*
             🕛 zur vollen Stunde von Gleis 2 
             🕡 zur halben Stunde von Gleis 1
     - type: message
