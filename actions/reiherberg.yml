@@ -403,7 +403,7 @@ foto_reiherberg_aufloesung:
         - "assets/reiherberg/reiherberg02.jpg"
     - type: message
       text: >
-           Hier sind Bilder, die andere Bergsteigende gemacht haben. 
+           Hier sind Bilder, die andere Bergsteigende gemacht haben.
            Der Reiherberg ist zu jeder Jahreszeit einen Ausflug wert.
       InlineKeyboard:
         - text: "🐾 weiter"
@@ -417,24 +417,17 @@ weg_kirche_1:
     - type: message
       text: > 
             Unser Weg führt uns nun den Berg hinab.
+    - type: photo
+      file: assets/Hier entlang!.jpg
+    - type: message
+      text: > 
             Wenn du die Aussichtsplattform verlässt, folge dem Weg ganz links.
             Gehe bergab, bis du an einen Abzweig nach rechts kommst.
       InlineKeyboard:
-        - text: "⁉️ Wo lang?"
-          data: 'action:weg_kirche_1_help'
-        - text: "🐾 weiter"
+        - text: "🐾 Bin da!"
           data: 'action:weg_kirche_2'
     - type: return
       state: WEG_KIRCHE_1
-
-weg_kirche_1_help:
-  - type: photo
-    file: assets/Hier entlang!.jpg
-  - type: message
-    text: Vielleicht hilft dieses Bild weiter.
-    InlineKeyboard:
-      - text: "🐾 weiter"
-        data: 'action:weg_kirche_2'
 
 weg_kirche_2:
     - type: message
@@ -442,10 +435,10 @@ weg_kirche_2:
     - type: message
       text: >
             Biege nach rechts ab und folge dem Weg,
-            bis du auf der linken Seite an eine kleine Treppe gelangst.
-            Dort müsstest du die Kirche auch bereits sehen können.
+            bis du an eine Treppe gelangst.
+            Von dort müsstest du die Kirche bereits sehen können.
       InlineKeyboard:
-        - text: "🐾 weiter"
+        - text: "🐾 Seh' ich!"
           data: 'action:kirche_wortraetsel'
     - type: return
       state: WEG_KIRCHE_2
@@ -467,7 +460,7 @@ kirche_wortraetsel:
 
 kirche_wortraetsel_tipp:
     - type: message
-      text: 'Diese Antwort habe ich nicht erwartet. Du kannst mir einfach die Lösung des Rätsel als Nachricht schicken.'
+      text: 'Diese Antwort habe ich nicht erwartet. Du kannst mir die Lösung des Rätsel als Nachricht schicken.'
 
 kirche_frage:
     - type: function
@@ -478,7 +471,7 @@ kirche_frage:
             Weil diese Kirche ein Geschenk des Kaisers Friedrich ans Dorf war\,
             trägt sie seinen Namen\: *Kaiser\-Friedrich\-Kirche*\.
     - type: poll
-      question: Die Kirche wurde vom Naturschutzbund (NABU) ausgezeichnet. Kannst du dir vorstellen warum? 
+      question: Sie wurde vom Naturschutzbund (NABU) ausgezeichnet. Warum? 
       options:
         - "Im Kirchturm nisten dauerhaft Dohlen."
         - "Im Mauerwerk der Kirche sind Insektenhotels eingelassen."
@@ -498,12 +491,12 @@ kirche_aufloesung:
       correct_answer_text: 'Stimmt {name}!'
       wrong_answer_text: 'Ups!'
     - type: message
-      text: Dohlen sind übrigens eine Rabenart. Hier hast du ein Bild, damit du sie dir besser vorstellen kannst. 
+      text: Dohlen sind übrigens eine Rabenart. 
     - type: photo
       file: "assets/Dohle.jpg"
     - type: message
       text: >
-            Willst du mehr über die Kirche erfahren, oder weitergehen?
+            Willst du mehr über die Kirche erfahren?
       InlineKeyboard:
         - text: "💡 mehr Infos"
           data:  'action:info_kirche'
