@@ -200,6 +200,8 @@ weg02:
 
 frage_weinmeisterstrasse:
     - type: message
+      text: 🐾
+    - type: message
       text: Weil das Trinkwasser in Golm früher nicht so gut war, wurde sehr viel Wein angebaut. Im Laufe der Zeit änderte sich das.
     - type: poll
       question: Was meinst du, woran lag das?
@@ -289,15 +291,15 @@ info_supermarkt:
       text: "Mehr über die Ausstellungen findest du hier: https://artsupermarkt.de/"
       InlineKeyboard:
         - text: "🐾 weiter"
-          data:  'action:aufstieg_reiherberg'
+          data: 'action:aufstieg_reiherberg'
 
 aufstieg_reiherberg:
     - type: message
       text: 🐾
     - type: message
       text: >
-           Jetzt stehst du bereits am Fuße des Reiherbergs! Folge dem kleinen Pfad nach oben, bis du zur Aussichtsplattform kommst!
-           Wir treffen uns oben wieder, dann kannst du in Ruhe die Natur genießen. 
+            Jetzt stehst du bereits am Fuße des Reiherbergs! Folge dem kleinen Pfad nach oben, bis du zur Aussichtsplattform kommst!
+            Wir treffen uns oben wieder, dann kannst du in Ruhe die Natur genießen. 
     - type: message
       text: >
             Wenn dir das zu ruhig ist, kannst du dir auf dem Weg auch die Sage um die Entstehung des Reiherbergs anhören.
