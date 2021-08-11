@@ -1,7 +1,7 @@
 import logging
 
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton,
-                      Sticker, InlineKeyboardButton, InlineKeyboardMarkup, Update)
+                      Sticker, InlineKeyboardButton, InlineKeyboardMarkup, Update, message)
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
                           ConversationHandler, CallbackContext)
 
@@ -15,10 +15,12 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-dbname = "reiherbot_user"
+user_dbname = "reiherbot_user"
+interaction_dbname = "reiherbot_interaction"
 with open("ca-certificate.crt", "w") as text_file:
             text_file.write(os.getenv('DATABASE_CERT'))
-mongoengine.connect(alias=dbname, host="mongodb+srv://"+ os.getenv("DATABASE_USERNAME")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
+mongoengine.connect(alias=user_dbname, host="mongodb+srv://"+ os.getenv("DATABASE_USERNAME")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+user_dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
+mongoengine.connect(alias=interaction_dbname, host="mongodb+srv://"+ os.getenv("DATABASE_USERNAME")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+interaction_dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
 
 
 def log_update(update: Update, context: CallbackContext):
@@ -34,10 +36,22 @@ class User(mongoengine.Document):
     username = mongoengine.StringField(max_length=50)
     language_code = mongoengine.StringField(max_length=10)
     entry_time = mongoengine.DateTimeField(default=datetime.datetime.utcnow)
-    meta = {'db_alias': dbname}
+    meta = {'db_alias': user_dbname}
+
+class Interaction(mongoengine.Document):
+    user = mongoengine.ReferenceField(User)
+    update_id  = mongoengine.IntField()
+    message = mongoengine.DictField()
+    meta = {'db_alias': interaction_dbname}
+
 
 def entry_conversation(update: Update, context: CallbackContext):
-    User(user_id=str(update.effective_user.id), first_name=update.effective_user.first_name, last_name=update.effective_user.last_name, username=update.effective_user.username, language_code=update.effective_user.language_code).save()
+    db_user = User(user_id=str(update.effective_user.id), first_name=update.effective_user.first_name, last_name=update.effective_user.last_name, username=update.effective_user.username, language_code=update.effective_user.language_code)
+    db_user.save()
+    context["user_id"] = db_user.pk
+    
+    Interaction(user=context["user_id"], update_id=update.update_id, message=update.message.to_dict()).save()
+
     if context.args:
         keyboard = [[InlineKeyboardButton(
             "🐾 los", callback_data='action:' + context.args[0])]]
