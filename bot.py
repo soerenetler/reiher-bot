@@ -417,9 +417,6 @@ if __name__ == '__main__':
                                       CommandHandler('weiter', en_reiherbergActions["en_ende_feedback"]),
                                       CommandHandler('continue', en_reiherbergActions["en_ende_feedback"]),
                                       TypeHandler(Update, en_reiherbergActions["en_feedback_tipp"])],
-            "EN_RUECKFRAGEN": prechecks+[MessageHandler(Filters.regex('^(Ja|Ja, gerne! 😎|Nein)$'), en_reiherbergActions["en_ende_feedback"]),
-            TypeHandler(Update, en_reiherbergActions["en_rueckfragen_tipp"])],
-
 
             ConversationHandler.TIMEOUT: [MessageHandler(Filters.regex(r'^(.)+'), reiherbergActions["timeout"])],
         },
