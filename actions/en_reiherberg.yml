@@ -462,7 +462,7 @@ en_kirche_frage:
     - type: message
       parse_mode: MarkdownV2
       text: >
-            Since the church was the present of the Emperor (de: Kaiser) Friedrich to the village\,
+            Since the church was the present of the German Emperor Friedrich to the village\,
             it bears his name\: *Kaiser\-Friedrich\-Kirche*\.
     - type: poll
       question: The church was awarded with a distinction by the Nature and Biodiversity Conservation Union (NABU). Can you imagine why? 
