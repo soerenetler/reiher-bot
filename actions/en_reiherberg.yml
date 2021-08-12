@@ -58,6 +58,7 @@ en_frage_bahnhof_aufloesung:
       text: >
             During the week 106 regional trains departure from Golm.
     - type: message
+      parse_mode: MarkdownV2
       text: |
             *to Potsdam main station*
             🕛 from platform 2 on the hour 

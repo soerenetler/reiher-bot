@@ -3,9 +3,7 @@ from telegram.ext import CallbackContext, ConversationHandler
 from PIL import Image
 import re
 
-import base64
 from io import BytesIO
-import yaml
 
 from actions import utils
 from actions.utils import log
