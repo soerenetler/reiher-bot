@@ -48,9 +48,9 @@ class Interaction(mongoengine.Document):
 def entry_conversation(update: Update, context: CallbackContext):
     db_user = User(user_id=str(update.effective_user.id), first_name=update.effective_user.first_name, last_name=update.effective_user.last_name, username=update.effective_user.username, language_code=update.effective_user.language_code)
     db_user.save()
-    context["user_id"] = db_user.pk
+    context.user_data["user_id"] = db_user
     
-    Interaction(user=context["user_id"], update_id=update.update_id, message=update.message.to_dict()).save()
+    Interaction(user=context.user_data["user_id"], update_id=update.update_id, message=update.message.to_dict()).save()
 
     if context.args:
         keyboard = [[InlineKeyboardButton(
