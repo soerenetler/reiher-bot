@@ -385,7 +385,9 @@ en_foto_reiherberg_anweisung:
 
 en_foto_reiherberg_aufloesung:
     - type: function
-      func: foto_contest
+      func: write
+      bucket: reiherbot
+      folder: en_reiherberg
     - type: media_group
       files:
         - "assets/reiherberg/reiherberg14.jpg"

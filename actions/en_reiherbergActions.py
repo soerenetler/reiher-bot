@@ -41,56 +41,6 @@ def eval_schaetzfrage_bahnhof(update, context):
         update.message.reply_text('Nicht ganz!',
             reply_markup=ReplyKeyboardRemove())
 
-def eval_frage_quiz(update, context):
-    update = update["poll_answer"]
-    
-    if update.option_ids == [1]:
-        user = context.user_data["name"] 
-        update.user.send_message('Richtig, {} 🎉 '.format(user),
-                                reply_markup=ReplyKeyboardRemove())
-    
-    else:
-        update.user.send_message('Nicht ganz!',
-                                reply_markup=ReplyKeyboardRemove())
-
-def eval_ubahn_aufloesung(update, context):
-    update = update["poll_answer"]
-
-    if update.option_ids == [0]:
-        user = context.user_data["name"] 
-        update.user.send_message('Richtig, {} 🎉 es war der Kurfürstendamm! '.format(user),
-                                reply_markup=ReplyKeyboardRemove())
-    
-    else:
-        update.user.send_message('Hast du das Schild übersehen? Die richtige Antwort war Kurfürstendamm! ',
-                                reply_markup=ReplyKeyboardRemove())
-
-def eval_weinmeisterstrasse_aufloesung(update, context):
-    update = update["poll_answer"]
-
-    user = context.user_data["name"] 
-    if update.option_ids == [0]:
-        update.user.send_message('Richtig!',
-                                reply_markup=ReplyKeyboardRemove())
-    
-    else:
-        update.user.send_message('Das war nur ein Grund.',
-                                reply_markup=ReplyKeyboardRemove())
-
-def eval_fehlerbild_reiherberg(update, context):
-    update = update["poll_answer"]
-
-    user = context.user_data["name"] 
-    if update.option_ids == [3]:
-        update.user.send_message('Stimmt {}! Im Dorfkern gibt es keinen Supermarkt mehr. 🛍️'.format(user),
-                                reply_markup=ReplyKeyboardRemove())
-    
-    else:
-        update.user.send_message('Das war nicht der Fehler!',
-                                reply_markup=ReplyKeyboardRemove())
-        update.user.send_message('Im Dorfkern gibt es keinen Supermarkt mehr (und somit auch kein Supermarktschild). 🛍️',
-                                reply_markup=ReplyKeyboardRemove())
-
 def eval_schaetzfrage_reiherberg(update, context):
     schaetzung = int(re.findall(r"\d{1,}", update.message.text)[0])
     echter_wert = 68
@@ -103,14 +53,6 @@ def eval_schaetzfrage_reiherberg(update, context):
     else:
         update.message.reply_text('Knapp daneben!',
             reply_markup=ReplyKeyboardRemove())
-
-def foto_contest(update, context):
-    if update.message.photo:
-        user_id = update.effective_user.id
-        name = update.effective_user.name
-        photo_file = update.message.photo[-1].get_file()
-        photo_file.download("../photos/" + str(user_id) + "_" + name + '.jpg')
-        update.message.reply_text('Tolle Aussicht, oder? ')
 
 def eval_kirche_wortraetsel(update, context):
     antwort = update.message.text
@@ -174,48 +116,13 @@ def reiherberg_medaille(update, context):
 def bahnhof_timetable(update, context):
     update.message.reply_text('Der nächste Zug fährt in 3 Minuten!', reply_markup=ReplyKeyboardRemove())
 
-def get_feedback(update, context):
-    if type(update) == CallbackQuery:
-        user_id = update.from_user.id
-    else:
-        user_id = update.effective_user.id
-    
-    if update.message.voice:
-        voice_file = update.message.voice.get_file()
-        voice_file.download('../feedback/' + str(user_id) + '.mp3')
-    if update.message.text:
-        with open('../feedback/'+ str(user_id) + '.txt','a+') as file_object:
-            file_object.write(update.message.text + "\n")
-
-def ende_feedback(update, context):
-    if type(update) == CallbackQuery:
-        user_id = update.from_user.id
-        name = update.from_user.name
-    else:
-        user_id = update.effective_user.id
-        name = update.effective_user.name
-    if update.message.text:
-        if update.message.text == "Ja, gerne! 😎":
-            with open('../feedback/feedback_mapping.txt','a+') as file_object:
-                file_object.write(str(user_id) + ", " + name + "\n")
-        if update.message.text == "Lieber nicht ⚔️":
-            pass
-
-
 action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "eval_schaetzfrage_bahnhof": eval_schaetzfrage_bahnhof,
-                    "eval_frage_quiz": eval_frage_quiz,
-                    "eval_ubahn_aufloesung": eval_ubahn_aufloesung,
-                    "eval_weinmeisterstrasse_aufloesung": eval_weinmeisterstrasse_aufloesung,
-                    "eval_fehlerbild_reiherberg": eval_fehlerbild_reiherberg,
                     "eval_schaetzfrage_reiherberg": eval_schaetzfrage_reiherberg,
-                    "foto_contest": foto_contest,
                     "eval_kirche_wortraetsel": eval_kirche_wortraetsel,
                     "eval_kirche_frage": eval_kirche_frage,
                     "eval_storchenbank": eval_storchenbank,
                     "eval_frage_feuwerwehr": eval_frage_feuwerwehr,
                     "reiherberg_medaille": reiherberg_medaille,
-                    "bahnhof_timetable": bahnhof_timetable,
-                    "get_feedback": get_feedback,
-                    "ende_feedback": ende_feedback
+                    "bahnhof_timetable": bahnhof_timetable
                     }
