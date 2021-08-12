@@ -35,7 +35,7 @@ en_frage_bahnhof:
     - type: return
       state: EN_BAHNHOF_FRAGE
 
-frage_bahnhof_tipp:
+en_frage_bahnhof_tipp:
     - type: message
       text: 'Hmm, I didn't understand that. You can just send me the answer as a number.'
 
@@ -810,16 +810,11 @@ en_feedback_geben:
   - type: message
     text: Just write your feedback in the chat or send us a voice message.
 
-en_kontakt_rueckfragen:
-    - type: message
-      text: Thank you for your feedback! May we contact you if we have any questions?
-      ReplyKeyboardMarkup:
-        - text: "Yes, sure! 😎"
-        - text: "Better not ⚔️"
-    - type: function
-      func: get_feedback
-    - type: return
-      state: EN_RUECKFRAGEN
+en_end:
+  - type: message
+    text: With /start you can go back and take a new tour.
+  - type: return
+    state: EN_END
 
 en_ende_feedback:
   - type: function
