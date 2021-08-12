@@ -54,21 +54,6 @@ def eval_quiz(update: Update, context: CallbackContext, correct_option_id:int, c
         update.poll_answer.user.send_message(wrong_answer_text.format(name=context.user_data["name"]),
                                 reply_markup=ReplyKeyboardRemove())
 
-def eval_fehlerbild_reiherberg(update, context):
-    update = update["poll_answer"]
-
-    user = context.user_data["name"]
-    if update.option_ids == [3]:
-        update.user.send_message('Stimmt {}! Im Dorfkern gibt es keinen Supermarkt mehr. 🛍️'.format(user),
-                                 reply_markup=ReplyKeyboardRemove())
-
-    else:
-        update.user.send_message('Das war nicht der Fehler!',
-                                 reply_markup=ReplyKeyboardRemove())
-        update.user.send_message('Im Dorfkern gibt es keinen Supermarkt mehr (und somit auch kein Supermarktschild). 🛍️',
-                                 reply_markup=ReplyKeyboardRemove())
-
-
 def eval_schaetzfrage_reiherberg(update, context):
     schaetzung = int(re.findall(r"\d{1,}", update.message.text)[0])
     echter_wert = 68
@@ -104,46 +89,25 @@ def eval_storchenbank(update, context):
 
 
 def reiherberg_medaille(update, context):
+    try:
+        photo_files = update.from_user.get_profile_photos().photos[0][-1].get_file().download_as_bytearray()
+        # convert image to file-like object
+        profile_file = BytesIO(photo_files)
+        # img is now PIL Image object
+        background = Image.open(profile_file)
+        logger.info(background.size)
+        foreground = Image.open('assets/Skyline_02_gelb.png')
 
-    photo_files = update.from_user.get_profile_photos().photos
-
-    if photo_files:
-        if photo_files[0]:
-            profile_bytes = photo_files[0][-1].get_file().download_as_bytearray()
-
-            # convert image to file-like object
-            profile_file = BytesIO(profile_bytes)
-            # img is now PIL Image object
-            background = Image.open(profile_file)
-            logger.info(background.size)
-            foreground = Image.open('assets/Skyline_02_gelb.png')
-
-            update.message.reply_photo(
-                utils.overlay_images(background, foreground))
-        else:
-            update.message.reply_photo(
+        update.message.reply_photo(
+            utils.overlay_images(background, foreground))
+    except:
+        update.message.reply_photo(
                 open("assets/Skyline_02_gelb.png", 'rb'))
-    else:
-        update.message.reply_photo(open("assets/Skyline_02_gelb.png", 'rb'))
 
 
 def bahnhof_timetable(update, context):
     update.message.reply_text(
         'Der nächste Zug fährt in 3 Minuten!', reply_markup=ReplyKeyboardRemove())
-
-def ende_feedback(update, context):
-    if type(update) == CallbackQuery:
-        user_id = update.from_user.id
-        name = update.from_user.name
-    else:
-        user_id = update.effective_user.id
-        name = update.effective_user.name
-    if update.message.text:
-        if update.message.text == "Ja, gerne! 😎":
-            with open('feedback_mapping.txt', 'a+') as file_object:
-                file_object.write(str(user_id) + ", " + name + "\n")
-        if update.message.text == "Lieber nicht ⚔️":
-            pass
 
 
 action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
@@ -154,6 +118,5 @@ action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "eval_storchenbank": eval_storchenbank,
                     "reiherberg_medaille": reiherberg_medaille,
                     "bahnhof_timetable": bahnhof_timetable,
-                    "ende_feedback": ende_feedback,
                     "eval_quiz": eval_quiz
                     }

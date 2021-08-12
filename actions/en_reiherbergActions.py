@@ -18,7 +18,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 def send_bahnhof_gif(update, context):
-    im_bytes = update.message.photo[0].get_file().download_as_bytearray()
+    im_bytes = update.message.photo[-1].get_file().download_as_bytearray()
 
     im_file = BytesIO(im_bytes)  # convert image to file-like object
     im1 = Image.open(im_file)   # img is now PIL Image object
@@ -29,7 +29,7 @@ def send_bahnhof_gif(update, context):
     update.message.reply_document(gif)
 
 def eval_schaetzfrage_bahnhof(update, context):
-    schaetzung = int(update.message.text)
+    schaetzung = int(re.findall(r"\d{1,}", update.message.text)[0])
     echter_wert = 106
     if schaetzung == echter_wert:
         update.message.reply_text('Nicht schlecht! (Das ist brandenburgisch für "gut gemacht!") 😉',
@@ -64,54 +64,31 @@ def eval_kirche_wortraetsel(update, context):
     else:
         update.message.reply_text('Fast!', reply_markup=ReplyKeyboardRemove())
 
-def eval_kirche_frage(update, context):
-    update = update["poll_answer"]
-
-    user = context.user_data["name"] 
-    if update.option_ids == [0]:
-        update.user.send_message('Stimmt {}!'.format(user),
-                                reply_markup=ReplyKeyboardRemove())
-    else:
-        update.user.send_message('Ups!', reply_markup=ReplyKeyboardRemove())
-
 def eval_storchenbank(update, context):
-    antwort = update.message.text
-    echter_wert = "2012"
-    if antwort.lower() == echter_wert.lower():
+    antwort = int(re.findall(r"\d{1,}", update.message.text)[0])
+    echter_wert = 2012
+    if antwort.lower() == echter_wert:
         update.message.reply_text('Du hast die Tafel also entdeckt! Dort werden seit vielen Jahren die Rückkehrzeiten und der Nachwuchs des Storchenpaares festgehalten.',
             reply_markup=ReplyKeyboardRemove())
     else:
         update.message.reply_text('Fast! Neben der Storchenbank findest du eine Tafel, auf der seit vielen Jahren die Rückkehrzeiten und der Nachwuchs des Storchenpaares festgehalten werden.', reply_markup=ReplyKeyboardRemove())
 
-def eval_frage_feuwerwehr(update, context):
-    update = update["poll_answer"]
-
-    user = context.user_data["name"] 
-    if update.option_ids == [1]:
-        update.user.send_message('Stimmt {}!'.format(user),
-                                reply_markup=ReplyKeyboardRemove())
-    else:
-        update.user.send_message('Ups!', reply_markup=ReplyKeyboardRemove())
 
 def reiherberg_medaille(update, context):
+    try:
+        photo_files = update.from_user.get_profile_photos().photos[0][-1].get_file().download_as_bytearray()
+        # convert image to file-like object
+        profile_file = BytesIO(photo_files)
+        # img is now PIL Image object
+        background = Image.open(profile_file)
+        logger.info(background.size)
+        foreground = Image.open('assets/Skyline_02_gelb.png')
 
-    photo_files = update.from_user.get_profile_photos().photos
-
-    if photo_files:
-        if photo_files[0]:
-            profile_bytes = photo_files[0][-1].get_file().download_as_bytearray()
-
-            profile_file = BytesIO(profile_bytes)  # convert image to file-like object
-            background = Image.open(profile_file)   # img is now PIL Image object
-            logger.info(background.size)
-            foreground = Image.open('assets/Skyline_02_gelb.png')
-
-
-            update.message.reply_photo(utils.overlay_images(background, foreground))            
-        else:
-            update.message.reply_photo(open("assets/Skyline_02_gelb.png", 'rb'))
-    else:
-        update.message.reply_photo(open("assets/Skyline_02_gelb.png", 'rb'))
+        update.message.reply_photo(
+            utils.overlay_images(background, foreground))
+    except:
+        update.message.reply_photo(
+                open("assets/Skyline_02_gelb.png", 'rb'))
 
 def bahnhof_timetable(update, context):
     update.message.reply_text('Der nächste Zug fährt in 3 Minuten!', reply_markup=ReplyKeyboardRemove())
@@ -120,9 +97,7 @@ action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "eval_schaetzfrage_bahnhof": eval_schaetzfrage_bahnhof,
                     "eval_schaetzfrage_reiherberg": eval_schaetzfrage_reiherberg,
                     "eval_kirche_wortraetsel": eval_kirche_wortraetsel,
-                    "eval_kirche_frage": eval_kirche_frage,
                     "eval_storchenbank": eval_storchenbank,
-                    "eval_frage_feuwerwehr": eval_frage_feuwerwehr,
                     "reiherberg_medaille": reiherberg_medaille,
                     "bahnhof_timetable": bahnhof_timetable
                     }

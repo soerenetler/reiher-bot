@@ -20,7 +20,7 @@ en_frage_bahnhof_gif_aufloesung:
     - type: function
       func: send_bahnhof_gif
     - type: message
-      text: 'It hasn´t changed much, has it?'
+      text: "It hasn't changed much, has it?"
       InlineKeyboard:
         - text: "🐾 continue"
           data:  'action:en_frage_bahnhof'
@@ -565,9 +565,9 @@ en_weg_schule:
       text: '🐾'
     - type: message
       text: >
-            Follow the road to the right, directly past the old cemetery,
-            until you see the town hall on your right.
-            No worries, you won´t miss it, because you will find an emblem with me, the heron, on it.
+            "Follow the road to the right, directly past the old cemetery,"
+            "until you see the town hall on your right."
+            "No worries, you won't miss it, because you will find an emblem with me, the heron, on it."
       InlineKeyboard:
         - text: "🐾 continue"
           data: 'action:en_schule'
