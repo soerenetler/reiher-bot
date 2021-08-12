@@ -37,7 +37,7 @@ en_frage_bahnhof:
 
 en_frage_bahnhof_tipp:
     - type: message
-      text: 'Hmm, I didn't understand that. You can just send me the answer as a number.'
+      text: "Hmm, I didn't understand that. You can just send me the answer as a number."
 
 en_frage_bahnhof_aufloesung:
     - type: function
@@ -114,7 +114,7 @@ en_frage_quiz:
   
 en_frage_quiz_tipp:
     - type: message
-      text: 'I did not understand the input. If you answer the quiz, you will automatically advance.'
+      text: "I did not understand the input. If you answer the quiz, you will automatically advance."
 
 en_frage_quiz_aufloesung:
     - type: function
@@ -154,7 +154,7 @@ en_frage_ubahn:
     - type: message
       text: '🐾'
     - type: poll
-      question: Have you discovered the Berlin underground station? If so, do you remember which U-Bahn station it was?
+      question: "Have you discovered the Berlin underground station? If so, do you remember which U-Bahn station it was?"
       options:
         - "Kurfürstendamm"
         - "Unter den Linden"
@@ -165,7 +165,7 @@ en_frage_ubahn:
 
 en_frage_ubahn_tipp:
     - type: message
-      text: 'I didn't understand the input. If you answer the quiz, you will automatically advance.'
+      text: "I didn't understand the input. If you answer the quiz, you will automatically advance."
 
 
 en_frage_ubahn_aufloesung:
@@ -212,7 +212,7 @@ en_frage_weinmeisterstrasse:
 
 en_frage_weinmeisterstrasse_tipp:
     - type: message
-      text: 'I didn't understand the input. If you answer the quiz, you'll automatically move on.'
+      text: "I didn't understand the input. If you answer the quiz, you'll automatically move on."
 
 en_frage_weinmeisterstrasse_aufloesung:
     - type: message
@@ -264,7 +264,7 @@ en_fehlerbild_reiherberg_bank:
 
 en_fehlerbild_reiherberg_tipp:
     - type: message
-      text: 'I didn't understand the input. If you answer the quiz, you will automatically advance.'
+      text: "I didn't understand the input. If you answer the quiz, you will automatically advance."
     
 en_fehlerbild_reiherberg_aufloesung:
     - type: function
@@ -333,7 +333,7 @@ en_schaetzfrage_reiherberg:
 
 en_schaetzfrage_reiherberg_tipp:
     - type: message
-      text: I did not understand your message. How many meters is it high?
+      text: "I did not understand your message. How many meters is it high?"
 
 en_schaetzfrage_reiherberg_aufloesung:
     - type: function
@@ -377,7 +377,7 @@ en_foto_reiherberg:
 
 en_foto_reiherberg_tipp:
     - type: message
-      text: Send me a photo of the view. Then it goes on...
+      text: "Send me a photo of the view. Then it goes on..."
 
 en_foto_reiherberg_anweisung:
   - type: message
@@ -450,7 +450,7 @@ en_kirche_wortraetsel:
 
 en_kirche_wortraetsel_tipp:
     - type: message
-      text: 'I did not expect this answer. You can send me the solution of the puzzle as a message.'
+      text: "I did not expect this answer. You can send me the solution of the puzzle as a message."
 
 en_kirche_frage:
     - type: function
@@ -472,7 +472,7 @@ en_kirche_frage:
 
 en_kirche_frage_tipp:
     - type: message
-      text: 'I did not understand the input. If you answer the quiz, you will automatically advance.'
+      text: "I did not understand the input. If you answer the quiz, you will automatically advance."
 
 en_kirche_aufloesung:
     - type: function
@@ -526,7 +526,7 @@ en_frage_storchenbank:
 
 en_frage_storchenbank_tipp:
     - type: message
-      text: What year was it? You can send me the year as a message.
+      text: "What year was it? You can send me the year as a message."
 
 en_frage_storchenbank_aufloesung:
     - type: function
@@ -647,7 +647,7 @@ en_frage_feuerwehr:
 
 frage_feuerwehr_tipp:
     - type: message
-      text: 'I did not understand the input. If you answer the quiz, you will automatically advance.'
+      text: "I did not understand the input. If you answer the quiz, you will automatically advance."
 
 
 en_frage_feuerwehr_aufloesung:
