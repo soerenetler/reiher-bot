@@ -124,7 +124,7 @@ en_frage_quiz_aufloesung:
       correct_answer_text: 'Correct, {name} 🎉'
       wrong_answer_text: 'Not quite!'
     - type: sticker
-      id: CAACAgIAAxkBAAIltF-WnMTLW4yEo7mHp-wc3TimCuCVAAIDAANwgCcYRPP-4x304-sbBA
+      id: 'CAACAgIAAxkBAAIiL2ET4VMouosJKz-SHErJSCIjJjABAAL0DQAC8kuhSBy3iiOyQmuyIAQ'
     - type: message
       text: |
             Many herons have always lived around Golm.
@@ -306,9 +306,9 @@ en_aufstieg_reiherberg:
             Let me know when you reach the viewing platform.
       InlineKeyboard:
         - text: "💡 The Legend"
-          data:  'info_sage_reiherberg'
+          data:  'en_info_sage_reiherberg'
         - text: "🐾 continue"
-          data:  'weiter_schaetzfrage_reiherberg'
+          data:  'action:schaetzfrage_reiherberg'
     - type: return
       state: EN_AUFSTIEG_REIHERBERG
 
@@ -319,7 +319,7 @@ en_info_sage_reiherberg:
       performer: "Reiherbot"
       InlineKeyboard:
         - text: "🐾 continue"
-          data:  'weiter'
+          data:  'action:en_schaetzfrage_reiherberg'
 
 en_schaetzfrage_reiherberg:
     - type: message
@@ -347,9 +347,9 @@ en_schaetzfrage_reiherberg_aufloesung:
             But the view from Reiherberg is incomparable and invites you to take photos. 🌄
       InlineKeyboard:
         - text: "💡 more info"
-          data:  'info_reiherberg'
+          data:  'action:en_info_reiherberg'
         - text: "🐾 continue"
-          data:  'weiter_foto_reiherberg'
+          data:  'action:en_foto_reiherberg'
     - type: return
       state: EN_SCHAETZFRAGE_REIHERBERG_AUFLOESUNG
 
@@ -360,7 +360,7 @@ en_info_reiherberg:
       performer: "Reiherbot"
       InlineKeyboard:
         - text: "🐾 continue"
-          data:  'weiter'
+          data:  'action:en_foto_reiherberg'
 
 en_foto_reiherberg:
     - type: message
