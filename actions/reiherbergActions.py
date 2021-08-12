@@ -112,7 +112,6 @@ def bahnhof_timetable(update, context):
 
 action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "eval_schaetzfrage_bahnhof": eval_schaetzfrage_bahnhof,
-                    "eval_fehlerbild_reiherberg": eval_fehlerbild_reiherberg,
                     "eval_schaetzfrage_reiherberg": eval_schaetzfrage_reiherberg,
                     "eval_kirche_wortraetsel": eval_kirche_wortraetsel,
                     "eval_storchenbank": eval_storchenbank,
