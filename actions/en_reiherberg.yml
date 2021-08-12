@@ -806,6 +806,10 @@ en_ende_bahnhof:
     - type: return
       state: EN_FEEDBACK
 
+en_feedback_tipp:
+  - type: message
+    text: Just write your feedback in the chat or send us a voice message.
+
 en_feedback_geben:
   - type: message
     text: Just write your feedback in the chat or send us a voice message.
