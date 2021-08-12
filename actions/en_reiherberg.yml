@@ -306,7 +306,7 @@ en_aufstieg_reiherberg:
             Let me know when you reach the viewing platform.
       InlineKeyboard:
         - text: "💡 The Legend"
-          data:  'en_info_sage_reiherberg'
+          data:  'action:en_info_sage_reiherberg'
         - text: "🐾 continue"
           data:  'action:schaetzfrage_reiherberg'
     - type: return
