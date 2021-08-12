@@ -125,7 +125,7 @@ if __name__ == '__main__':
             "EN_REIHERBERGROUTE_BESTAETIGEN": prechecks+[CommandHandler('weiter', en_reiherbergActions["en_frage_bahnhof_gif"]),
                                                          MessageHandler(Filters.regex(
                                                              '^(Yes, I am ready 🏁|Ja|yes|Yes)$'), en_reiherbergActions["en_frage_bahnhof_gif"]),
-                                                        CommandHandler("yes", reiherbergActions["en_frage_bahnhof_gif"]),
+                                                        CommandHandler("yes", en_reiherbergActions["en_frage_bahnhof_gif"]),
                                                          MessageHandler(Filters.regex(
                                                              '^(I would rather choose another route 🤔|Nein|no|No)$'), generalActions["welche_route"]),
                                                              CommandHandler("no", reiherbergActions["welche_route"]),
