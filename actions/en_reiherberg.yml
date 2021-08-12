@@ -308,7 +308,7 @@ en_aufstieg_reiherberg:
         - text: "💡 The Legend"
           data:  'action:en_info_sage_reiherberg'
         - text: "🐾 continue"
-          data:  'action:schaetzfrage_reiherberg'
+          data:  'action:en_schaetzfrage_reiherberg'
     - type: return
       state: EN_AUFSTIEG_REIHERBERG
 
@@ -367,8 +367,8 @@ en_foto_reiherberg:
       text: '🐾'
     - type: message
       text: >
-            Take a pic and send it to me. 📸
-            You can find the photos on our website afterwards.
+            "Take a pic and send it to me. 📸"
+            "You can find the photos on our website afterwards."
       InlineKeyboard:
         - text: "🧀 Cheese"
           data: 'action:en_foto_reiherberg_anweisung'
