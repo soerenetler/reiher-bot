@@ -128,7 +128,7 @@ if __name__ == '__main__':
                                                         CommandHandler("yes", en_reiherbergActions["en_frage_bahnhof_gif"]),
                                                          MessageHandler(Filters.regex(
                                                              '^(I would rather choose another route 🤔|Nein|no|No)$'), generalActions["welche_route"]),
-                                                             CommandHandler("no", reiherbergActions["welche_route"]),
+                                                             CommandHandler("no", generalActions["welche_route"]),
                                                          TypeHandler(Update, generalActions["en_start_reiherberg_route_tipp"])],
 
             #######REIHERBERG-ROUTE#######
