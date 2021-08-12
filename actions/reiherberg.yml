@@ -12,6 +12,21 @@ frage_bahnhof_gif_tipp:
     - type: message
       text: "Ich habe eigentlich ein Bild erwartet. Wenn du mir ein Bild schickst, kann ich es für dich mit der alten Aufnahme gegenüberstellen."
 
+frage_bahnhof_gif_aufloesung:
+    - type: function
+      func: write
+      bucket: reiherbot
+      folder: bahnhof_gif
+    - type: function
+      func: send_bahnhof_gif
+    - type: message
+      text: 'So viel hat sich gar nicht geändert, oder?'
+      InlineKeyboard:
+        - text: "🐾 weiter"
+          data:  'action:frage_bahnhof'
+    - type: return
+      state: BAHNHOF_FRAGE_GIF_AUFLOESUNG
+
 frage_bahnhof:
     - type: message
       text: '🐾'
@@ -61,21 +76,6 @@ frage_bahnhof_aufloesung:
           data:  'action:weg01'
     - type: return
       state: BAHNHOF_FRAGE_AUFLOESUNG
-
-frage_bahnhof_gif_aufloesung:
-    - type: function
-      func: write
-      bucket: reiherbot
-      folder: bahnhof_gif
-    - type: function
-      func: send_bahnhof_gif
-    - type: message
-      text: 'So viel hat sich gar nicht geändert, oder?'
-      InlineKeyboard:
-        - text: "🐾 weiter"
-          data:  'action:frage_bahnhof'
-    - type: return
-      state: BAHNHOF_FRAGE_GIF_AUFLOESUNG
 
 info_bahnhof:
     - type: audio

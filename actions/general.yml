@@ -10,12 +10,12 @@ start_see_route:
 
 en_start_reiherberg_route:
   - type: message
-    text: Klasse Wahl 👍 Auf der Reiherbergroute zeige ich dir mein Zuhause, den Reiherberg.
+    text: Great choice 👍 On this route I will show you around my home, the Heron Hill.
   - type: message
     text: Für diesen Weg brauchen wir etwa eine Stunde.
     ReplyKeyboardMarkup:
-        - text: "Ja, ich bin bereit 🏁"
-        - text: "Ich würde doch lieber eine andere Route gehen 🤔"
+        - text: "Yes, I am ready 🏁"
+        - text: "I would rather choose another route 🤔"
   - type: return
     state: EN_REIHERBERGROUTE_BESTAETIGEN
 

@@ -8,7 +8,15 @@ en_frage_bahnhof_gif:
     - type: return
       state: EN_BAHNHOF_FRAGE_GIF
 
+en_frage_bahnhof_gif_tipp:
+    - type: message
+      text: "I was actually expecting a picture. If you send me a picture, I can contrast it for you with the old shot."
+
 en_frage_bahnhof_gif_aufloesung:
+    - type: function
+      func: write
+      bucket: reiherbot
+      folder: en_bahnhof_gif
     - type: function
       func: send_bahnhof_gif
     - type: message
@@ -26,6 +34,10 @@ en_frage_bahnhof:
       text: 'Since we are at the station: What do you think, how many regional trains come and leave daily from the Golm stop? 🚂'
     - type: return
       state: EN_BAHNHOF_FRAGE
+
+frage_bahnhof_tipp:
+    - type: message
+      text: 'Hmm, I didn't understand that. You can just send me the answer as a number.'
 
 en_frage_bahnhof_aufloesung:
     - type: function
@@ -73,11 +85,11 @@ en_weg01:
     - type: message
       text: '🐾'
     - type: message
-      text: "Then let's go, after all we have a mountain to explore!"
+      text: "Let's go!"
     - type: message
       text: >
-            Take the first path parallel to the railway line. 🛤️ 
-            The railway tracks should stay on the right from you.
+            Our path follows the railway line. 🛤️ 
+            The tracks should stay on the right from you.
             Follow the road until you reach a small footpath.
     - type: message
       text: 'Let me know when you are there!'
@@ -99,14 +111,26 @@ en_frage_quiz:
       correct_option_id: 1
     - type: return
       state: EN_FRAGE_QUIZ
+  
+en_frage_quiz_tipp:
+    - type: message
+      text: 'I did not understand the input. If you answer the quiz, you will automatically advance.'
 
 en_frage_quiz_aufloesung:
+    - type: function
+      func: eval_quiz
+      correct_option_id: 1
+      correct_answer_text: 'Correct, {name} 🎉'
+      wrong_answer_text: 'Not quite!'
     - type: function
       func: eval_frage_quiz
     - type: sticker
       id: CAACAgIAAxkBAAIltF-WnMTLW4yEo7mHp-wc3TimCuCVAAIDAANwgCcYRPP-4x304-sbBA
     - type: message
-      text: Many herons have always lived around Golm. They felt particularly at home in the moors and on the Reiherberg ("the heron mountain").
+      text: |
+            Many herons have always lived around Golm.
+            They felt particularly at home in the moors.
+            With a bit of luck you can spot one on our way.
       InlineKeyboard:
         - text: "🐾 continue"
           data: 'action:en_weg_01a'
@@ -139,11 +163,20 @@ en_frage_ubahn:
     - type: return
       state: EN_FRAGE_UBAHN
 
+en_frage_ubahn_tipp:
+    - type: message
+      text: 'I didn't understand the input. If you answer the quiz, you will automatically advance.'
+
+
 en_frage_ubahn_aufloesung:
     - type: function
-      func: eval_ubahn_aufloesung
+      func: eval_quiz
+      correct_option_id: 0
+      correct_answer_text: 'Correct, {name} 🎉 it was the Kurfürstendamm!'
+      correct_answer_sticker: 'CAACAgIAAxkBAAIh3GET3cUkXFHa0glqwnGmx7twUiGYAALVDgAC2ECJSAABqI8yWQXxqyAE'
+      wrong_answer_text: 'Did you miss the sign? The correct answer was Kurfürstendamm!'
     - type: message
-      text: The sign hung on the veranda on the left side from you.
+      text: The sign hung on the veranda on the left.
       InlineKeyboard:
         - text: "🐾 continue"
           data:  'action:en_weg02'
@@ -165,17 +198,21 @@ en_weg02:
 
 en_frage_weinmeisterstrasse:
     - type: message
-      text: Since the drinking water in Golm was not so good in the past, a lot of wine was grown. Over the time it had changed.
+      text: Since the drinking water in Golm was not so good in the past, a lot of wine was grown. Over the time it had changed. 🍇
     - type: poll
       question: What do you think the reason it had happened was?
       options:
-        - "A tax was introduced which made wine growing more expensive."
-        - "In 1745, the grapevines froze to death due to severe weather conditions."
-        - "Thanks to wine imports, people realised that their own wine did not taste that good."
-        - "All the reasons had led to this."
+        - "🤑 A tax made wine growing more expensive."
+        - "🥶 In the cold winter of 1745 the grapevines froze to death."
+        - "🤮 People realised that their own wine did not taste that good."
+        - "🤑🥶🤮 All the reasons had led to this."
       correct_option_id: 3
     - type: return
       state: EN_FRAGE_WEINMEISTERATRASSE
+
+en_frage_weinmeisterstrasse_tipp:
+    - type: message
+      text: 'I didn't understand the input. If you answer the quiz, you'll automatically move on.'
 
 en_frage_weinmeisterstrasse_aufloesung:
     - type: message
@@ -199,6 +236,8 @@ en_info_weinmeister:
       file: assets/audio/Weinmeisterstrae.mp3
       title: "Weinmeister"
       performer: "Reiherbot"
+    - type: message
+      text: 🍷
       InlineKeyboard:
         - text: "🐾 continue"
           data:  'action:en_fehlerbild_reiherberg_bank'
@@ -207,7 +246,9 @@ en_fehlerbild_reiherberg_bank:
     - type: message
       text: '🐾'
     - type: message
-      text: Look there! Here you can already see the signpost to Reiherberg.
+      text: |
+            Look there!
+            Here you can already see the signpost to Reiherberg.
     - type: photo
       file: assets/fehlerbild_reiherberg_bank.jpg
     - type: poll
@@ -220,6 +261,10 @@ en_fehlerbild_reiherberg_bank:
       correct_option_id: 3
     - type: return
       state: EN_FEHLERBILD_REIHERBERG
+
+en_fehlerbild_reiherberg_tipp:
+    - type: message
+      text: 'I didn't understand the input. If you answer the quiz, you will automatically advance.'
     
 en_fehlerbild_reiherberg_aufloesung:
     - type: function
@@ -286,6 +331,10 @@ en_schaetzfrage_reiherberg:
     - type: return
       state: EN_SCHAETZFRAGE_REIHERBERG
 
+en_schaetzfrage_reiherberg_tipp:
+    - type: message
+      text: I did not understand your message. How many meters is it high?
+
 en_schaetzfrage_reiherberg_aufloesung:
     - type: function
       func: eval_schaetzfrage_reiherberg
@@ -326,6 +375,10 @@ en_foto_reiherberg:
     - type: return
       state: EN_FOTO_REIHERBERG
 
+en_foto_reiherberg_tipp:
+    - type: message
+      text: Send me a photo of the view. Then it goes on...
+
 en_foto_reiherberg_anweisung:
   - type: message
     text: Let me see it! 🖼️
@@ -355,24 +408,16 @@ en_weg_kirche_1:
     - type: message
       text: > 
             Our path now leads us down the mountain.
-            When you leave the viewing platform, follow the path on the far left.
+    - type: photo
+      file: assets/Hier entlang!.jpg
+    - type: message
+      text: When you leave the viewing platform, follow the path on the far left.
             Go downhill until you reach a junction to the right.
       InlineKeyboard:
-        - text: "⁉️ Which way?"
-          data: 'action:en_weg_kirche_1_help'
         - text: "🐾 continue"
           data: 'action:en_weg_kirche_2'
     - type: return
       state: EN_WEG_KIRCHE_1
-
-en_weg_kirche_1_help:
-  - type: photo
-    file: assets/Hier entlang!.jpg
-  - type: message
-    text: Perhaps this picture will help.
-    InlineKeyboard:
-      - text: "🐾 continue"
-        data: 'action:en_weg_kirche_2'
 
 en_weg_kirche_2:
     - type: message
@@ -380,8 +425,8 @@ en_weg_kirche_2:
     - type: message
       text: >
             Turn to the right and follow the path,
-            until you reach a small staircase on your left.
-            You should already be able to see the church there.
+            until you reach a small staircase.
+            You should already be able to see the church from there.
       InlineKeyboard:
         - text: "🐾 continue"
           data: 'action:en_kirche_wortraetsel'
@@ -403,6 +448,10 @@ en_kirche_wortraetsel:
     - type: return
       state: EN_KIRCHE_WORTRAETSEL
 
+en_kirche_wortraetsel_tipp:
+    - type: message
+      text: 'I did not expect this answer. You can send me the solution of the puzzle as a message.'
+
 en_kirche_frage:
     - type: function
       func: eval_kirche_wortraetsel
@@ -421,14 +470,20 @@ en_kirche_frage:
     - type: return
       state: EN_FRAGE_KIRCHE
 
+en_kirche_frage_tipp:
+    - type: message
+      text: 'I did not understand the input. If you answer the quiz, you will automatically advance.'
+
 en_kirche_aufloesung:
     - type: function
-      func: eval_kirche_frage
+      func: eval_quiz
+      correct_option_id: 0
+      correct_answer_text: 'You are right, {name}!'
+      wrong_answer_text: 'Ups!'
     - type: message
       text: Jackdaw is a type of raven, by the way. Here's a picture so you can get a better idea of them. 
     - type: photo
       file: "assets/Dohle.jpg"
-
     - type: message
       text: Do you want to learn more about the church, or rather move on?
       InlineKeyboard:
@@ -468,6 +523,10 @@ en_frage_storchenbank:
       text: Can you find out in which year one of the storks was back in Golm the earliest?
     - type: return
       state: EN_FRAGE_STORCHENBANK
+
+en_frage_storchenbank_tipp:
+    - type: message
+      text: What year was it? You can send me the year as a message.
 
 en_frage_storchenbank_aufloesung:
     - type: function
@@ -586,9 +645,17 @@ en_frage_feuerwehr:
     - type: return
       state: EN_FRAGE_FEUERWEHR
 
+frage_feuerwehr_tipp:
+    - type: message
+      text: 'I did not understand the input. If you answer the quiz, you will automatically advance.'
+
+
 en_frage_feuerwehr_aufloesung:
     - type: function
-      func: eval_frage_feuwerwehr
+      func: eval_quiz
+      correct_option_id: 1
+      correct_answer_text: 'You are right, {name}!'
+      wrong_answer_text: 'Ups!'
     - type: message
       text: This tower is used to dry the hoses after a firefighting job.
       InlineKeyboard:
@@ -756,7 +823,9 @@ en_kontakt_rueckfragen:
 
 en_ende_feedback:
   - type: function
-    func: ende_feedback
+    func: write
+    bucket: reiherbot
+    folder: en_feedback
   - type: message
     text: Thanks for your feedback! With /start you can go back and take a new tour.
   - type: return
@@ -770,4 +839,4 @@ en_timeout:
 
 en_weiter_tipp:
   - type: message
-    text: "Sorry, I could not understand you. To continue enter /weiter or click the continue button."
+    text: "Sorry, I could not understand you. To continue enter /continue or click the continue button."
