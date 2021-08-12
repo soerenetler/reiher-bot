@@ -832,16 +832,6 @@ feedback_geben:
   - type: message
     text: Schreib einfach dein Feedback in den Chat oder sende uns eine Sprachnachricht.
 
-kontakt_rueckfragen:
-    - type: message
-      text: Danke für dein Feedback! Mit /start geht's zurück an den Anfang, um eine andere Route zu gehen.
-    - type: function
-      func: write
-      bucket: reiherbot
-      folder: feedback
-    - type: return
-      state: RUECKFRAGEN
-
 ende_feedback:
   - type: message
     text: Danke für dein Feedback! Mit /start geht's zurück an den Anfang, um eine andere Route zu gehen.

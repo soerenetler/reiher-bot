@@ -257,9 +257,7 @@ if __name__ == '__main__':
             "BLICK_SCIENCE_PARK": prechecks+[CommandHandler('weiter', reiherbergActions["ende_bahnhof"]),
                                              TypeHandler(Update, reiherbergActions["weiter_tipp"])],
 
-            "FEEDBACK": prechecks+[MessageHandler(Filters.voice, reiherbergActions["ende_feedback"]),
-                                   MessageHandler(
-                                       Filters.text, reiherbergActions["ende_feedback"]),
+            "FEEDBACK": prechecks+[MessageHandler((Filters.text | Filters.photo | Filters.voice) & ~Filters.command, reiherbergActions["ende_feedback"]),
                                    CommandHandler(
                                        'weiter', reiherbergActions["ende_feedback"]),
                                    TypeHandler(Update, reiherbergActions["feedback_tipp"])],
@@ -415,9 +413,7 @@ if __name__ == '__main__':
                                                 CommandHandler('continue', en_reiherbergActions["en_ende_bahnhof"]),
                                                 TypeHandler(Update, en_reiherbergActions["en_weiter_tipp"])],
 
-            "EN_FEEDBACK": prechecks+[MessageHandler(Filters.voice, en_reiherbergActions["en_kontakt_rueckfragen"]),
-                                      MessageHandler(
-                                          Filters.text, en_reiherbergActions["en_kontakt_rueckfragen"]),
+            "EN_FEEDBACK": prechecks+[MessageHandler((Filters.text | Filters.photo | Filters.voice) & ~Filters.command, en_reiherbergActions["en_ende_feedback"]),
                                       CommandHandler('weiter', en_reiherbergActions["en_ende_feedback"]),
                                       CommandHandler('continue', en_reiherbergActions["en_ende_feedback"]),
                                       TypeHandler(Update, en_reiherbergActions["en_feedback_tipp"])],
