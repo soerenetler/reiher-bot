@@ -269,7 +269,7 @@ en_fehlerbild_reiherberg_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 3
-      correct_answer_text: Correct {}! There is no longer a supermarket in the village center. 🛍️'
+      correct_answer_text: "Correct {}! There is no longer a supermarket in the village center. 🛍️"
       wrong_answer_text: 'That was not the mistake!'
     - type: message
       text: There used to be a small store here. Today, a small gallery - the art supermarket - is located here.
