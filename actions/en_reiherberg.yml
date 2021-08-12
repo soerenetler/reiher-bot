@@ -123,8 +123,6 @@ en_frage_quiz_aufloesung:
       correct_option_id: 1
       correct_answer_text: 'Correct, {name} 🎉'
       wrong_answer_text: 'Not quite!'
-    - type: function
-      func: eval_frage_quiz
     - type: sticker
       id: CAACAgIAAxkBAAIltF-WnMTLW4yEo7mHp-wc3TimCuCVAAIDAANwgCcYRPP-4x304-sbBA
     - type: message
