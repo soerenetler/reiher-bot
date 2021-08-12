@@ -270,7 +270,7 @@ fehlerbild_reiherberg_aufloesung:
     - type: function
       func: eval_quiz
       correct_option_id: 3
-      correct_answer_text: Stimmt {}! Im Dorfkern gibt es keinen Supermarkt mehr. 🛍️'
+      correct_answer_text: Stimmt {name}! Im Dorfkern gibt es keinen Supermarkt mehr. 🛍️'
       wrong_answer_text: 'Das war nicht der Fehler!'
     - type: message
       text: |
