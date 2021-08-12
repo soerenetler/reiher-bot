@@ -371,7 +371,7 @@ foto_reiherberg:
       parse_mode: MarkdownV2
       text: >
             Knipse ein Foto und schicke es mir zu\. 📸
-            Die schönsten Aufnahmen findest du auf unserer Website[reiherbot.de]\.
+            Die schönsten Aufnahmen findest du auf unserer [Website](reiherbot.de)\.
       InlineKeyboard:
         - text: "🧀 Cheese"
           data: 'action:foto_reiherberg_anweisung'
