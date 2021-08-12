@@ -91,11 +91,22 @@ def reiherberg_medaille(update, context):
 def bahnhof_timetable(update, context):
     update.message.reply_text('Der nächste Zug fährt in 3 Minuten!', reply_markup=ReplyKeyboardRemove())
 
+def eval_quiz(update: Update, context: CallbackContext, correct_option_id:int, correct_answer_text:str, wrong_answer_text:str, correct_answer_sticker=None):
+    if update.poll_answer.option_ids == [correct_option_id]:
+        if correct_answer_sticker:
+            update.poll_answer.user.send_sticker(correct_answer_sticker)
+        update.poll_answer.user.send_message(correct_answer_text.format(name=context.user_data["name"]),
+                                reply_markup=ReplyKeyboardRemove())
+    else:
+        update.poll_answer.user.send_message(wrong_answer_text.format(name=context.user_data["name"]),
+                                reply_markup=ReplyKeyboardRemove())
+
 action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "eval_schaetzfrage_bahnhof": eval_schaetzfrage_bahnhof,
                     "eval_schaetzfrage_reiherberg": eval_schaetzfrage_reiherberg,
                     "eval_kirche_wortraetsel": eval_kirche_wortraetsel,
                     "eval_storchenbank": eval_storchenbank,
                     "reiherberg_medaille": reiherberg_medaille,
-                    "bahnhof_timetable": bahnhof_timetable
+                    "bahnhof_timetable": bahnhof_timetable,
+                    "eval_quiz": eval_quiz
                     }
