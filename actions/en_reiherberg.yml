@@ -470,7 +470,7 @@ en_kirche_frage:
     - type: return
       state: EN_FRAGE_KIRCHE
 
-en_kirche_frage_tipp:
+en_frage_kirche_tipp:
     - type: message
       text: "I did not understand the input. If you answer the quiz, you will automatically advance."
 
