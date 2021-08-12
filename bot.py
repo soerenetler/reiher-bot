@@ -49,7 +49,7 @@ if __name__ == '__main__':
     reiherbergActions = read_action_yaml("actions/reiherberg.yml", action_functions={
                                          **reiherbergActions.action_functions, **writeActions.action_functions})
     en_reiherbergActions = read_action_yaml(
-        "actions/en_reiherberg.yml", action_functions=en_reiherbergActions.action_functions)
+        "actions/en_reiherberg.yml", action_functions={**en_reiherbergActions.action_functions, **writeActions.action_functions})
     generalActions = read_action_yaml(
         "actions/general.yml", action_functions=generalActions.action_functions)
 
