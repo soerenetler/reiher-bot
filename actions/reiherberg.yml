@@ -491,14 +491,13 @@ kirche_aufloesung:
       func: eval_quiz
       correct_option_id: 0
       correct_answer_text: 'Stimmt {name}!'
-      wrong_answer_text: 'Ups!'
+      wrong_answer_text: 'Das war es nicht!'
     - type: message
-      text: Dohlen sind übrigens eine Rabenart. 
+      text: Neben Schleiereulen nisten hier unter anderem auch Turmfalken, Mauersegler und Dohlen. 
     - type: photo
       file: "assets/Dohle.jpg"
     - type: message
-      text: >
-            Willst du mehr über die Kirche erfahren?
+      text: "Willst du mehr über die Kirche und ihre Bewohner:innen erfahren?""
       InlineKeyboard:
         - text: "💡 mehr Infos"
           data:  'action:info_kirche'
@@ -520,7 +519,9 @@ weg_storchenbank:
     - type: message
       text: '🐾'
     - type: message
-      text: Wenn du um die Kirche herum läufst, kommst du an die Storchenbank. 
+      text: |
+            Tierisch geht es auch hinter der Kirche weiter.
+            Gehe um die Kirche herum und nimm auf der Storchenbank Platz. 
       InlineKeyboard:
         - text: "🐾 weiter"
           data:  'action:frage_storchenbank'
@@ -533,7 +534,7 @@ frage_storchenbank:
     - type: message
       text: Jedes Jahr kommen Störche nach Golm und nisten auf dem gegenüberliegenden Schornstein. 
     - type: message
-      text: Kannst du herausfinden, in welchem Jahr einer der Störche am frühesten zurück in Golm war?
+      text: In welchem Jahr hatte Golm am frühesten Storchenbesuch?
     - type: return
       state: FRAGE_STORCHENBANK
 
@@ -547,11 +548,8 @@ frage_storchenbank_aufloesung:
     - type: message
       text: >
            Wenn du auf der Storchenbank sitzt, steht rechts von dir die Dorfkapelle.
-           Dort finden regelmäßig Veranstaltungen statt, von denen du über unseren Broadcast erfahren kannst.
-    - type: message
-      text: >
-            Jetzt wird es aber Zeit für den Rückweg, oder?
-            Keine Sorge, ein paar Dinge gibt es noch zu entdecken. 😉
+           Das ist das älteste Gebäude in ganz Potsdam.
+           Hier finden regelmäßig Veranstaltungen statt, über die du vom [Kulturverein](https://www.kultur-in-golm.de/) mehr erfahren kannst.
       InlineKeyboard:
         - text: "💡 mehr Infos"
           data:  'action:info_kapelle'
@@ -566,7 +564,7 @@ info_kapelle:
       title: "Kapelle"
       performer: "Reiherbot"
     - type: message
-      text: 'https://t.me/pdm_golm'
+      text: ⛪️
       InlineKeyboard:
         - text: "🐾 weiter"
           data: 'action:weg_schule'
@@ -576,32 +574,49 @@ weg_schule:
       text: '🐾'
     - type: message
       text: >
-            Folge der Straße nach rechts, direkt am alten Friedhof vorbei,
+            Jetzt wird es aber Zeit für den Rückweg, oder?
+            Keine Sorge, ein paar Dinge gibt es noch zu entdecken. 😉
+    - type: message
+      text: >
+            Folge der Straße direkt am Friedhof vorbei,
             bis du auf der rechten Seite das Gemeindehaus siehst.
-            Keine Sorge, es ist nicht schwer zu erkennen, denn du findest das Wappen mit mir, dem Reiher darauf wieder.
+    - type: message
+      text: Keine Sorge, es ist nicht schwer zu erkennen, denn du findest das Wappen darauf wieder.
       InlineKeyboard:
-        - text: "🐾 weiter"
+        - text: "🗺️ Wohin?"
+          data: 'action:schule'
+        - text: "🐾 Gefunden!"
           data: 'action:schule'
     - type: return
       state: WEG_SCHULE
+
+weg_schule_navigation:
+  - type: venue
+    latitude: 52.407101
+    longitude: 12.965527
+    address: Gemeindehaus Golm
+    title: Hier geht's weiter❕
+  - type: message
+    text: 🗺️
+    InlineKeyboard:
+        - text: "🐾 Weiter"
+          data: 'action:schule'
 
 schule:
     - type: message
       text: '🐾'
     - type: message
       text: >
-            Dieses Gebäude war früher einmal die Schule in Golm.
-            Links neben dem Gebäude, dem ehemaligen Schulhof, befand sich die Golmer Rutschbahn. 
+            Dieses Gebäude war früher einmal die Schule.
+            Links daneben war der Schulhof. 
     - type: photo
       file: "assets/Rutschberg 1903.PNG"
     - type: message
-      text: >
-            Heute tagt hier unter anderem der Ortsbeirat.
-            Gerutscht wird hier leider nicht mehr.
+      text: Hier sind Golmer:innen und Besucher aus der Region auf Kartoffelsäcken auch im Sommer den Berg hinunter gerutscht.
       InlineKeyboard:
-        - text: "💡 mehr Infos"
+        - text: "🛷 Wirklich?"
           data: 'action:info_schule'
-        - text: "🐾 weiter"
+        - text: "🐾 Weiter"
           data: 'action:weg_landhotel'
     - type: return
       state: SCHULE
@@ -614,17 +629,16 @@ info_schule:
       title: "Schule und Rodelbahn"
       performer: "Reiherbot"
       InlineKeyboard:
-        - text: "🐾 weiter"
+        - text: "🐾 Weiter"
           data: 'action:weg_landhotel'
 
 weg_landhotel:
     - type: message
       text: '🐾'
     - type: message
-      text: >
-            Folge der Reiherbergstraße weiter bis zum Landhotel.
+      text: Folge der Reiherbergstraße weiter bis zum Landhotel.
       InlineKeyboard:
-        - text: "🐾 weiter"
+        - text: "🐾 Weiter"
           data: 'action:weg_feuerwehr'
     - type: return
       state: WEG_LANDHOTEL
@@ -634,7 +648,7 @@ weg_feuerwehr:
       text: '🐾'
     - type: message
       text: >
-            Überquere die Straße und folge der kleinen, schräg verlaufenden Seitenstraße.
+            Überquere die Straße und folge der kleinen Allee.
             Unser Ziel ist die Feuerwehr - eventuell kannst du bereits den Turm sehen.
       InlineKeyboard:
         - text: "🐾 weiter"
@@ -648,13 +662,13 @@ frage_feuerwehr:
     - type: message
       text: >
             Golm hat seit 110 Jahren eine eigene Freiwillige Feuerwehr.
-            Bis heut engagieren sich viel Golmerinnen und Golmer in der Feuerwehr oder ihrem Förderverein.
+            Viel Golmerinnen und Golmer engagieren sich in der Feuerwehr oder ihrem Förderverein.
     - type: poll
       question: Weißt du, wofür der Turm genutzt wird?
       options:
-        - "Das ist ein Ausguck, von dem aus früher Brände gesichtet wurden."
+        - "Das ist ein Ausguck, von dem aus Brände gesichtet wurden."
         - "Die Schläuche werden zum Trocknen darin aufgehangen."
-        - "Die Sirene sitzt weit oben im Turm, um besser gehört zu"
+        - "Die Sirene sitzt weit oben im Turm, um besser gehört zu werden."
       correct_option_id: 1
     - type: return
       state: FRAGE_FEUERWEHR
@@ -668,14 +682,14 @@ frage_feuerwehr_aufloesung:
       func: eval_quiz
       correct_option_id: 1
       correct_answer_text: 'Stimmt {name}!'
-      wrong_answer_text: 'Ups!'
+      wrong_answer_text: 'Nicht ganz!'
     - type: message
       text: >
             In diesem Turm werden nach einem Einsatz die Schläuche getrocknet.
       InlineKeyboard:
-        - text: "💡 mehr Infos"
+        - text: "👩‍🚒 Feuerwehrfrauen"
           data: 'action:info_feuerwehr'
-        - text: "🐾 weiter"
+        - text: "🐾 Weiter"
           data: 'action:rueckweg_bahnhof_1'
     - type: return
       state: FRAGE_FEUERWEHR_AUFLOESUNG
@@ -683,13 +697,13 @@ frage_feuerwehr_aufloesung:
 info_feuerwehr:
     - type: audio
       file: assets/audio/Freiwillige Feuerwehr.mp3
-      title: "Freiwillige Feuerwehr"
+      title: "👩‍🚒 Feuerwehrfrauen"
       performer: "Reiherbot"
     - type: message
-      text: >
-            https://feuerwehr-golm.jimdofree.com/
+      parse_mode: MarkdownV2
+      text: Mehr zur Freiwillige Feuerwehr findest du [hier](https://feuerwehr-golm.jimdofree.com/)\.
       InlineKeyboard:
-        - text: "🐾 weiter"
+        - text: "🐾 Weiter"
           data: 'action:rueckweg_bahnhof_1'
 
 #weg_vierseitenhof:
@@ -729,9 +743,9 @@ rueckweg_bahnhof_1:
     - type: message
       text: >
             Das war die letzte Etappe auf unserer Tour.
-            Folge der Thomas-Müntzer-Straße nach rechts, bis zum Ende der Straße.
+            Folge der Thomas-Müntzer-Straße nach rechts bis zu ihrem Ende.
       InlineKeyboard:
-        - text: "🐾 weiter"
+        - text: "🐾 Weiter"
           data:  'action:rueckweg_bahnhof_2'
     - type: return
       state: RUECKWEG_BAHNHOF_1
@@ -741,9 +755,9 @@ rueckweg_bahnhof_2:
       text: '🐾'
     - type: message
       text: >
-            Biege nach links ab und laufe parallel zu den Bahnschienen, bis du am Bahnhof Golm ankommst.
+            Biege nach links ab und laufe parallel zu den Bahnschienen, bis du zurück am Bahnhof Golm bist.
       InlineKeyboard:
-        - text: "🐾 weiter"
+        - text: "🐾 Weiter"
           data:  'action:bahnhof_ueberfuehrung'
     - type: return
       state: RUECKWEG_BAHNHOF_2
@@ -751,16 +765,12 @@ rueckweg_bahnhof_2:
 bahnhof_ueberfuehrung:
     - type: message
       text: '🐾'
-    - type: message
-      text: > 
-            Hier war früher eine Überführung zum Gleis 1 auf der anderen Seite.
     - type: photo
       file: "assets/Ueberfuehrung.PNG"
     - type: message
-      text: > 
-            Google Maps denkt, dass diese immernoch steht. (Stand 2020)
+      text: Hier war früher eine Überführung zum Gleis 1 auf der anderen Seite.
       InlineKeyboard:
-          - text: "🐾 weiter"
+          - text: "🐾 Weiter"
             data:  'action:weg_science_park'
     - type: return
       state: BAHNHOF_UEBERFUERUNG
@@ -769,10 +779,9 @@ weg_science_park:
     - type: message
       text: '🐾'
     - type: message
-      text: > 
-            Unser Weg führt uns noch etwas weiter an den Bahnschienen entlang, bis du an die Straße kommst.
+      text: Unser Weg führt uns noch etwas weiter an den Bahnschienen entlang, bis du an die Straße kommst.
       InlineKeyboard:
-      - text: "🐾 weiter"
+      - text: "🐾 Weiter"
         data:  'action:blick_science_park'
     - type: return
       state: WEG_SCIENCE_PARK
@@ -781,7 +790,7 @@ blick_science_park:
     - type: message
       text: '🐾'
     - type: message
-      text: > 
+      text: |
             Siehst du die Gebäude am Horizont? 🌇
             Das ist der Potsdam Science Park.
             Du kannst ihn auch online entdecken:
@@ -791,10 +800,9 @@ blick_science_park:
       - text: "🧭 Interaktive Karte"
         url: "https://potsdam-sciencepark.de/?map=open"
     - type: message
-      text: > 
-            Viel Spaß!
+      text: Viel Spaß!
       InlineKeyboard:
-      - text: "🐾 weiter"
+      - text: "🐾 Weiter"
         data:  'action:ende_bahnhof'
     - type: return
       state: BLICK_SCIENCE_PARK
@@ -803,7 +811,7 @@ ende_bahnhof:
     - type: message
       text: '🐾'
     - type: message
-      text: >
+      text: |
             Unsere Tour ist hier zu Ende.
             Ich hoffe, du hattest viel Spaß und konntest Golm von einer neuen Seite kennenlernen.
             Auf jeden Fall hast du dir die Reiherberg-Medaille verdient!
@@ -812,15 +820,12 @@ ende_bahnhof:
     - type: sticker
       id: CAACAgIAAxkBAAIltV-Wn3-dJmK4HqhloT5ahNmlbJYHAAIBAANwgCcYrK_-hlK8LIQbBA
     - type: message
-      text: Hier sind die nächsten Züge, falls du die Bahn nehmen möchtest
-    - type: function
-      func: bahnhof_timetable
-    - type: message
-      text: >
-            Sag uns gern auch deine Meinung zum Rundgang.
+      text: Sag uns gern auch deine Meinung zum Rundgang.
       InlineKeyboard:
         - text: "💛 Feedback geben"
           data: 'action:feedback_geben'
+        - text: "🚂 Fahrplan"
+          url: 'https://iris.noncd.db.de/wbt/js/index.html?bhf=BGOL&Zeilen=6'
         - text: "↪️ überspringen"
           data: 'action:ende_feedback'
     - type: return

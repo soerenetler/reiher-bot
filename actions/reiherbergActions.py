@@ -81,11 +81,11 @@ def eval_storchenbank(update, context):
     antwort = update.message.text
     echter_wert = "2012"
     if antwort.lower() == echter_wert.lower():
-        update.message.reply_text('Du hast die Tafel also entdeckt! Dort werden seit vielen Jahren die Rückkehrzeiten und der Nachwuchs des Storchenpaares festgehalten.',
+        update.message.reply_text('Du hast die Tafel also entdeckt! Dort werden die Rückkehrzeiten und der Nachwuchs des Storchenpaares festgehalten.',
                                   reply_markup=ReplyKeyboardRemove())
     else:
         update.message.reply_text(
-            'Fast! Neben der Storchenbank findest du eine Tafel, auf der seit vielen Jahren die Rückkehrzeiten und der Nachwuchs des Storchenpaares festgehalten werden.', reply_markup=ReplyKeyboardRemove())
+            'Fast! Neben der Storchenbank findest du eine Tafel, auf der die Rückkehrzeiten und der Nachwuchs des Storchenpaares festgehalten werden.', reply_markup=ReplyKeyboardRemove())
 
 
 def reiherberg_medaille(update, context):
