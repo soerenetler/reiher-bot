@@ -87,6 +87,7 @@ datenschutz:
     text: Um unsere Stadteilführung weiter zu verbessern würden wir gerne ein paar Daten von dir sammeln.
   - type: message
     text: Ist das ok für dich? Mehr unter www.reiherbot.de/datenschutz
+    disable_web_page_preview: True
     ReplyKeyboardMarkup:
         - text: "Ja, klar 🌻"
         - text: "Lieber nicht ⚔️"
