@@ -449,7 +449,7 @@ kirche_wortraetsel:
     - type: message
       text: >
             Du stehst hier vor Golmer Dorfkirche.
-            Ihren Namen erfährst du, wenn du dieses Worträtsel richtig löst.
+            Ihren Namen erfährst du, wenn du dieses Bilderrätsel richtig löst.
     - type: photo
       file: "assets/Bilderrätsel.png"
     - type: message
@@ -470,12 +470,14 @@ kirche_frage:
       text: >
             Weil diese Kirche ein Geschenk des Kaisers Friedrich ans Dorf war\,
             trägt sie seinen Namen\: *Kaiser\-Friedrich\-Kirche*\.
+    - type: message
+      text: Nach ihrer Sanierung 2007 wurde die Kirche vom Naturschutzbund (NABU) ausgezeichnet.
     - type: poll
-      question: Sie wurde vom Naturschutzbund (NABU) ausgezeichnet. Warum? 
+      question: Was macht die Kaiser-Friedrich-Kirche besonders aus Sicht des NABUs? 
       options:
-        - "Im Kirchturm nisten dauerhaft Dohlen."
-        - "Im Mauerwerk der Kirche sind Insektenhotels eingelassen."
-        - "Auf der Wiese hinter der Kirche leben besonders viele Gottesanbeterinnen."
+        - "🦉 Im Kirchturm nisten dauerhaft Schleiereulen."
+        - "🏨 Im Mauerwerk der Kirche sind Insektenhotels eingelassen."
+        - "🐉 Auf der Wiese hinter der Kirche leben besonders viele Gottesanbeterinnen."
       correct_option_id: 0
     - type: return
       state: FRAGE_KIRCHE
