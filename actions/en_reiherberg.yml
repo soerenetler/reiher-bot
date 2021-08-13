@@ -253,10 +253,10 @@ en_fehlerbild_reiherberg_bank:
     - type: poll
       question: All right, I admit it, I have made one trick in the picture. Can you spot it?
       options:
-        - "The maple"
-        - "The bus stop"
-        - "The poop bag dispenser"
-        - "The supermarket sign"
+        - "🍁 The maple"
+        - "🚌 The bus stop"
+        - "💩 The poop bag dispenser"
+        - "🛒 The supermarket sign"
       correct_option_id: 3
     - type: return
       state: EN_FEHLERBILD_REIHERBERG

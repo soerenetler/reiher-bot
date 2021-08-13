@@ -254,10 +254,10 @@ fehlerbild_reiherberg_bank:
     - type: poll
       question: Na gut, ich geb’s zu, ich habe einen Fehler in das Bild eingebaut. Kannst du ihn entdecken?
       options:
-        - "Der Ahorn"
-        - "Die Bushaltestelle"
-        - "Der Kotbeutelspender"
-        - "Das Supermarktschild"
+        - "🍁 Der Ahorn"
+        - "🚌 Die Bushaltestelle"
+        - "💩 Der Kotbeutelspender"
+        - "🛒 Das Supermarktschild"
       correct_option_id: 3
     - type: return
       state: FEHLERBILD_REIHERBERG
