@@ -1,7 +1,7 @@
 NAME:
   - handler: MessageHandler
     filter: regex
-    regex: '^(Nein, nenn mich lieber anders! 👻|Nein|Ups, verschrieben 🙈)$'
+    regex: "^(Nein, nenn mich lieber anders! 👻|Nein|Ups, verschrieben 🙈)$"
     action: name_frage
   - handler: CommandHandler
     command: Nein
@@ -9,7 +9,7 @@ NAME:
 
   - handler: MessageHandler
     filter: regex
-    regex: '^(Ja, gerne! 😎|Das klingt besser 😊|Ja)$'
+    regex: "^(Ja, gerne! 😎|Das klingt besser 😊|Ja)$"
     action: datenschutz
   - handler: CommandHandler
     command: Ja
@@ -31,7 +31,7 @@ NAME_AENDERN:
 DATENSCHUTZ:
   - handler: MessageHandler
     filter: regex
-    regex: '^(Nein|Ja|Ja, klar 🌻|Lieber nicht ⚔️)$'
+    regex: "^(Nein|Ja|Ja, klar 🌻|Lieber nicht ⚔️)$"
     action: name_startpunkt
   - handler: CommandHandler
     command: Nein
@@ -47,7 +47,7 @@ DATENSCHUTZ:
 STARTPUNKT:
   - handler: MessageHandler
     filter: regex
-    regex: '^(schon da ⚓|Ja)$'
+    regex: "^(schon da ⚓|Ja)$"
     action: welche_route
   - handler: CommandHandler
     command: Ja
@@ -58,7 +58,7 @@ STARTPUNKT:
 
   - handler: MessageHandler
     filter: regex
-    regex: '^(noch auf dem Weg 😱|Nein)$'
+    regex: "^(noch auf dem Weg 😱|Nein)$"
     action: weg_zum_bahnhof
   - handler: CommandHandler
     command: Nein
@@ -74,7 +74,7 @@ ROUTE_AUSWAEHLEN:
     action: start_reiherberg_route
   - handler: MessageHandler
     filter: regex
-    regex: '^(Reiherbergaufstieg ⛰️|Reiherberg|Reiherbergaufstieg|Berg)$'
+    regex: "^(Reiherbergaufstieg ⛰️|Reiherberg|Reiherbergaufstieg|Berg)$"
     action: start_reiherberg_route
 
   - handler: CommandHandler
@@ -82,7 +82,7 @@ ROUTE_AUSWAEHLEN:
     action: start_see_route
   - handler: MessageHandler
     filter: regex
-    regex: '^(Seeroute 🌊|Seeroute|Zernsee|See)$'
+    regex: "^(Seeroute 🌊|Seeroute|Zernsee|See)$"
     action: start_see_route
 
   - handler: CommandHandler
@@ -90,7 +90,7 @@ ROUTE_AUSWAEHLEN:
     action: en_start_reiherberg_route
   - handler: MessageHandler
     filter: regex
-    regex: '^(Heron Hill Climb 🇬🇧|English|Heron Hill|Hill)$'
+    regex: "^(Heron Hill Climb 🇬🇧|English|Heron Hill|Hill)$"
     action: en_start_reiherberg_route
 
   - handler: TypeHandler
@@ -106,7 +106,7 @@ REIHERBERGROUTE_BESTAETIGEN:
     action: frage_bahnhof_gif
   - handler: MessageHandler
     filter: regex
-    regex: '^(Ja, ich bin bereit 🏁|Ja)$'
+    regex: "^(Ja, ich bin bereit 🏁|Ja)$"
     action: frage_bahnhof_gif
 
   - handler: CommandHandler
@@ -114,13 +114,12 @@ REIHERBERGROUTE_BESTAETIGEN:
     action: welche_route
   - handler: MessageHandler
     filter: regex
-    regex:  '^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$'
+    regex: "^(Ich würde doch lieber eine andere Route gehen 🤔|Nein)$"
     action: welche_route
-  
+
   - handler: TypeHandler
     type: Update
     action: start_reiherberg_route_tipp
-
 
 EN_REIHERBERGROUTE_BESTAETIGEN:
   - handler: CommandHandler
@@ -131,7 +130,7 @@ EN_REIHERBERGROUTE_BESTAETIGEN:
     action: en_frage_bahnhof_gif
   - handler: MessageHandler
     filter: regex
-    regex: '^(Yes, I am ready 🏁|Ja|yes|Yes)$'
+    regex: "^(Yes, I am ready 🏁|Ja|yes|Yes)$"
     action: en_frage_bahnhof_gif
 
   - handler: CommandHandler
@@ -139,9 +138,9 @@ EN_REIHERBERGROUTE_BESTAETIGEN:
     action: welche_route
   - handler: MessageHandler
     filter: regex
-    regex:  '^(I would rather choose another route 🤔|Nein|no|No)$'
+    regex: "^(I would rather choose another route 🤔|Nein|no|No)$"
     action: welche_route
-  
+
   - handler: TypeHandler
     type: Update
     action: en_start_reiherberg_route_tipp
