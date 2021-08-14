@@ -12,7 +12,7 @@ def read_state_yml(filename, actions={}, prechecks:List=[]):
     states_dict = {}
 
     for state, handlers in yaml_dict.items():
-        handler_list = prechecks
+        handler_list = prechecks[:]
         for handler in handlers:
             if handler["handler"] == "MessageHandler":
                 if handler["filter"] == "regex":
