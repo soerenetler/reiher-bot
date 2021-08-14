@@ -15,15 +15,15 @@ def read_state_yml(filename, actions={}):
         for handler in handlers:
             if handler["handler"] == "MessageHandler":
                 if handler["filter"] == "regex":
-                    newHandler = MessageHandler(Filters.regex(handler["regex"]), handler["action"])
+                    newHandler = MessageHandler(Filters.regex(handler["regex"]), actions[handler["action"]])
                 elif handler["filter"] == "text":
-                    newHandler = MessageHandler(Filters.text, handler["action"])
+                    newHandler = MessageHandler(Filters.text, actions[handler["action"]])
             elif handler["handler"] == "CommandHandler":
-                newHandler = CommandHandler(handler["command"], handler["action"])
+                newHandler = CommandHandler(handler["command"], actions[handler["action"]])
             elif handler["handler"] == "TypeHandler":
                 if handler["type"] == "Update":
                     type_ = Update
-                newHandler = TypeHandler(type_, handler["action"])
+                newHandler = TypeHandler(type_, actions[handler["action"]])
                 
             handler_list.append(newHandler)
 
