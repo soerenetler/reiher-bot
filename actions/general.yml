@@ -102,13 +102,13 @@ datenschutz_tipp:
         - text: "Lieber nicht ⚔️"
 
 name_aendern:
+  - type: function
+    func: change_name
   - type: message
     text: 'Ich nenne dich {name}, okay?'
     ReplyKeyboardMarkup:
         - text: "Das klingt besser 😊"
         - text: "Ups, verschrieben 🙈"
-  - type: function
-    func: change_name
   - type: return
     state: NAME
 
