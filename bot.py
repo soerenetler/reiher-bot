@@ -69,7 +69,7 @@ if __name__ == '__main__':
         persistent=True, name='reiherbot',
 
         states={
-            **read_state_yml("states/general.yml", actions={**reiherbergActions, **en_reiherbergActions, **generalActions}),
+            **read_state_yml("states/general.yml", actions={**reiherbergActions, **en_reiherbergActions, **generalActions}, prechecks=prechecks),
 
             #######REIHERBERG-ROUTE#######
             "BAHNHOF_FRAGE_GIF": prechecks+[MessageHandler(Filters.photo, reiherbergActions["frage_bahnhof_gif_aufloesung"]),

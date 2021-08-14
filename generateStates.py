@@ -4,14 +4,14 @@ import yaml
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, CallbackContext, PicklePersistence,
                           ConversationHandler, CallbackQueryHandler, PollAnswerHandler, PollHandler, TypeHandler)
 
-def read_state_yml(filename, actions={}):
+def read_state_yml(filename, actions={}, prechecks=[]):
     with open(filename) as file:
         yaml_dict = yaml.load(file)
 
     actions_dict = {}
 
     for state, handlers in yaml_dict.items():
-        handler_list = []
+        handler_list = prechecks
         for handler in handlers:
             if handler["handler"] == "MessageHandler":
                 if handler["filter"] == "regex":
