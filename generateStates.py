@@ -1,14 +1,15 @@
+from typing import List
 from telegram import Update
 import yaml
 
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, CallbackContext, PicklePersistence,
                           ConversationHandler, CallbackQueryHandler, PollAnswerHandler, PollHandler, TypeHandler)
 
-def read_state_yml(filename, actions={}, prechecks=[]):
+def read_state_yml(filename, actions={}, prechecks:List=[]):
     with open(filename) as file:
         yaml_dict = yaml.load(file)
 
-    actions_dict = {}
+    states_dict = {}
 
     for state, handlers in yaml_dict.items():
         handler_list = prechecks
@@ -27,6 +28,6 @@ def read_state_yml(filename, actions={}, prechecks=[]):
                 
             handler_list.append(newHandler)
 
-        actions_dict[state]= handler_list
+        states_dict[state]= handler_list
 
-    return actions_dict
+    return states_dict
