@@ -19,12 +19,22 @@ def read_state_yml(filename, actions={}, prechecks:List=[]):
                     newHandler = MessageHandler(Filters.regex(handler["regex"]), actions[handler["action"]])
                 elif handler["filter"] == "text":
                     newHandler = MessageHandler(Filters.text, actions[handler["action"]])
+                elif handler["filter"] == "photo":
+                    newHandler = MessageHandler(Filters.photo, actions[handler["action"]])
+                elif handler["filter"] == "voice":
+                    newHandler = MessageHandler(Filters.voice, actions[handler["action"]])
+                else:
+                    raise NotImplementedError("This filter is not implemented: {}".format(handler["filter"]))
             elif handler["handler"] == "CommandHandler":
                 newHandler = CommandHandler(handler["command"], actions[handler["action"]])
+            elif handler["handler"] == "PollAnswerHandler":
+                newHandler = PollAnswerHandler(actions[handler["action"]])
             elif handler["handler"] == "TypeHandler":
                 if handler["type"] == "Update":
                     type_ = Update
                 newHandler = TypeHandler(type_, actions[handler["action"]])
+            else:
+                raise NotImplementedError("This Handler is not implemented: {}".format(handler["handler"]))
                 
             handler_list.append(newHandler)
 

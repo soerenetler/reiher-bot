@@ -356,11 +356,15 @@ EN_BLICK_SCIENCE_PARK:
 
 EN_FEEDBACK:
   - handler: MessageHandler
-    filter:
-      - text
-      - photo
-      - voice
+    filter: text
     action: en_ende_feedback
+  - handler: MessageHandler
+    filter: photo
+    action: en_ende_feedback
+  - handler: MessageHandler
+    filter: voice
+    action: en_ende_feedback
+
 
   - handler: CommandHandler
     command: weiter
