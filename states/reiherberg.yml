@@ -1,0 +1,371 @@
+BAHNHOF_FRAGE_GIF:
+  - handler: MessageHandler
+    filter: photo
+    action: frage_bahnhof_gif_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: frage_bahnhof_gif_tipp
+
+BAHNHOF_FRAGE_GIF_AUFLOESUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: frage_bahnhof
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+BAHNHOF_FRAGE:
+  - handler: CommandHandler
+    command: weiter
+    action: frage_bahnhof_aufloesung
+
+  - handler: MessageHandler
+    filter: regex
+    regex: '^(\d)+'
+    action: frage_bahnhof_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: frage_bahnhof_tipp
+
+BAHNHOF_FRAGE_AUFLOESUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: weg01
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+WEG01:
+  - handler: CommandHandler
+    command: weiter
+    action: frage_quiz
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+FRAGE_QUIZ:
+  - handler: PollAnswerHandler
+    action: frage_quiz_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: frage_quiz_tipp
+
+FRAGE_QUIZ_AUFLOESUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: weg_01a
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+WEG01A:
+  - handler: CommandHandler
+    command: weiter
+    action: frage_ubahn
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+FRAGE_UBAHN:
+  - handler: PollAnswerHandler
+    action: frage_ubahn_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: frage_ubahn_tipp
+
+FRAGE_UBAHN_AUFLOESUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: weg02
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+WEG02:
+  - handler: CommandHandler
+    command: weiter
+    action: frage_weinmeisterstrasse
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+FRAGE_WEINMEISTERATRASSE:
+  - handler: PollAnswerHandler
+    action: frage_weinmeisterstrasse_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: frage_weinmeisterstrasse_tipp
+
+FRAGE_WEINMEISTERATRASSE_AUFLOESUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: fehlerbild_reiherberg_bank
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+FEHLERBILD_REIHERBERG:
+  - handler: PollAnswerHandler
+    action: fehlerbild_reiherberg_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: fehlerbild_reiherberg_tipp
+
+FEHLERBILD_REIHERBERG_AUFLOESUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: aufstieg_reiherberg
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+AUFSTIEG_REIHERBERG:
+  - handler: CommandHandler
+    command: weiter
+    action: schaetzfrage_reiherberg
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+SCHAETZFRAGE_REIHERBERG:
+  - handler: MessageHandler
+    filter: regex
+    regex: '^(\d)+'
+    action: schaetzfrage_reiherberg_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: schaetzfrage_reiherberg_tipp
+
+SCHAETZFRAGE_REIHERBERG_AUFLOESUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: foto_reiherberg
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+FOTO_REIHERBERG:
+  - handler: CommandHandler
+    command: weiter
+    action: foto_reiherberg_aufloesung
+  - handler: MessageHandler
+    filter: photo
+    action: foto_reiherberg_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: foto_reiherberg_tipp
+
+FOTO_REIHERBERG_AUFLOESUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: weg_kirche_1
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+WEG_KIRCHE_1:
+  - handler: CommandHandler
+    command: weiter
+    action: weg_kirche_2
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+WEG_KIRCHE_2:
+  - handler: CommandHandler
+    command: weiter
+    action: kirche_wortraetsel
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+KIRCHE_WORTRAETSEL:
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(.)+"
+    action: kirche_frage
+
+  - handler: TypeHandler
+    type: Update
+    action: kirche_wortraetsel_tipp
+
+FRAGE_KIRCHE:
+  - handler: PollAnswerHandler
+    action: kirche_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: kirche_frage_tipp
+
+KIRCHE_AUFLOESEUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: weg_storchenbank
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+WEG_STORCHENBANK:
+  - handler: CommandHandler
+    command: weiter
+    action: frage_storchenbank
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+FRAGE_STORCHENBANK:
+  - handler: MessageHandler
+    filter: regex
+    regex: '^(\d)+'
+    action: frage_storchenbank_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: frage_storchenbank_tipp
+
+KAPELLE:
+  - handler: CommandHandler
+    command: weiter
+    action: weg_schule
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+WEG_SCHULE:
+  - handler: CommandHandler
+    command: weiter
+    action: schule
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+SCHULE:
+  - handler: CommandHandler
+    command: weiter
+    action: weg_landhotel
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+WEG_LANDHOTEL:
+  - handler: CommandHandler
+    command: weiter
+    action: weg_feuerwehr
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+FEUERWEHR:
+  - handler: CommandHandler
+    command: weiter
+    action: frage_feuerwehr
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+FRAGE_FEUERWEHR:
+  - handler: PollAnswerHandler
+    action: frage_feuerwehr_aufloesung
+
+  - handler: TypeHandler
+    type: Update
+    action: frage_feuerwehr_tipp
+
+FRAGE_FEUERWEHR_AUFLOESUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: rueckweg_bahnhof_2
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+RUECKWEG_BAHNHOF_1:
+  - handler: CommandHandler
+    command: weiter
+    action: rueckweg_bahnhof_2
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+RUECKWEG_BAHNHOF_2:
+  - handler: CommandHandler
+    command: weiter
+    action: bahnhof_ueberfuehrung
+
+  - handler: TypeHandler
+    type: Update
+    action: weiter_tipp
+
+BAHNHOF_UEBERFUERUNG:
+  - handler: CommandHandler
+    command: weiter
+    action: bahnhof_ueberfuehrung
+
+  - handler: TypeHandler
+    type: Update
+    action: weg_science_park
+
+WEG_SCIENCE_PARK:
+  - handler: CommandHandler
+    command: weiter
+    action: blick_science_park
+
+  - handler: TypeHandler
+    type: Update
+    action: weg_science_park
+
+BLICK_SCIENCE_PARK:
+  - handler: CommandHandler
+    command: weiter
+    action: ende_bahnhof
+
+  - handler: TypeHandler
+    type: Update
+    action: weg_science_park
+
+FEEDBACK:
+  - handler: MessageHandler
+    filter:
+      - text
+      - photo
+      - voice
+    action: ende_feedback
+
+  - handler: CommandHandler
+    command: weiter
+    action: ende_feedback
+
+  - handler: TypeHandler
+    type: Update
+    action: feedback_tipp
