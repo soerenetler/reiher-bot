@@ -79,7 +79,7 @@ frage_bahnhof_aufloesung:
 
 info_bahnhof:
   - type: audio
-    file: "assets/audio/Bahnhof.mp3"
+    file: "assets/audio/01_Bahnhof Golm.mp3"
     title: "Bahnhof Golm"
     performer: "Reiherbot"
     InlineKeyboard:
@@ -233,7 +233,7 @@ info_weinmeister:
   - type: photo
     file: assets/Weinpresse_Zeichnung.jpg
   - type: audio
-    file: assets/audio/Weinmeisterstrae.mp3
+    file: assets/audio/02_Golmer Wein.mp3
     title: "Weinmeister"
     performer: "Reiherbot"
   - type: message
@@ -286,7 +286,7 @@ fehlerbild_reiherberg_aufloesung:
 
 info_supermarkt:
   - type: audio
-    file: assets/audio/Supermarkt.mp3
+    file: assets/audio/03_Art Supermarkt.mp3
     title: "Supermarkt Golm"
     performer: "Reiherbot"
   - type: message
@@ -314,7 +314,7 @@ aufstieg_reiherberg:
 
 info_sage_reiherberg:
   - type: audio
-    file: assets/audio/Sage Entstehung des Reiherbergs.mp3
+    file: assets/audio/04_Wie der Reiherberg entstanden ist.mp3
     title: "Reiherberg Sage"
     performer: "Reiherbot"
     InlineKeyboard:
@@ -357,7 +357,7 @@ schaetzfrage_reiherberg_aufloesung:
 
 info_reiherberg:
   - type: audio
-    file: assets/audio/Reiherberg.mp3
+    file: assets/audio/05_Der Reiherberg.mp3
     title: "Reiherberg"
     performer: "Reiherbot"
     InlineKeyboard:
@@ -508,7 +508,7 @@ kirche_aufloesung:
 
 info_kirche:
   - type: audio
-    file: assets/audio/Kaiser Friedrich-Kirche.mp3
+    file: assets/audio/06_Kaiser-Friedrich-Kirche.mp3
     title: "Kaiser-Friedrich-Kirche"
     performer: "Reiherbot"
     InlineKeyboard:
@@ -560,7 +560,7 @@ frage_storchenbank_aufloesung:
 
 info_kapelle:
   - type: audio
-    file: assets/audio/Kapelle.mp3
+    file: assets/audio/07_Die alte Kapelle.mp3
     title: "Kapelle"
     performer: "Reiherbot"
   - type: message
@@ -625,7 +625,7 @@ info_schule:
   - type: photo
     file: "assets/Schule 1925.PNG"
   - type: audio
-    file: assets/audio/Schule und Rodelbahn.mp3
+    file: assets/audio/08_Sommerrodelbahn.mp3
     title: "Schule und Rodelbahn"
     performer: "Reiherbot"
     InlineKeyboard:
@@ -696,7 +696,7 @@ frage_feuerwehr_aufloesung:
 
 info_feuerwehr:
   - type: audio
-    file: assets/audio/Freiwillige Feuerwehr.mp3
+    file: assets/audio/09_Feuerwehrfrauen.mp3
     title: "👩‍🚒 Feuerwehrfrauen"
     performer: "Reiherbot"
   - type: message
