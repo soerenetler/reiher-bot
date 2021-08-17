@@ -5,3 +5,5 @@ PyYAML
 boto3
 pymongo[srv]
 mongoengine
+
+rasa
