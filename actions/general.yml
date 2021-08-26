@@ -12,7 +12,7 @@ en_start_reiherberg_route:
   - type: message
     text: Great choice 👍 On this route I will show you around my home, the Heron Hill.
   - type: message
-    text: Für diesen Weg brauchen wir etwa eine Stunde.
+    text: Our walk will will take approximately one hour.
     ReplyKeyboardMarkup:
         - text: "Yes, I am ready 🏁"
         - text: "I would rather choose another route 🤔"
