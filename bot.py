@@ -21,7 +21,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Call
                           ConversationHandler, CallbackQueryHandler, PollAnswerHandler, PollHandler, TypeHandler)
 
 from digitalguide.generateActions import read_action_yaml, callback_query_handler
-from generateStates import read_state_yml
+from digitalguide.generateStates import read_state_yml
 from digitalguide.errorHandler import error_handler
 
 from actions import generalActions, en_reiherbergActions, reiherbergActions
