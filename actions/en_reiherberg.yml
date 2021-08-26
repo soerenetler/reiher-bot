@@ -486,8 +486,8 @@ en_kirche_aufloesung:
     wrong_answer_text: "Ups!"
   - type: message
     text: Jackdaw is a type of raven, by the way. Here's a picture so you can get a better idea of them.
-  - type: photo
-    file: "assets/Dohle.jpg"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpVWEnvTNUvkAJp6PmqbF3tAiQlkDMAAJFDQAC2VEQSUfQkq9-WXUPIAQ"
   - type: message
     text: Do you want to learn more about the church, or rather move on?
     InlineKeyboard:
@@ -521,6 +521,8 @@ en_weg_storchenbank:
 en_frage_storchenbank:
   - type: message
     text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpV2EnvaotBywlnkeb_MnD4JFDVWVXAAKWEgACZMcZSYaGBigvtIJKIAQ"
   - type: message
     text: Storks come to Golm every year and nest on the opposite chimney.
   - type: message

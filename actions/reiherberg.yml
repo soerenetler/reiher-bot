@@ -494,8 +494,8 @@ kirche_aufloesung:
     wrong_answer_text: "Das war es nicht!"
   - type: message
     text: Neben Schleiereulen nisten hier unter anderem auch Turmfalken, Mauersegler und Dohlen.
-  - type: photo
-    file: "assets/Dohle.jpg"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpVWEnvTNUvkAJp6PmqbF3tAiQlkDMAAJFDQAC2VEQSUfQkq9-WXUPIAQ"
   - type: message
     text: "Willst du mehr über die Kirche und ihre Bewohner:innen erfahren?"
     InlineKeyboard:
@@ -533,6 +533,8 @@ frage_storchenbank:
     text: 🐾
   - type: message
     text: Jedes Jahr kommen Störche nach Golm und nisten auf dem gegenüberliegenden Schornstein.
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpV2EnvaotBywlnkeb_MnD4JFDVWVXAAKWEgACZMcZSYaGBigvtIJKIAQ"
   - type: message
     text: In welchem Jahr hatte Golm am frühesten Storchenbesuch?
   - type: return
