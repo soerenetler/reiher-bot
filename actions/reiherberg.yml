@@ -28,8 +28,8 @@ frage_bahnhof_gif_aufloesung:
     state: BAHNHOF_FRAGE_GIF_AUFLOESUNG
 
 frage_bahnhof:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: "Da wir am Bahnhof starten: Was schätzt du, wie viele Regionalbahnen fahren täglich vom Bahnhof Golm ab? 🚂"
   - type: return
@@ -87,8 +87,8 @@ info_bahnhof:
         data: "action:weg01"
 
 weg01:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: "Dann lass uns losgehen!"
   - type: message
@@ -105,8 +105,8 @@ weg01:
     state: WEG01
 
 frage_quiz:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: poll
     question: Wusstest du, dass wir Reiher die Wappentiere von Golm sind? Was meinst du, woran das liegt?
     options:
@@ -140,8 +140,8 @@ frage_quiz_aufloesung:
     state: FRAGE_QUIZ_AUFLOESUNG
 
 weg_01a:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: "Folge dem Fußweg, bis du an eine kleine Treppe gelangst!"
   - type: message
@@ -153,8 +153,8 @@ weg_01a:
     state: WEG01A
 
 frage_ubahn:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: poll
     question: Hast du die Berliner U-Bahn-Station entdecken können? 🚇 Welche war es?
     options:
@@ -185,8 +185,8 @@ frage_ubahn_aufloesung:
     state: FRAGE_UBAHN_AUFLOESUNG
 
 weg02:
-  - type: message
-    text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: Unser Weg führt uns unter der Unterführung hindurch. Kurz dahinter findest du auf der linken Seite die Weinmeisterstraße.
     InlineKeyboard:
@@ -197,8 +197,8 @@ weg02:
     state: WEG02
 
 frage_weinmeisterstrasse:
-  - type: message
-    text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: Weil das Trinkwasser in Golm früher nicht so gut war, wurde sehr viel Wein angebaut. 🍇
   - type: poll
@@ -243,8 +243,8 @@ info_weinmeister:
         data: "action:fehlerbild_reiherberg_bank"
 
 fehlerbild_reiherberg_bank:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: |
       Schau dort!
@@ -296,8 +296,8 @@ info_supermarkt:
         data: "action:aufstieg_reiherberg"
 
 aufstieg_reiherberg:
-  - type: message
-    text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Jetzt stehst du bereits am Fuße des Reiherbergs! Folge dem kleinen Pfad nach oben, bis du zur Aussichtsplattform kommst!
@@ -322,8 +322,8 @@ info_sage_reiherberg:
         data: "action:schaetzfrage_reiherberg"
 
 schaetzfrage_reiherberg:
-  - type: message
-    text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: |
       Du hast es geschafft!
@@ -365,8 +365,8 @@ info_reiherberg:
         data: "action:foto_reiherberg"
 
 foto_reiherberg:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     parse_mode: MarkdownV2
     text: >
@@ -412,8 +412,8 @@ foto_reiherberg_aufloesung:
     state: FOTO_REIHERBERG_AUFLOESUNG
 
 weg_kirche_1:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Unser Weg führt uns nun den Berg hinab.
@@ -430,8 +430,8 @@ weg_kirche_1:
     state: WEG_KIRCHE_1
 
 weg_kirche_2:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Biege nach rechts ab und folge dem Weg,
@@ -444,8 +444,8 @@ weg_kirche_2:
     state: WEG_KIRCHE_2
 
 kirche_wortraetsel:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Du stehst hier vor Golmer Dorfkirche.
@@ -516,8 +516,8 @@ info_kirche:
         data: "action:weg_storchenbank"
 
 weg_storchenbank:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: |
       Tierisch geht es auch hinter der Kirche weiter.
@@ -529,8 +529,8 @@ weg_storchenbank:
     state: WEG_STORCHENBANK
 
 frage_storchenbank:
-  - type: message
-    text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: Jedes Jahr kommen Störche nach Golm und nisten auf dem gegenüberliegenden Schornstein.
   - type: sticker
@@ -572,8 +572,8 @@ info_kapelle:
         data: "action:weg_schule"
 
 weg_schule:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Jetzt wird es aber Zeit für den Rückweg, oder?
@@ -605,8 +605,8 @@ weg_schule_navigation:
         data: "action:schule"
 
 schule:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Dieses Gebäude war früher einmal die Schule.
@@ -635,8 +635,8 @@ info_schule:
         data: "action:weg_landhotel"
 
 weg_landhotel:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: Folge der Reiherbergstraße weiter bis zum Landhotel.
     InlineKeyboard:
@@ -646,8 +646,8 @@ weg_landhotel:
     state: WEG_LANDHOTEL
 
 weg_feuerwehr:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Überquere die Straße und folge der kleinen Allee.
@@ -659,8 +659,8 @@ weg_feuerwehr:
     state: FEUERWEHR
 
 frage_feuerwehr:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Golm hat seit 110 Jahren eine eigene Freiwillige Feuerwehr.
@@ -740,8 +740,8 @@ info_feuerwehr:
 #     state: VIERSEITENHOF
 
 rueckweg_bahnhof_1:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Das war die letzte Etappe auf unserer Tour.
@@ -753,8 +753,8 @@ rueckweg_bahnhof_1:
     state: RUECKWEG_BAHNHOF_1
 
 rueckweg_bahnhof_2:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Biege nach links ab und laufe parallel zu den Bahnschienen, bis du zurück am Bahnhof Golm bist.
@@ -765,8 +765,8 @@ rueckweg_bahnhof_2:
     state: RUECKWEG_BAHNHOF_2
 
 bahnhof_ueberfuehrung:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: photo
     file: "assets/Ueberfuehrung.PNG"
   - type: message
@@ -778,8 +778,8 @@ bahnhof_ueberfuehrung:
     state: BAHNHOF_UEBERFUERUNG
 
 weg_science_park:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: Unser Weg führt uns noch etwas weiter an den Bahnschienen entlang, bis du an die Straße kommst.
     InlineKeyboard:
@@ -789,8 +789,8 @@ weg_science_park:
     state: WEG_SCIENCE_PARK
 
 blick_science_park:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: |
       Siehst du die Gebäude am Horizont? 🌇
@@ -810,8 +810,8 @@ blick_science_park:
     state: BLICK_SCIENCE_PARK
 
 ende_bahnhof:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: |
       Unsere Tour ist hier zu Ende.

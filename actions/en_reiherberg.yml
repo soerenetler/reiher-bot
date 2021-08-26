@@ -28,8 +28,8 @@ en_frage_bahnhof_gif_aufloesung:
     state: EN_BAHNHOF_FRAGE_GIF_AUFLOESUNG
 
 en_frage_bahnhof:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: "Since we are at the station: What do you think, how many regional trains come and leave daily from the Golm stop? 🚂"
   - type: return
@@ -83,8 +83,8 @@ en_info_bahnhof:
         data: "action:en_weg01"
 
 en_weg01:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: "Let's go!"
   - type: message
@@ -101,8 +101,8 @@ en_weg01:
     state: EN_WEG01
 
 en_frage_quiz:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: poll
     question: Did you know that herons are the heraldic animals of Golm? Why do you think is it so?
     options:
@@ -137,8 +137,8 @@ en_frage_quiz_aufloesung:
     state: EN_FRAGE_QUIZ_AUFLOESUNG
 
 en_weg_01a:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: "Follow the footpath until you reach a small staircase!"
   - type: message
@@ -150,8 +150,8 @@ en_weg_01a:
     state: EN_WEG01A
 
 en_frage_ubahn:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: poll
     question: "Have you discovered the Berlin underground station? If so, do you remember which U-Bahn station it was?"
     options:
@@ -182,8 +182,8 @@ en_frage_ubahn_aufloesung:
     state: EN_FRAGE_UBAHN_AUFLOESUNG
 
 en_weg02:
-  - type: message
-    text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: Our path takes us under the bridge. Shortly after, you will find Weinmeisterstraße on your left.
   - type: message
@@ -213,8 +213,8 @@ en_frage_weinmeisterstrasse_tipp:
     text: "I didn't understand the input. If you answer the quiz, you'll automatically move on."
 
 en_frage_weinmeisterstrasse_aufloesung:
-  - type: message
-    text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"    text: 🐾
   - type: message
     text: All these reasons have led to the fact that wine is no longer grown in Golm today.
   - type: message
@@ -241,8 +241,8 @@ en_info_weinmeister:
         data: "action:en_fehlerbild_reiherberg_bank"
 
 en_fehlerbild_reiherberg_bank:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: |
       Look there!
@@ -293,8 +293,8 @@ en_info_supermarkt:
         data: "action:en_aufstieg_reiherberg"
 
 en_aufstieg_reiherberg:
-  - type: message
-    text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Finally you are already at the foot of the Reiherberg! Follow the small path upwards until you reach the viewing platform!
@@ -321,8 +321,8 @@ en_info_sage_reiherberg:
         data: "action:en_schaetzfrage_reiherberg"
 
 en_schaetzfrage_reiherberg:
-  - type: message
-    text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: You have made it! You are now standing on the top of the second highest mountain in Golm. ⛰️
   - type: photo
@@ -362,8 +362,8 @@ en_info_reiherberg:
         data: "action:en_foto_reiherberg"
 
 en_foto_reiherberg:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     parse_mode: MarkdownV2
     text: >
@@ -407,8 +407,8 @@ en_foto_reiherberg_aufloesung:
     state: EN_FOTO_REIHERBERG_AUFLOESUNG
 
 en_weg_kirche_1:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Our path now leads us down the mountain.
@@ -424,8 +424,8 @@ en_weg_kirche_1:
     state: EN_WEG_KIRCHE_1
 
 en_weg_kirche_2:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Turn to the right and follow the path,
@@ -438,8 +438,8 @@ en_weg_kirche_2:
     state: EN_WEG_KIRCHE_2
 
 en_kirche_wortraetsel:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       You are standing in front of the village church of Golm.
@@ -508,8 +508,8 @@ en_info_kirche:
         data: "action:en_weg_storchenbank"
 
 en_weg_storchenbank:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: If you walk around the church, you will come to the stork bench.
     InlineKeyboard:
@@ -519,8 +519,8 @@ en_weg_storchenbank:
     state: EN_WEG_STORCHENBANK
 
 en_frage_storchenbank:
-  - type: message
-    text: 🐾
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: sticker
     id: "CAACAgIAAxkBAAIpV2EnvaotBywlnkeb_MnD4JFDVWVXAAKWEgACZMcZSYaGBigvtIJKIAQ"
   - type: message
@@ -565,8 +565,8 @@ en_info_kapelle:
         data: "action:en_info_kapelle"
 
 en_weg_schule:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       "Follow the road to the right, directly past the old cemetery,"
@@ -579,8 +579,8 @@ en_weg_schule:
     state: EN_WEG_SCHULE
 
 en_schule:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       This building was once the school in Golm.
@@ -611,8 +611,8 @@ en_info_schule:
         data: "action:en_weg_landhotel"
 
 en_weg_landhotel:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: Folge der Reiherbergstraße weiter bis zum Landhotel.
     InlineKeyboard:
@@ -622,8 +622,8 @@ en_weg_landhotel:
     state: EN_WEG_LANDHOTEL
 
 en_weg_feuerwehr:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Cross the road and follow the small, diagonal side road.
@@ -635,8 +635,8 @@ en_weg_feuerwehr:
     state: EN_FEUERWEHR
 
 en_frage_feuerwehr:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Golm has had its own volunteer fire brigade for 110 years.
@@ -714,8 +714,8 @@ en_info_feuerwehr:
 #     state: VIERSEITENHOF
 
 en_rueckweg_bahnhof_1:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       This was the last stage of our tour.
@@ -727,8 +727,8 @@ en_rueckweg_bahnhof_1:
     state: EN_RUECKWEG_BAHNHOF_1
 
 en_rueckweg_bahnhof_2:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: Turn left and walk parallel to the railway tracks until you reach Golm station.
     InlineKeyboard:
@@ -738,8 +738,8 @@ en_rueckweg_bahnhof_2:
     state: EN_RUECKWEG_BAHNHOF_2
 
 en_bahnhof_ueberfuehrung:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: There used to be an overpass here to platform 1 on the other side.
   - type: photo
@@ -753,8 +753,8 @@ en_bahnhof_ueberfuehrung:
     state: EN_BAHNHOF_UEBERFUERUNG
 
 en_weg_science_park:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: Our path takes us a little further along the railway tracks until you reach the road.
     InlineKeyboard:
@@ -764,8 +764,8 @@ en_weg_science_park:
     state: EN_WEG_SCIENCE_PARK
 
 en_blick_science_park:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       See the buildings on the horizon? 🌇
@@ -786,8 +786,8 @@ en_blick_science_park:
     state: EN_BLICK_SCIENCE_PARK
 
 en_ende_bahnhof:
-  - type: message
-    text: "🐾"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: >
       Our tour ends here.
