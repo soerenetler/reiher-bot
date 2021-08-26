@@ -367,8 +367,8 @@ en_foto_reiherberg:
   - type: message
     parse_mode: MarkdownV2
     text: >
-      "Take a pic and send it to me\. 📸"
-      "You can find the photos on our [website](reiherbot.de)\. afterwards\."
+      Take a pic and send it to me\. 📸
+      You can find the photos on our [website](reiherbot.de) afterwards\.
     InlineKeyboard:
       - text: "🧀 Cheese"
         data: "action:en_foto_reiherberg_anweisung"
