@@ -1,8 +1,8 @@
 en_frage_bahnhof_gif:
   - type: message
     text: "You are now in front of the railway station building of Golm. In the past it looked like this:"
-  - type: photo
-    file: "assets/bahnhof_alt.jpg"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpU2EnvJDMMKirv3286crfe7ZLyL8NAAIFEQACJdMYSRhXFAqfwXlsIAQ"
   - type: message
     text: "Try to take a picture of the building from the same perspective and send it to me. 📸"
   - type: return

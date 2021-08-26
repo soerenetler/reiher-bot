@@ -1,8 +1,8 @@
 frage_bahnhof_gif:
   - type: message
     text: "Du stehst hier vor dem Golmer Bahnhofsgebäude. Das sah früher mal so aus:"
-  - type: photo
-    file: "assets/bahnhof_alt.jpg"
+  - type: sticker
+    id: "CAACAgIAAxkBAAIpU2EnvJDMMKirv3286crfe7ZLyL8NAAIFEQACJdMYSRhXFAqfwXlsIAQ"
   - type: message
     text: "Versuche das Bahnhofsgebäude aus der gleichen Perspektive zu fotografieren und schick mir das Bild. 📸"
   - type: return
