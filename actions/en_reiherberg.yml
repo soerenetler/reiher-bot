@@ -214,7 +214,7 @@ en_frage_weinmeisterstrasse_tipp:
 
 en_frage_weinmeisterstrasse_aufloesung:
   - type: sticker
-    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"    text: 🐾
+    id: "CAACAgIAAxkBAAIpWWEnvsd81xc3b4-7aSkEOsV63pxlAAJaEwACvQgZST7F3uPqViT1IAQ"
   - type: message
     text: All these reasons have led to the fact that wine is no longer grown in Golm today.
   - type: message
