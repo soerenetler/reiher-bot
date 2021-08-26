@@ -75,8 +75,8 @@ en_frage_bahnhof_aufloesung:
 
 en_info_bahnhof:
   - type: audio
-    file: "assets/audio/Bahnhof.mp3"
-    title: "Bahnhof Golm"
+    file: "assets/audio/en/01_Station.mp3"
+    title: "Station Golm"
     performer: "Reiherbot"
     InlineKeyboard:
       - text: "🐾 continue"
@@ -231,8 +231,8 @@ en_info_weinmeister:
   - type: photo
     file: assets/Weinpresse_Zeichnung.jpg
   - type: audio
-    file: assets/audio/Weinmeisterstrae.mp3
-    title: "Weinmeister"
+    file: assets/audio/en/02_wine.mp3
+    title: "Wine"
     performer: "Reiherbot"
   - type: message
     text: 🍷
@@ -283,8 +283,8 @@ en_fehlerbild_reiherberg_aufloesung:
 
 en_info_supermarkt:
   - type: audio
-    file: assets/audio/Supermarkt.mp3
-    title: "Supermarkt Golm"
+    file: assets/audio/en/03_art supermarket.mp3
+    title: "Art Supermarket"
     performer: "Reiherbot"
   - type: message
     text: "You can find out more about the exhibitions here: https://artsupermarkt.de/"
@@ -313,8 +313,8 @@ en_aufstieg_reiherberg:
 
 en_info_sage_reiherberg:
   - type: audio
-    file: assets/audio/Sage Entstehung des Reiherbergs.mp3
-    title: "Reiherberg Sage"
+    file: assets/audio/en/04_legend.mp3
+    title: "Reiherberg Legend"
     performer: "Reiherbot"
     InlineKeyboard:
       - text: "🐾 continue"
@@ -354,7 +354,7 @@ en_schaetzfrage_reiherberg_aufloesung:
 
 en_info_reiherberg:
   - type: audio
-    file: assets/audio/Reiherberg.mp3
+    file: assets/audio/en/05_Reiherberg.mp3
     title: "Reiherberg"
     performer: "Reiherbot"
     InlineKeyboard:
@@ -500,7 +500,7 @@ en_kirche_aufloesung:
 
 en_info_kirche:
   - type: audio
-    file: assets/audio/Kaiser Friedrich-Kirche.mp3
+    file: assets/audio/en/06_Church.mp3
     title: "Kaiser-Friedrich-Kirche"
     performer: "Reiherbot"
     InlineKeyboard:
@@ -555,7 +555,7 @@ en_frage_storchenbank_aufloesung:
 
 en_info_kapelle:
   - type: audio
-    file: assets/audio/Kapelle.mp3
+    file: assets/audio/en/07_Chapel.mp3
     title: "Kapelle"
     performer: "Reiherbot"
   - type: message
@@ -603,7 +603,7 @@ en_info_schule:
   - type: photo
     file: "assets/Schule 1925.PNG"
   - type: audio
-    file: assets/audio/Schule und Rodelbahn.mp3
+    file: assets/audio/en/08_School.mp3
     title: "Schule und Rodelbahn"
     performer: "Reiherbot"
     InlineKeyboard:
@@ -673,7 +673,7 @@ en_frage_feuerwehr_aufloesung:
 
 en_info_feuerwehr:
   - type: audio
-    file: assets/audio/Freiwillige Feuerwehr.mp3
+    file: assets/audio/en/09_Fire department.mp3
     title: "Voluntary fire brigade "
     performer: "Reiherbot"
   - type: message
