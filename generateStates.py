@@ -7,7 +7,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Call
 
 def read_state_yml(filename, actions={}, prechecks:List=[]):
     with open(filename) as file:
-        yaml_dict = yaml.load(file)
+        yaml_dict = yaml.load(file, Loader=yaml.FullLoader)
 
     states_dict = {}
 
