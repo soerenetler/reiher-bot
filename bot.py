@@ -58,7 +58,7 @@ if __name__ == '__main__':
         {**generalActions, **reiherbergActions, **en_reiherbergActions})
 
     prechecks = [CommandHandler('cancel', generalActions["cancel"]),
-                 CommandHandler('start', generalActions["start_name"]),
+                 CommandHandler('start', generalActions["start"]),
                  CallbackQueryHandler(cqh)]
 
     conv_handler = ConversationHandler(
