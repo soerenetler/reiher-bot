@@ -83,13 +83,13 @@ DATENSCHUTZ:
   - handler: MessageHandler
     filter: regex
     regex: "^(Nein|Ja|Ja, klar 🌻|Lieber nicht ⚔️)$"
-    action: name_startpunkt
+    action: startpunkt
   - handler: CommandHandler
     command: Nein
-    action: name_startpunkt
+    action: startpunkt
   - handler: CommandHandler
     command: Ja
-    action: name_startpunkt
+    action: startpunkt
 
   - handler: TypeHandler
     type: Update
@@ -99,13 +99,13 @@ EN_DATENSCHUTZ:
   - handler: MessageHandler
     filter: regex
     regex: "^(No|no|Yes, sure 🌻|No way⚔️)$"
-    action: name_startpunkt
+    action: en_startpunkt
   - handler: CommandHandler
     command: "no"
-    action: name_startpunkt
+    action: en_startpunkt
   - handler: CommandHandler
     command: "yes"
-    action: name_startpunkt
+    action: en_startpunkt
 
   - handler: TypeHandler
     type: Update
