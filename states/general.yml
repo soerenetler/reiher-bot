@@ -1,3 +1,24 @@
+SPRACHE:
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(Englisch|English|In English 💂‍♀️)$"
+    action: en_name
+  - handler: CommandHandler
+    command: english
+    action: en_name
+
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(Deutsch|Auf Deutsch 🥨)$"
+    action: name
+  - handler: CommandHandler
+    command: deutsch
+    action: name
+
+  - handler: TypeHandler
+    type: Update
+    action: sprache_tipp
+
 NAME:
   - handler: MessageHandler
     filter: regex
@@ -17,7 +38,28 @@ NAME:
 
   - handler: TypeHandler
     type: Update
-    action: datenschutz_tipp
+    action: name_tipp
+
+EN_NAME:
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(No, better another way! 👻|No|Ups, not quite right 🙈)$"
+    action: en_name_frage
+  - handler: CommandHandler
+    command: "no"
+    action: name_frage
+
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(Sure 😎|Sounds better 😊|yes)$"
+    action: en_datenschutz
+  - handler: CommandHandler
+    command: "yes"
+    action: en_datenschutz
+
+  - handler: TypeHandler
+    type: Update
+    action: en_name_tipp
 
 NAME_AENDERN:
   - handler: MessageHandler
@@ -27,6 +69,15 @@ NAME_AENDERN:
   - handler: TypeHandler
     type: Update
     action: name_aendern_tipp
+
+EN_NAME_AENDERN:
+  - handler: MessageHandler
+    filter: text
+    action: en_name_aendern
+
+  - handler: TypeHandler
+    type: Update
+    action: en_name_aendern_tipp
 
 DATENSCHUTZ:
   - handler: MessageHandler
@@ -44,17 +95,30 @@ DATENSCHUTZ:
     type: Update
     action: datenschutz_tipp
 
+EN_DATENSCHUTZ:
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(No|no|Yes, sure 🌻|No way⚔️)$"
+    action: name_startpunkt
+  - handler: CommandHandler
+    command: "no"
+    action: name_startpunkt
+  - handler: CommandHandler
+    command: "yes"
+    action: name_startpunkt
+
+  - handler: TypeHandler
+    type: Update
+    action: datenschutz_tipp
+
 STARTPUNKT:
   - handler: MessageHandler
     filter: regex
     regex: "^(schon da ⚓|Ja)$"
-    action: welche_route
+    action: frage_bahnhof_gif
   - handler: CommandHandler
     command: Ja
-    action: welche_route
-  - handler: CommandHandler
-    command: weiter
-    action: welche_route
+    action: frage_bahnhof_gif
 
   - handler: MessageHandler
     filter: regex
@@ -67,6 +131,27 @@ STARTPUNKT:
   - handler: TypeHandler
     type: Update
     action: startpunkt_tipp
+
+EN_STARTPUNKT:
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(I'm there ⚓|Yes|yes)$"
+    action: en_frage_bahnhof_gif
+  - handler: CommandHandler
+    command: "yes"
+    action: en_frage_bahnhof_gif
+
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(On my way 😱|No|no)$"
+    action: en_weg_zum_bahnhof
+  - handler: CommandHandler
+    command: "no"
+    action: en_weg_zum_bahnhof
+
+  - handler: TypeHandler
+    type: Update
+    action: en_startpunkt_tipp
 
 ROUTE_AUSWAEHLEN:
   - handler: CommandHandler

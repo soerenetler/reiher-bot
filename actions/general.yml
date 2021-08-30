@@ -1,68 +1,192 @@
+start:
+  - type: function
+    func: entry_conversation
+  - type: function
+    func: default_data
+  - type: sticker
+    id: 'CAACAgIAAxkBAAIgdmERAUCmyNVG8wwMKjbg2BbjaDT-AALuDQACqfWJSH_X4Qk1m_U_IAQ'
+  - type: function
+    func: default_name
+  - type: message
+    parse_mode: MarkdownV2
+    text: |
+          Hi, ich bin Ronni der Reiher\! Ich führe dich heute durch Golm\.
+          _🇬🇧 Hi, I'm Ronni the heron\! I will be your guide today\._
+  - type: message
+    parse_mode: MarkdownV2
+    text: |
+          Auf welcher Sprache möchtest du den Rundgang machen\?
+          _🇬🇧 In which language do you wnat to take the tour\._
+    ReplyKeyboardMarkup:
+      - text: "Auf Deutsch 🥨"
+      - text: "In English 💂‍♀️"
+  - type: return
+    state: SPRACHE
+
+sprache_tipp:
+  - type: message
+    text: Diese Sprache kenne ich nicht. Tippe \deutsch oder \english !
+
+name:
+  - type: message
+    text: Schön, dass du da bist!
+  - type: message
+    text: Darf ich dich {name} nennen?
+    ReplyKeyboardMarkup:
+        - text: "Ja, gerne! 😎"
+        - text: "Nein, nenn mich lieber anders! 👻"
+  - type: return
+    state: NAME
+
+en_name:
+  - type: message
+    text: Nice to meet you!
+  - type: message
+    text: May I call you {name}?
+    ReplyKeyboardMarkup:
+        - text: "Sure 😎"
+        - text: "No, better another way! 👻"
+  - type: return
+    state: EN_NAME
+
 name_frage:
   - type: message
     text: 'Wie darf ich dich nennen?'
   - type: return
     state: NAME_AENDERN
 
-start_see_route:
+en_name_frage:
   - type: message
-    text: Leider ist die Seeroute noch nicht verfügbar.
-
-en_start_reiherberg_route:
-  - type: message
-    text: Great choice 👍 On this route I will show you around my home, the Heron Hill.
-  - type: message
-    text: Our walk will will take approximately one hour.
-    ReplyKeyboardMarkup:
-        - text: "Yes, I am ready 🏁"
-        - text: "I would rather choose another route 🤔"
+    text: "What's your name?"
   - type: return
-    state: EN_REIHERBERGROUTE_BESTAETIGEN
-
-en_start_reiherberg_route_tipp:
+    state: EN_NAME_AENDERN
+  
+name_tipp:
   - type: message
-    text: 'I did not understand you :/ You can type /yes or /no.'
+    text: 'Das habe ich nicht verstanden 😖 Du kannst mit /Ja oder /Nein antworten.'
     ReplyKeyboardMarkup:
-      - text: "Ja, ich bin bereit 🏁"
-      - text: "Ich würde doch lieber eine andere Route gehen 🤔"
+        - text: "Ja, gerne! 😎"
+        - text: "Nein, nenn mich lieber anders! 👻"
 
-start_reiherberg_route:
+en_name_tipp:
   - type: message
-    text: Klasse Wahl 👍 Auf der Reiherbergroute zeige ich dir mein Zuhause, den Reiherberg.
-  - type: message
-    text: Für diesen Weg brauchen wir etwa eine Stunde.
+    text: 'I did not understand you! 😖 Just type /yes  or /no .'
     ReplyKeyboardMarkup:
-        - text: "Ja, ich bin bereit 🏁"
-        - text: "Ich würde doch lieber eine andere Route gehen 🤔"
+        - text: "Sure 😎"
+        - text: "No, better another way! 👻"
+
+name_aendern:
+  - type: function
+    func: change_name
+  - type: message
+    text: 'Ich nenne dich {name}, okay?'
+    ReplyKeyboardMarkup:
+        - text: "Das klingt besser 😊"
+        - text: "Ups, verschrieben 🙈"
   - type: return
-    state: REIHERBERGROUTE_BESTAETIGEN
+    state: NAME
 
-start_reiherberg_route_tipp:
+en_name_aendern:
+  - type: function
+    func: change_name
+  - type: message
+    text: 'I call you {name}, ok?'
+    ReplyKeyboardMarkup:
+        - text: "Sounds better 😊"
+        - text: "Ups, not quite right 🙈"
+  - type: return
+    state: EN_NAME
+
+name_aendern_tipp:
+  - type: message
+    text: 'Das habe ich nicht verstanden :/ Du kannst einfach deinen Namen eingeben.'
+
+en_name_aendern_tipp:
+  - type: message
+    text: 'I did not understand you! 😖 Just type your name.'
+
+datenschutz:
+  - type: message
+    text: 'Cool, dass du da bist, {name}'
+  - type: message
+    text: Um unsere Stadteilführung weiter zu verbessern würden wir gerne ein paar Daten von dir sammeln.
+  - type: message
+    text: Ist das ok für dich? Mehr Infos (hier)[www.reiherbot.de/datenschutz]
+    disable_web_page_preview: True
+    ReplyKeyboardMarkup:
+        - text: "Ja, klar 🌻"
+        - text: "Lieber nicht ⚔️"
+  - type: return
+    state: DATENSCHUTZ
+
+en_datenschutz:
+  - type: message
+    text: 'Cool, dass du da bist, {name}'
+  - type: message
+    text: To improve the guide we would like to collect some user data.
+  - type: message
+    text: Are you ok with that? More information (here)[www.reiherbot.de/datenschutz]
+    disable_web_page_preview: False
+    ReplyKeyboardMarkup:
+        - text: "Yes, sure 🌻"
+        - text: "No way⚔️"
+  - type: return
+    state: EN_DATENSCHUTZ
+
+datenschutz_tipp:
   - type: message
     text: 'Das habe ich nicht verstanden :/ Du kannst mit /Ja oder /Nein antworten.'
     ReplyKeyboardMarkup:
-        - text: "Ja, ich bin bereit 🏁"
-        - text: "Ich würde doch lieber eine andere Route gehen 🤔"
+        - text: "Ja, klar 🌻"
+        - text: "Lieber nicht ⚔️"
 
-welche_route:
-  - type: photo
-    file: assets/Infografik02.jpg
+en_datenschutz_tipp:
   - type: message
-    text: Sehr gut 😊 Welche Route gehen wir heute?
+    text: 'I did not understand you! 😖 Just type /yes  or /no .'
     ReplyKeyboardMarkup:
-        - text: "Reiherbergaufstieg ⛰️"
-        - text: "Heron Hill Climb 🇬🇧"
-        - text: "Seeroute 🌊"
+        - text: "Yes, sure 🌻"
+        - text: "No way⚔️"
+
+startpunkt:
+  - type: function
+    func: change_data
+  - type: message
+    text: Super!
+  - type: message
+    text: Unsere Reise startet am Bahnhof Golm. Ich warte direkt vor dem orangen Bahnhofsgebäude auf dich. 🚉
+  - type: message
+    text: Bist du auch schon dort?
+    ReplyKeyboardMarkup:
+        - text: "schon da ⚓"
+        - text: "noch auf dem Weg 😱"
   - type: return
-    state: ROUTE_AUSWAEHLEN
+    state: STARTPUNKT
 
-welche_route_tipp:
+en_startpunkt:
+  - type: function
+    func: change_data
   - type: message
-    text: 'Das habe ich nicht verstanden :/ Du kannst mit /reiherbergaufstieg, /seeroute und /reiherbergaufstieg_en antworten.'
+    text: Thank you!
+  - type: message
+    text: Our tour starts at the train station in Golm. I'm waiting for you directly infront of the orange building. 🚉
+  - type: message
+    text: Are you already there?
     ReplyKeyboardMarkup:
-        - text: "Reiherbergaufstieg ⛰️"
-        - text: "Heron Hill Climb 🇬🇧"
-        - text: "Seeroute 🌊"
+        - text: "I'm there ⚓"
+        - text: "On my way 😱"
+  - type: return
+    state: STARTPUNKT
+
+startpunkt_tipp:
+  - type: message
+    text: 'Das habe ich nicht verstanden :/ Du kannst mit /Ja oder /Nein antworten.'
+
+en_startpunkt_tipp:
+  - type: message
+    text: 'I did not understand you! 😖 Just type /yes  or /no .'
+    ReplyKeyboardMarkup:
+        - text: "I'm there ⚓"
+        - text: "On my way 😱"
 
 weg_zum_bahnhof:
   - type: message
@@ -79,87 +203,27 @@ weg_zum_bahnhof:
         data: 'action:welche_route'
   - type: return
     state: STARTPUNKT
-                               
-datenschutz:
-  - type: message
-    text: 'Cool, dass du da bist, {name}'
-  - type: message
-    text: Um unsere Stadteilführung weiter zu verbessern würden wir gerne ein paar Daten von dir sammeln.
-  - type: message
-    text: Ist das ok für dich? Mehr unter www.reiherbot.de/datenschutz
-    disable_web_page_preview: True
-    ReplyKeyboardMarkup:
-        - text: "Ja, klar 🌻"
-        - text: "Lieber nicht ⚔️"
-  - type: return
-    state: DATENSCHUTZ
 
-datenschutz_tipp:
+en_weg_zum_bahnhof:
   - type: message
-    text: 'Das habe ich nicht verstanden :/ Du kannst mit /Ja oder /Nein antworten.'
-    ReplyKeyboardMarkup:
-        - text: "Ja, klar 🌻"
-        - text: "Lieber nicht ⚔️"
+    text: No problem, this is where we begin.
+  - type: venue
+    latitude: 52.4090401
+    longitude: 12.9724552
+    address: Station Golm
+    title: Start
+  - type: message
+    text: Click the button below, when you have arrived!
+    InlineKeyboard:
+      - text: "🐾 continue"
+        data: 'action:welche_route'
 
-name_aendern:
+log_update:
   - type: function
-    func: change_name
-  - type: message
-    text: 'Ich nenne dich {name}, okay?'
-    ReplyKeyboardMarkup:
-        - text: "Das klingt besser 😊"
-        - text: "Ups, verschrieben 🙈"
-  - type: return
-    state: NAME
-
-name_aendern_tipp:
-  - type: message
-    text: 'Das habe ich nicht verstanden :/ Du kannst einfach deinen Namen eingeben.'
+    func: log_update
 
 cancel:
   - type: message
     text: 'Bye! I hope we can talk again some day.'
   - type: function
     func: return_end
-
-start_name:
-  - type: function
-    func: entry_conversation
-  - type: function
-    func: default_data
-  - type: sticker
-    id: 'CAACAgIAAxkBAAIgdmERAUCmyNVG8wwMKjbg2BbjaDT-AALuDQACqfWJSH_X4Qk1m_U_IAQ'
-  - type: function
-    func: default_name
-  - type: message
-    text: 'Hi, ich bin Ronni der Reiher! Ich führe dich heute durch Golm.'
-  - type: message
-    text: Darf ich dich {name} nennen?
-    ReplyKeyboardMarkup:
-        - text: "Ja, gerne! 😎"
-        - text: "Nein, nenn mich lieber anders! 👻"
-  - type: return
-    state: NAME
-  
-name_startpunkt:
-  - type: function
-    func: change_data
-  - type: message
-    text: Super!
-  - type: message
-    text: Unsere Reise startet am Bahnhof Golm. Ich warte direkt vor dem orangen Bahnhofsgebäude auf dich. 🚉
-  - type: message
-    text: Bist du auch schon dort?
-    ReplyKeyboardMarkup:
-        - text: "schon da ⚓"
-        - text: "noch auf dem Weg 😱"
-  - type: return
-    state: STARTPUNKT
-
-startpunkt_tipp:
-  - type: message
-    text: 'Das habe ich nicht verstanden :/ Du kannst mit /Ja oder /Nein antworten.'
-
-log_update:
-  - type: function
-    func: log_update
