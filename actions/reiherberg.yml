@@ -587,7 +587,7 @@ weg_schule:
     text: Keine Sorge, es ist nicht schwer zu erkennen, denn du findest das Wappen darauf wieder.
     InlineKeyboard:
       - text: "🗺️ Wohin?"
-        data: "action:schule"
+        data: "action:weg_schule_navigation"
       - text: "🐾 Gefunden!"
         data: "action:schule"
   - type: return
