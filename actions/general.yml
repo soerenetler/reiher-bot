@@ -200,7 +200,7 @@ weg_zum_bahnhof:
     text: Tippe weiter, wenn du angekommen bist!
     InlineKeyboard:
       - text: "🐾 weiter"
-        data: 'action:welche_route'
+        data: 'action:frage_bahnhof_gif'
   - type: return
     state: STARTPUNKT
 
@@ -216,7 +216,7 @@ en_weg_zum_bahnhof:
     text: Click the button below, when you have arrived!
     InlineKeyboard:
       - text: "🐾 continue"
-        data: 'action:welche_route'
+        data: 'action:en_frage_bahnhof_gif'
 
 log_update:
   - type: function
