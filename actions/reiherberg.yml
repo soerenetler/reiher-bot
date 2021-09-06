@@ -548,10 +548,11 @@ frage_storchenbank_aufloesung:
   - type: function
     func: eval_storchenbank
   - type: message
+    parse_mode: MarkdownV2
     text: >
-      Wenn du auf der Storchenbank sitzt, steht rechts von dir die Dorfkapelle.
-      Das ist das älteste Gebäude in ganz Potsdam.
-      Hier finden regelmäßig Veranstaltungen statt, über die du vom [Kulturverein](https://www.kultur-in-golm.de/) mehr erfahren kannst.
+      Wenn du auf der Storchenbank sitzt\, steht rechts von dir die Dorfkapelle\.
+      Das ist das älteste Gebäude in ganz Potsdam\.
+      Hier finden regelmäßig Veranstaltungen statt\, über die du vom [Kulturverein](https://www.kultur-in-golm.de/) mehr erfahren kannst\.
     InlineKeyboard:
       - text: "💡 mehr Infos"
         data: "action:info_kapelle"

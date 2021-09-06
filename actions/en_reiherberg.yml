@@ -559,7 +559,7 @@ en_info_kapelle:
     title: "Kapelle"
     performer: "Reiherbot"
   - type: message
-    text: "https://t.me/pdm_golm"
+    text: "⛪️"
     InlineKeyboard:
       - text: "🐾 continue"
         data: "action:en_info_kapelle"
