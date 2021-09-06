@@ -112,7 +112,7 @@ datenschutz:
     text: Um unsere Stadteilführung weiter zu verbessern würden wir gerne ein paar Daten von dir sammeln.
   - type: message
     parse_mode: MarkdownV2
-    text: Ist das ok für dich? Mehr Infos (hier)[www.reiherbot.de/datenschutz]
+    text: Ist das ok für dich? Mehr Infos [hier](www.reiherbot.de/datenschutz)
     disable_web_page_preview: True
     ReplyKeyboardMarkup:
         - text: "Ja, klar 🌻"
@@ -127,7 +127,7 @@ en_datenschutz:
     text: To improve the guide we would like to collect some user data.
   - type: message
     parse_mode: MarkdownV2
-    text: Are you ok with that? More information (here)[www.reiherbot.de/datenschutz]
+    text: Are you ok with that? More information [here](www.reiherbot.de/datenschutz)
     disable_web_page_preview: False
     ReplyKeyboardMarkup:
         - text: "Yes, sure 🌻"
