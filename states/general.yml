@@ -156,11 +156,11 @@ EN_STARTPUNKT:
 ROUTE_AUSWAEHLEN:
   - handler: CommandHandler
     command: reiherbergaufstieg
-    action: start_reiherberg_route
+    action: frage_bahnhof_gif
   - handler: MessageHandler
     filter: regex
     regex: "^(Reiherbergaufstieg ⛰️|Reiherberg|Reiherbergaufstieg|Berg)$"
-    action: start_reiherberg_route
+    action: frage_bahnhof_gif
 
   - handler: CommandHandler
     command: seeroute
@@ -172,11 +172,11 @@ ROUTE_AUSWAEHLEN:
 
   - handler: CommandHandler
     command: reiherbergaufstieg_en
-    action: en_start_reiherberg_route
+    action: en_frage_bahnhof_gif
   - handler: MessageHandler
     filter: regex
     regex: "^(Heron Hill Climb 🇬🇧|English|Heron Hill|Hill)$"
-    action: en_start_reiherberg_route
+    action: en_frage_bahnhof_gif
 
   - handler: TypeHandler
     type: Update
@@ -204,7 +204,7 @@ REIHERBERGROUTE_BESTAETIGEN:
 
   - handler: TypeHandler
     type: Update
-    action: start_reiherberg_route_tipp
+    action: frage_bahnhof_gif_tipp
 
 EN_REIHERBERGROUTE_BESTAETIGEN:
   - handler: CommandHandler
@@ -228,4 +228,4 @@ EN_REIHERBERGROUTE_BESTAETIGEN:
 
   - handler: TypeHandler
     type: Update
-    action: en_start_reiherberg_route_tipp
+    action: en_frage_bahnhof_gif_tipp
