@@ -52,6 +52,9 @@ class Interaction(mongoengine.Document):
     last_name = mongoengine.StringField(max_length=50)
     username = mongoengine.StringField(max_length=50)
     message = mongoengine.DictField()
+    message_text = mongoengine.StringField(max_length=MAX_MESSAGE_LENGTH)
+    message_id = mongoengine.IntField()
+    date = mongoengine.DateTimeField()
     meta = {'db_alias': interaction_dbname}
 
 
@@ -64,12 +67,20 @@ def entry_conversation(update: Update, context: CallbackContext):
     db_user.save()
     context.user_data["user_id"] = db_user
 
+    if update.effective_message.text:
+        message_text = update.effective_message.text
+    else:
+        message_text=None
+
     Interaction(user=context.user_data["user_id"],
                 update_id=update.update_id,
-                message=update.effective_message.to_json(),
+                message=update.effective_message.to_dict(),
                 first_name=update.effective_user.first_name,
                 last_name=update.effective_user.last_name,
                 username=update.effective_user.username,
+                message_text=message_text,
+                date=update.effective_message.date,
+                message_id = update.effective_message.message_id
                 ).save()
 
     if context.args:
