@@ -82,11 +82,11 @@ EN_NAME_AENDERN:
 DATENSCHUTZ:
   - handler: CommandHandler
     command: Nein
-    action: startpunkt
+    action: datenschutz_ablehnen
   - handler: MessageHandler
     filter: regex
     regex: "^(Nein|Lieber nicht ⚔️)$"
-    action: startpunkt
+    action: datenschutz_ablehnen
 
   - handler: CommandHandler
     command: Ja
