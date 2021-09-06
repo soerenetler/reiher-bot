@@ -65,7 +65,7 @@ def eval_kirche_wortraetsel(update, context):
 def eval_storchenbank(update, context):
     antwort = int(re.findall(r"\d{1,}", update.message.text)[0])
     echter_wert = 2012
-    if antwort.lower() == echter_wert:
+    if antwort == echter_wert:
         update.message.reply_text('Du hast die Tafel also entdeckt! Dort werden seit vielen Jahren die Rückkehrzeiten und der Nachwuchs des Storchenpaares festgehalten.',
             reply_markup=ReplyKeyboardRemove())
     else:
