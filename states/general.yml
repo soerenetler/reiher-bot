@@ -163,14 +163,6 @@ ROUTE_AUSWAEHLEN:
     action: frage_bahnhof_gif
 
   - handler: CommandHandler
-    command: seeroute
-    action: start_see_route
-  - handler: MessageHandler
-    filter: regex
-    regex: "^(Seeroute 🌊|Seeroute|Zernsee|See)$"
-    action: start_see_route
-
-  - handler: CommandHandler
     command: reiherbergaufstieg_en
     action: en_frage_bahnhof_gif
   - handler: MessageHandler
