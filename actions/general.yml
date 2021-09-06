@@ -177,7 +177,7 @@ en_startpunkt:
         - text: "I'm there ⚓"
         - text: "On my way 😱"
   - type: return
-    state: STARTPUNKT
+    state: EN_STARTPUNKT
 
 startpunkt_tipp:
   - type: message
@@ -203,8 +203,6 @@ weg_zum_bahnhof:
     InlineKeyboard:
       - text: "🐾 weiter"
         data: 'action:frage_bahnhof_gif'
-  - type: return
-    state: STARTPUNKT
 
 en_weg_zum_bahnhof:
   - type: message
