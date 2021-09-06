@@ -5,6 +5,8 @@ from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton,
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
                           ConversationHandler, CallbackContext)
 
+from telegram.constants import MAX_MESSAGE_LENGTH
+
 import mongoengine
 import datetime
 import os
@@ -18,16 +20,20 @@ logger = logging.getLogger(__name__)
 user_dbname = "reiherbot_user"
 interaction_dbname = "reiherbot_interaction"
 with open("ca-certificate.crt", "w") as text_file:
-            text_file.write(os.getenv('DATABASE_CERT'))
-mongoengine.connect(alias=user_dbname, host="mongodb+srv://"+ os.getenv("DATABASE_USERNAME")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+user_dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
-mongoengine.connect(alias=interaction_dbname, host="mongodb+srv://"+ os.getenv("DATABASE_USERNAME")+":"+ os.getenv("DATABASE_PASSWORD") + "@" +os.getenv("DATABASE_HOST") +"/"+interaction_dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
+    text_file.write(os.getenv('DATABASE_CERT'))
+mongoengine.connect(alias=user_dbname, host="mongodb+srv://" + os.getenv("DATABASE_USERNAME")+":" + os.getenv("DATABASE_PASSWORD") +
+                    "@" + os.getenv("DATABASE_HOST") + "/"+user_dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
+mongoengine.connect(alias=interaction_dbname, host="mongodb+srv://" + os.getenv("DATABASE_USERNAME")+":" + os.getenv("DATABASE_PASSWORD") +
+                    "@" + os.getenv("DATABASE_HOST") + "/"+interaction_dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
 
 
 def log_update(update: Update, context: CallbackContext):
     logger.warning("The incoming update was not handled: {}".format(update))
 
+
 def return_end(update: Update, context: CallbackContext):
     return ConversationHandler.END
+
 
 class User(mongoengine.Document):
     user_id = mongoengine.StringField(required=True)
@@ -38,19 +44,33 @@ class User(mongoengine.Document):
     entry_time = mongoengine.DateTimeField(default=datetime.datetime.utcnow)
     meta = {'db_alias': user_dbname}
 
+
 class Interaction(mongoengine.Document):
     user = mongoengine.ReferenceField(User)
-    update_id  = mongoengine.IntField()
+    update_id = mongoengine.IntField()
+    first_name = mongoengine.StringField(max_length=50)
+    last_name = mongoengine.StringField(max_length=50)
+    username = mongoengine.StringField(max_length=50)
     message = mongoengine.DictField()
     meta = {'db_alias': interaction_dbname}
 
 
 def entry_conversation(update: Update, context: CallbackContext):
-    db_user = User(user_id=str(update.effective_user.id), first_name=update.effective_user.first_name, last_name=update.effective_user.last_name, username=update.effective_user.username, language_code=update.effective_user.language_code)
+    db_user = User(user_id=str(update.effective_user.id),
+                   first_name=update.effective_user.first_name,
+                   last_name=update.effective_user.last_name,
+                   username=update.effective_user.username,
+                   language_code=update.effective_user.language_code)
     db_user.save()
     context.user_data["user_id"] = db_user
-    
-    Interaction(user=context.user_data["user_id"], update_id=update.update_id, message=update.message.to_dict()).save()
+
+    Interaction(user=context.user_data["user_id"],
+                update_id=update.update_id,
+                message=update.effective_message.to_json(),
+                first_name=update.effective_user.first_name,
+                last_name=update.effective_user.last_name,
+                username=update.effective_user.username,
+                ).save()
 
     if context.args:
         keyboard = [[InlineKeyboardButton(
@@ -62,11 +82,14 @@ def entry_conversation(update: Update, context: CallbackContext):
             reply_markup=reply_markup)
         return None
 
+
 def default_data(update: Update, context: CallbackContext):
     context.user_data["daten"] = False
 
+
 def default_name(update: Update, context: CallbackContext):
     context.user_data["name"] = update.message.from_user.first_name
+
 
 def change_data(update: Update, context: CallbackContext):
     if update.message.text == "Ja" or update.message.text == "Ja, klar 🌻" or update.message.text == "/Ja":
@@ -74,8 +97,10 @@ def change_data(update: Update, context: CallbackContext):
     else:
         context.user_data["daten"] = False
 
+
 def change_name(update: Update, context: CallbackContext):
     context.user_data["name"] = update.message.text
+
 
 action_functions = {"change_name": change_name,
                     "change_data": change_data,
