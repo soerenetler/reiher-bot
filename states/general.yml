@@ -80,15 +80,23 @@ EN_NAME_AENDERN:
     action: en_name_aendern_tipp
 
 DATENSCHUTZ:
-  - handler: MessageHandler
-    filter: regex
-    regex: "^(Nein|Ja|Ja, klar 🌻|Lieber nicht ⚔️)$"
-    action: startpunkt
   - handler: CommandHandler
     command: Nein
     action: startpunkt
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(Nein|Lieber nicht ⚔️)$"
+    action: startpunkt
+
   - handler: CommandHandler
     command: Ja
+    action: startpunkt
+  - handler: CommandHandler
+    command: zustimmen
+    action: startpunkt
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(Ja|Ja, klar 🌻|Ich stimme der Datenschutzerklärung zu 🌻)$"
     action: startpunkt
 
   - handler: TypeHandler
@@ -96,15 +104,23 @@ DATENSCHUTZ:
     action: datenschutz_tipp
 
 EN_DATENSCHUTZ:
-  - handler: MessageHandler
-    filter: regex
-    regex: "^(No|no|Yes, sure 🌻|No way⚔️)$"
-    action: en_startpunkt
   - handler: CommandHandler
     command: "no"
-    action: en_startpunkt
+    action: en_datenschutz_ablehnen
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(No|no|No way⚔️)$"
+    action: en_datenschutz_ablehnen
+
   - handler: CommandHandler
     command: "yes"
+    action: en_startpunkt
+  - handler: CommandHandler
+    command: "accept"
+    action: en_startpunkt
+  - handler: MessageHandler
+    filter: regex
+    regex: "^(yes|Yes|Yes, sure 🌻|I accept the privacy policy 🌻)$"
     action: en_startpunkt
 
   - handler: TypeHandler

@@ -149,6 +149,22 @@ en_datenschutz_tipp:
         - text: "Yes, sure 🌻"
         - text: "No way⚔️"
 
+datenschutz_ablehnen:
+  - type: message
+    text: >
+          Leider ist der Rundgang ohne deine Einweillung zur Datenschutzerklärung nicht möglich.
+          Du kannst dich jederzeit mit /zustimmen umentscheiden - wir passen auch gut auf deine Daten auf.
+    ReplyKeyboardMarkup:
+        - text: Ich stimme der Datenschutzerklärung zu 🌻
+
+en_datenschutz_ablehnen:
+  - type: message
+    text: >
+          Unfortunately, the tour is not possible without your consent to the privacy policy.
+          You can change your mind at any time and type /accept - we also take good care of your data.
+    ReplyKeyboardMarkup:
+        - text: I agree to the privacy policy 🌻
+
 startpunkt:
   - type: function
     func: change_data
