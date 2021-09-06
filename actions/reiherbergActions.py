@@ -1,23 +1,25 @@
-import os
-from telegram import (ParseMode, InputFile, InputMediaPhoto, ReplyKeyboardMarkup, ReplyKeyboardRemove,
-                      KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup, Poll, Update, CallbackQuery)
-from telegram.ext import CallbackContext, ConversationHandler
-from PIL import Image
-import re
-
 import base64
+import logging
+import os
+import re
 from io import BytesIO
+
 import yaml
+from PIL import Image
+from telegram import (CallbackQuery, InlineKeyboardButton,
+                      InlineKeyboardMarkup, InputFile, InputMediaPhoto,
+                      KeyboardButton, ParseMode, Poll, ReplyKeyboardMarkup,
+                      ReplyKeyboardRemove, Update)
+from telegram.ext import CallbackContext, ConversationHandler
 
 from actions import utils
 from actions.utils import log
-
-import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
+
 
 def send_bahnhof_gif(update, context):
     im_bytes = update.message.photo[-1].get_file().download_as_bytearray()
@@ -44,15 +46,17 @@ def eval_schaetzfrage_bahnhof(update, context):
         update.message.reply_text('Nicht ganz!',
                                   reply_markup=ReplyKeyboardRemove())
 
-def eval_quiz(update: Update, context: CallbackContext, correct_option_id:int, correct_answer_text:str, wrong_answer_text:str, correct_answer_sticker=None):
+
+def eval_quiz(update: Update, context: CallbackContext, correct_option_id: int, correct_answer_text: str, wrong_answer_text: str, correct_answer_sticker=None):
     if update.poll_answer.option_ids == [correct_option_id]:
         if correct_answer_sticker:
             update.poll_answer.user.send_sticker(correct_answer_sticker)
         update.poll_answer.user.send_message(correct_answer_text.format(name=context.user_data["name"]),
-                                reply_markup=ReplyKeyboardRemove())
+                                             reply_markup=ReplyKeyboardRemove())
     else:
         update.poll_answer.user.send_message(wrong_answer_text.format(name=context.user_data["name"]),
-                                reply_markup=ReplyKeyboardRemove())
+                                             reply_markup=ReplyKeyboardRemove())
+
 
 def eval_schaetzfrage_reiherberg(update, context):
     schaetzung = int(re.findall(r"\d{1,}", update.message.text)[0])
@@ -67,6 +71,7 @@ def eval_schaetzfrage_reiherberg(update, context):
         update.message.reply_text('Knapp daneben!',
                                   reply_markup=ReplyKeyboardRemove())
 
+
 def eval_kirche_wortraetsel(update, context):
     antwort = update.message.text
     echter_wert = "Kaiser-Friedrich-Kirche"
@@ -76,6 +81,7 @@ def eval_kirche_wortraetsel(update, context):
                                   reply_markup=ReplyKeyboardRemove())
     else:
         update.message.reply_text('Fast!', reply_markup=ReplyKeyboardRemove())
+
 
 def eval_storchenbank(update, context):
     antwort = update.message.text
@@ -90,7 +96,8 @@ def eval_storchenbank(update, context):
 
 def reiherberg_medaille(update, context):
     try:
-        photo_files = update.from_user.get_profile_photos().photos[0][-1].get_file().download_as_bytearray()
+        photo_files = update.from_user.get_profile_photos(
+        ).photos[0][-1].get_file().download_as_bytearray()
         # convert image to file-like object
         profile_file = BytesIO(photo_files)
         # img is now PIL Image object
@@ -102,12 +109,7 @@ def reiherberg_medaille(update, context):
             utils.overlay_images(background, foreground))
     except:
         update.message.reply_photo(
-                open("assets/Skyline_02_gelb.png", 'rb'))
-
-
-def bahnhof_timetable(update, context):
-    update.message.reply_text(
-        'Der nächste Zug fährt in 3 Minuten!', reply_markup=ReplyKeyboardRemove())
+            open("assets/Skyline_02_gelb.png", 'rb'))
 
 
 action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
@@ -116,6 +118,5 @@ action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
                     "eval_kirche_wortraetsel": eval_kirche_wortraetsel,
                     "eval_storchenbank": eval_storchenbank,
                     "reiherberg_medaille": reiherberg_medaille,
-                    "bahnhof_timetable": bahnhof_timetable,
                     "eval_quiz": eval_quiz
                     }
