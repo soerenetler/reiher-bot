@@ -40,6 +40,8 @@ from telegram.constants import MAX_MESSAGE_LENGTH
 from actions.generalActions import User
 
 interaction_dbname = "reiherbot_interaction"
+with open("ca-certificate.crt", "w") as text_file:
+    text_file.write(os.getenv('DATABASE_CERT'))
 mongoengine.connect(alias=interaction_dbname, host="mongodb+srv://" + os.getenv("DATABASE_USERNAME")+":" + os.getenv("DATABASE_PASSWORD") +
                     "@" + os.getenv("DATABASE_HOST") + "/"+interaction_dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
 
