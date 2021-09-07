@@ -13,7 +13,6 @@ from telegram import (CallbackQuery, InlineKeyboardButton,
 from telegram.ext import CallbackContext, ConversationHandler
 
 from actions import utils
-from actions.utils import log
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
