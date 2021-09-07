@@ -1,5 +1,5 @@
 python-telegram-bot
-digitalguide
+digitalguide==0.0.61
 Pillow
 PyYAML
 boto3
