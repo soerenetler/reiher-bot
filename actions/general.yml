@@ -25,7 +25,7 @@ start:
 
 sprache_tipp:
   - type: message
-    text: Diese Sprache kenne ich nicht. Tippe \deutsch oder \english !
+    text: Diese Sprache kenne ich nicht. Tippe /deutsch oder /english !
 
 name:
   - type: message
