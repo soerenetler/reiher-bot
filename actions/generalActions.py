@@ -6,10 +6,9 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
                           ConversationHandler, CallbackContext)
 
 import mongoengine
-import datetime
 import os
 
-from actions.utils import log
+from db_objects import User
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -29,15 +28,6 @@ def log_update(update: Update, context: CallbackContext):
 def return_end(update: Update, context: CallbackContext):
     return ConversationHandler.END
 
-
-class User(mongoengine.Document):
-    user_id = mongoengine.StringField(required=True)
-    first_name = mongoengine.StringField(required=True, max_length=50)
-    last_name = mongoengine.StringField(max_length=50)
-    username = mongoengine.StringField(max_length=50)
-    language_code = mongoengine.StringField(max_length=10)
-    entry_time = mongoengine.DateTimeField(default=datetime.datetime.utcnow)
-    meta = {'db_alias': user_dbname}
 
 
 def entry_conversation(update: Update, context: CallbackContext):

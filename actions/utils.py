@@ -36,26 +36,14 @@ def overlay_images(background, foreground):
 from functools import wraps
 import os
 import mongoengine
-from telegram.constants import MAX_MESSAGE_LENGTH
-from actions.generalActions import User
+from db_objects import Interaction
+
 
 interaction_dbname = "reiherbot_interaction"
 with open("ca-certificate.crt", "w") as text_file:
     text_file.write(os.getenv('DATABASE_CERT'))
 mongoengine.connect(alias=interaction_dbname, host="mongodb+srv://" + os.getenv("DATABASE_USERNAME")+":" + os.getenv("DATABASE_PASSWORD") +
                     "@" + os.getenv("DATABASE_HOST") + "/"+interaction_dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
-
-class Interaction(mongoengine.Document):
-    user = mongoengine.ReferenceField(User)
-    update_id = mongoengine.IntField()
-    first_name = mongoengine.StringField(max_length=50)
-    last_name = mongoengine.StringField(max_length=50)
-    username = mongoengine.StringField(max_length=50)
-    message = mongoengine.DictField()
-    message_text = mongoengine.StringField(max_length=MAX_MESSAGE_LENGTH)
-    message_id = mongoengine.IntField()
-    date = mongoengine.DateTimeField()
-    meta = {'db_alias': interaction_dbname}
 
 def log(logger):
     """Sends `action` while processing func command."""
