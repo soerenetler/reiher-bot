@@ -8,18 +8,10 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
 import mongoengine
 import os
 
-from actions.db_objects import User
-
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-user_dbname = "reiherbot_user"
-with open("ca-certificate.crt", "w") as text_file:
-    text_file.write(os.getenv('DATABASE_CERT'))
-mongoengine.connect(alias=user_dbname, host="mongodb+srv://" + os.getenv("DATABASE_USERNAME")+":" + os.getenv("DATABASE_PASSWORD") +
-                    "@" + os.getenv("DATABASE_HOST") + "/"+user_dbname+"?authSource=admin&tls=true&tlsCAFile=ca-certificate.crt")
-
 
 def log_update(update: Update, context: CallbackContext):
     logger.warning("The incoming update was not handled: {}".format(update))
@@ -28,17 +20,7 @@ def log_update(update: Update, context: CallbackContext):
 def return_end(update: Update, context: CallbackContext):
     return ConversationHandler.END
 
-
-
 def entry_conversation(update: Update, context: CallbackContext):
-    db_user = User(user_id=str(update.effective_user.id),
-                   first_name=update.effective_user.first_name,
-                   last_name=update.effective_user.last_name,
-                   username=update.effective_user.username,
-                   language_code=update.effective_user.language_code)
-    db_user.save()
-    context.user_data["user_id"] = db_user
-
     if context.args:
         keyboard = [[InlineKeyboardButton(
             "🐾 los", callback_data='action:' + context.args[0])]]
