@@ -36,7 +36,7 @@ def overlay_images(background, foreground):
 from functools import wraps
 import os
 import mongoengine
-from db_objects import Interaction
+from actions.db_objects import Interaction
 
 
 interaction_dbname = "reiherbot_interaction"

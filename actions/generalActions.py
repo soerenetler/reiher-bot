@@ -8,7 +8,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
 import mongoengine
 import os
 
-from db_objects import User
+from actions.db_objects import User
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
