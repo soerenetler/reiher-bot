@@ -124,7 +124,7 @@ en_frage_quiz_aufloesung:
     correct_answer_text: "Correct, {name} 🎉"
     wrong_answer_text: "Not quite!"
   - type: sticker
-    id: "CAACAgIAAxkBAAIiL2ET4VMouosJKz-SHErJSCIjJjABAAL0DQAC8kuhSBy3iiOyQmuyIAQ"
+    id: "CAACAgIAAxkBAAIPC2FlYQXfP3fMn5vTfQ48IMjsvUAEAAKmDgACj7OpStzbeJzoOqAoIQQ"
   - type: message
     text: |
       Many herons have always lived around Golm.

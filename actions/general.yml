@@ -4,7 +4,7 @@ start:
   - type: function
     func: default_data
   - type: sticker
-    id: 'CAACAgIAAxkBAAIgdmERAUCmyNVG8wwMKjbg2BbjaDT-AALuDQACqfWJSH_X4Qk1m_U_IAQ'
+    id: 'CAACAgIAAxkBAAIPCWFlYP0m7Qmrt50cDv5_pbH_nfV3AAIbEwACBfGpSkKoz6rqioSCIQQ'
   - type: function
     func: default_name
   - type: message
