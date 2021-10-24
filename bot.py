@@ -87,10 +87,6 @@ if __name__ == '__main__':
     updater.start_webhook(listen="0.0.0.0",
                           port=PORT,
                           url_path=TOKEN)
-updater.start_webhook(listen="0.0.0.0",
-                          port=int(PORT),
-                          url_path=TOKEN)
-                          
-updater.bot.setWebhook(os.environ.get("APP_URL") + TOKEN)
+    updater.bot.setWebhook(os.environ.get("APP_URL") + TOKEN)
 
 updater.idle()
