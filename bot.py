@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
     TOKEN = os.environ.get('TELEGRAM_TOKEN')
-    PORT = int(os.environ.get('PORT', '8080'))
+    PORT = int(os.environ.get('PORT', '8443'))
 
     my_persistence = DBPersistence("reiherbot_persistencedb")
     updater = Updater(TOKEN, persistence=my_persistence, use_context=True)
