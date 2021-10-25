@@ -86,8 +86,8 @@ if __name__ == '__main__':
     print("PORT", PORT)
 
     updater.start_webhook(listen="0.0.0.0",
-                          port=8080,
+                          port=PORT,
                           url_path=TOKEN,
-                          webhook_url = "naunhofbot-szuep.ondigitalocean.app/" + TOKEN)
+                          webhook_url = os.environ.get("APP_URL") + TOKEN)
 
     updater.idle()
