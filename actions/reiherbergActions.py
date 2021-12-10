@@ -19,19 +19,6 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
-
-def send_bahnhof_gif(update, context):
-    im_bytes = update.message.photo[-1].get_file().download_as_bytearray()
-
-    im_file = BytesIO(im_bytes)  # convert image to file-like object
-    im1 = Image.open(im_file)   # img is now PIL Image object
-    im2 = Image.open('assets/bahnhof_alt.jpg')
-
-    gif = utils.generate_gif(im1, im2)
-
-    update.message.reply_document(gif)
-
-
 def eval_schaetzfrage_bahnhof(update, context):
     schaetzung = int(update.message.text)
     echter_wert = 106
@@ -111,8 +98,7 @@ def reiherberg_medaille(update, context):
             open("assets/Skyline_02_gelb.png", 'rb'))
 
 
-action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
-                    "eval_schaetzfrage_bahnhof": eval_schaetzfrage_bahnhof,
+action_functions = {"eval_schaetzfrage_bahnhof": eval_schaetzfrage_bahnhof,
                     "eval_schaetzfrage_reiherberg": eval_schaetzfrage_reiherberg,
                     "eval_kirche_wortraetsel": eval_kirche_wortraetsel,
                     "eval_storchenbank": eval_storchenbank,

@@ -18,7 +18,8 @@ frage_bahnhof_gif_aufloesung:
     bucket: reiherbot
     folder: bahnhof_gif
   - type: function
-    func: send_bahnhof_gif
+    func: eval_gif_generation
+    picture: bahnhof_alt.jpg
   - type: message
     text: "So viel hat sich gar nicht geändert, oder?"
     InlineKeyboard:

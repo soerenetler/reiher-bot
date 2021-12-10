@@ -15,6 +15,7 @@ bot.
 """
 
 import logging
+import digitalguide
 
 from telegram import Update
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, CallbackContext, PicklePersistence,
@@ -26,8 +27,7 @@ from digitalguide.errorHandler import error_handler
 
 from actions import generalActions, en_reiherbergActions, reiherbergActions
 
-from digitalguide.mongo_persistence import DBPersistence
-from digitalguide import writeActions
+from digitalguide import writeActions, imageActions
 
 import os
 
@@ -41,14 +41,18 @@ if __name__ == '__main__':
     TOKEN = os.environ.get('TELEGRAM_TOKEN')
     PORT = int(os.environ.get('PORT', '8080'))
 
-    my_persistence = DBPersistence("reiherbot_persistencedb")
-    updater = Updater(TOKEN, persistence=my_persistence, use_context=True)
+    #my_persistence = DBPersistence("reiherbot_persistencedb")
+    updater = Updater(TOKEN,
+                      # persistence=my_persistence,
+                      use_context=True)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
     reiherbergActions = read_action_yaml("actions/reiherberg.yml", action_functions={
-                                         **reiherbergActions.action_functions, **writeActions.action_functions})
+                                         **imageActions.telegram_action_functions,
+                                         **reiherbergActions.action_functions,
+                                         **writeActions.telegram_action_functions})
     en_reiherbergActions = read_action_yaml(
         "actions/en_reiherberg.yml", action_functions={**en_reiherbergActions.action_functions, **writeActions.action_functions})
     generalActions = read_action_yaml(

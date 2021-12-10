@@ -3,11 +3,8 @@ import re
 from io import BytesIO
 
 from PIL import Image
-from telegram import (CallbackQuery, InlineKeyboardButton,
-                      InlineKeyboardMarkup, InputFile, InputMediaPhoto,
-                      KeyboardButton, ParseMode, Poll, ReplyKeyboardMarkup,
-                      ReplyKeyboardRemove, Update)
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram import (ReplyKeyboardRemove, Update)
+from telegram.ext import CallbackContext
 
 from actions import utils
 
@@ -15,19 +12,6 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-
-
-def send_bahnhof_gif(update, context):
-    im_bytes = update.message.photo[-1].get_file().download_as_bytearray()
-
-    im_file = BytesIO(im_bytes)  # convert image to file-like object
-    im1 = Image.open(im_file)   # img is now PIL Image object
-    im2 = Image.open('assets/bahnhof_alt.jpg')
-
-    gif = utils.generate_gif(im1, im2)
-
-    update.message.reply_document(gif)
-
 
 def eval_schaetzfrage_bahnhof(update, context):
     schaetzung = int(re.findall(r"\d{1,}", update.message.text)[0])
@@ -108,8 +92,7 @@ def eval_quiz(update: Update, context: CallbackContext, correct_option_id: int, 
                                              reply_markup=ReplyKeyboardRemove())
 
 
-action_functions = {"send_bahnhof_gif": send_bahnhof_gif,
-                    "eval_schaetzfrage_bahnhof": eval_schaetzfrage_bahnhof,
+action_functions = {"eval_schaetzfrage_bahnhof": eval_schaetzfrage_bahnhof,
                     "eval_schaetzfrage_reiherberg": eval_schaetzfrage_reiherberg,
                     "eval_kirche_wortraetsel": eval_kirche_wortraetsel,
                     "eval_storchenbank": eval_storchenbank,
