@@ -70,7 +70,8 @@ if __name__ == '__main__':
         per_chat=False,
         conversation_timeout=6 * 60 * 60,
         entry_points=[CommandHandler('start', generalActions["start"])],
-        persistent=True, name='reiherbot',
+        #persistent=True,
+        name='reiherbot',
 
         states={
             **read_state_yml("states/general.yml", actions={**reiherbergActions, **en_reiherbergActions, **generalActions}, prechecks=prechecks),
